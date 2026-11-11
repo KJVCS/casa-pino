@@ -1,16 +1,41 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Iedereen mag lezen. Alleen de acht deelnemers hebben een eigen document.
+    function isPerson(p) {
+      return p in ['kai','toobs','babbels','dubbel-d','yung-marie','raw-roya','tomba','melph'];
+    }
+
+    // Keuzes: één document per deelnemer.
     match /answers/{person} {
       allow read: if true;
-      allow create, update: if person in ['kai','toobs','babbels','dubbel-d','yung-marie','raw-roya','tomba','melph']
+      allow create, update: if isPerson(person)
         && request.resource.data.keys().hasOnly(['name','answers','updatedAt'])
         && request.resource.data.name is string
         && request.resource.data.name.size() <= 40
         && request.resource.data.answers is map
         && request.resource.data.answers.keys().size() <= 60
         && request.resource.data.updatedAt is timestamp;
+      allow delete: if false;
+    }
+
+    // Ideeën: indiener blijft altijd dezelfde; helpers mag iedereen aanpassen.
+    match /ideas/{id} {
+      function ok(d) {
+        return d.keys().hasOnly(['title','text','cat','by','leads','helpers','gone','createdAt','updatedAt'])
+          && d.title is string && d.title.size() > 0 && d.title.size() <= 80
+          && d.text is string && d.text.size() <= 500
+          && d.cat in ['eten','avond','spel','overig']
+          && isPerson(d.by)
+          && d.leads is list && d.leads.size() <= 8
+          && d.helpers is list && d.helpers.size() <= 8
+          && d.gone is bool
+          && d.createdAt is timestamp && d.updatedAt is timestamp;
+      }
+      allow read: if true;
+      allow create: if ok(request.resource.data) && request.resource.data.gone == false;
+      allow update: if ok(request.resource.data)
+        && request.resource.data.by == resource.data.by
+        && request.resource.data.createdAt == resource.data.createdAt;
       allow delete: if false;
     }
   }

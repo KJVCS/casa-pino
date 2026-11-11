@@ -4,516 +4,569 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
 <title>Casa Pino 2027</title>
-<meta property="og:title" content="Casa Pino 2027: eerst de wijn, nu de rackets">
-<meta property="og:description" content="Vul in wat je wilt: vluchten, padel en voetbal. Wie niet invult, speelt in het tweede viertal.">
+<meta property="og:title" content="Casa Pino 2027: pils, padel en goeie gesprekken">
+<meta property="og:description" content="Vul je voorkeuren in. Jouw stem telt (een beetje).">
 <meta property="og:image" content="https://kjvcs.github.io/casa-pino/photo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Libre+Baskerville:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Idee: een donker restaurant met kroonluchter. Zwart, warm goud, gebroken wit. Eén kolom, foto als bediening. */
+/* Galerie-wit: zwart op wit, kapitalen met lucht, citaten in Baskerville, stippels als ornament. */
 :root {
-  --bg: #0c0a08;
-  --surface: #17130f;
-  --surface-2: #211b14;
-  --line: #352c20;
-  --text: #f2e9d8;
-  --muted: #a39579;
-  --gold: #e0b868;
-  --gold-ink: #1a1409;
-  --bad: #e58a7a;
-  --display: "Fraunces", Georgia, "Times New Roman", serif;
-  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color-scheme: dark;
+  --ink: #111; --paper: #fff; --muted: #6e6e6e; --rule: #dedede; --soft: #f4f3f0;
+  --title: "Bodoni Moda", Didot, "Didot LT STD", "Bodoni 72", Georgia, serif;
+  --quote: "Libre Baskerville", Baskerville, Georgia, serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
-html { background: var(--bg); }
-body {
-  margin: 0; background: var(--bg); color: var(--text);
-  font: 400 1rem/1.5 var(--body); -webkit-text-size-adjust: 100%;
-  font-variant-numeric: tabular-nums;
-}
-.wrap { max-width: 960px; margin: 0 auto; padding: 0 18px; }
-button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 .95rem/1.55 var(--body); letter-spacing: .015em; font-variant-numeric: tabular-nums; -webkit-text-size-adjust: 100%; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+button, input, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.caps { font-family: var(--title); text-transform: uppercase; letter-spacing: .13em; font-weight: 400; }
+.label { display: inline-block; margin: 0; font: 500 .8rem/1.3 var(--body); letter-spacing: .12em; }
+.label::after { content: ""; display: block; width: 46px; height: 2px; margin-top: 5px; background: var(--ink); }
 
 /* Kop */
-.hero { padding: 44px 18px 22px; }
-.eyebrow { margin: 0 0 10px; color: var(--gold); font-size: .85rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-h1 { margin: 0; font: 700 clamp(2.8rem, 9vw, 5.2rem)/.95 var(--display); letter-spacing: -.02em; text-wrap: balance; }
-h1 em { font-style: italic; font-weight: 400; color: var(--gold); }
-.sub { margin: 14px 0 0; font: italic 400 clamp(1.25rem, 3.4vw, 1.7rem)/1.25 var(--display); text-wrap: balance; }
-.nudge { margin: 10px 0 0; color: var(--muted); max-width: 46ch; }
-.count { margin: 16px 0 0; display: inline-block; padding: 5px 12px; border: 1px solid var(--line); border-radius: 99px; font-size: .85rem; color: var(--muted); }
-.count b { color: var(--text); font-weight: 600; }
+.hero { position: relative; padding: 52px 20px 30px; text-align: center; overflow: hidden; }
+.hero .map { position: absolute; right: -70px; top: 0; width: min(320px, 60%); opacity: .16; pointer-events: none; }
+@media (min-width: 900px) { .hero .map { opacity: .5; right: max(0px, calc(50% - 600px)); width: 300px; top: 14px; } }
+.hero > *:not(.map) { position: relative; }
+.eyebrow { margin: 0 0 18px; font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; }
+h1 { margin: 0; font: 400 clamp(2.6rem, 10vw, 5rem)/1 var(--title); letter-spacing: .13em; text-transform: uppercase; }
+.year { margin: 10px 0 0; font: 400 1.05rem/1 var(--quote); letter-spacing: .3em; }
+.sub { margin: 26px auto 0; max-width: 30ch; font: italic 400 clamp(1.15rem, 3.4vw, 1.5rem)/1.4 var(--quote); }
+.nudge { margin: 8px 0 0; color: var(--muted); }
+.count { margin: 22px auto 0; font: 400 .92rem/1.4 var(--quote); }
+.count b { font-weight: 400; font-size: 1.3em; }
 
-/* Foto als bediening */
-.photo { position: relative; border-radius: 14px; overflow: hidden; background: var(--surface); line-height: 0; }
+/* Foto */
+.photo { position: relative; line-height: 0; border: 1px solid var(--ink); padding: 10px; background: var(--paper); }
 .photo img { width: 100%; height: auto; display: block; }
-.hs {
-  position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; padding: 0; cursor: pointer;
-  border-radius: 50%; border: 2px dashed rgba(242, 233, 216, .55); background: transparent;
-}
-.hs:hover { background: rgba(224, 184, 104, .14); }
-.hs.part { border: 2px solid rgba(224, 184, 104, .6); }
-.hs.done { border: 3px solid var(--gold); box-shadow: 0 0 0 3px rgba(224, 184, 104, .22), 0 0 18px rgba(224, 184, 104, .5); }
-.hs.done::after {
-  content: "✓"; position: absolute; right: -6px; bottom: -6px; width: 20px; height: 20px; border-radius: 50%;
-  background: var(--gold); color: var(--gold-ink); font: 700 12px/20px var(--body); text-align: center;
-}
-.hs.me { outline: 2px solid #fff; outline-offset: 3px; }
-.hs.out { border: 2px solid rgba(255, 255, 255, .16); cursor: default; }
-.hs .tag {
-  position: absolute; left: 50%; top: calc(100% + 7px); transform: translateX(-50%); opacity: 0; pointer-events: none;
-  background: rgba(12, 10, 8, .86); color: var(--text); font: 600 .72rem/1.2 var(--body);
-  padding: 3px 8px; border-radius: 99px; white-space: nowrap;
-}
+.photo .inner { position: relative; }
+.hs { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; padding: 0; cursor: pointer; border-radius: 50%; border: 2px dashed rgba(255,255,255,.55); background: transparent; }
+.hs:hover { background: rgba(255,255,255,.12); }
+.hs.part { border: 2px dashed #fff; }
+.hs.done { border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
+.hs.done::after { content: "✓"; position: absolute; right: -5px; bottom: -5px; width: 19px; height: 19px; border-radius: 50%; background: #fff; color: var(--ink); font: 700 11px/19px var(--body); text-align: center; }
+.hs.me { outline: 2px solid #fff; outline-offset: 4px; }
+.hs.out { border: 2px dotted rgba(255,255,255,.35); }
+.hs .tag { position: absolute; left: 50%; top: calc(100% + 7px); transform: translateX(-50%); opacity: 0; pointer-events: none; background: #fff; color: var(--ink); font: 600 .68rem/1.2 var(--body); letter-spacing: .1em; text-transform: uppercase; padding: 4px 8px; white-space: nowrap; }
 .hs:hover .tag, .hs:focus-visible .tag, .hs.me .tag { opacity: 1; }
-.hint { margin: 12px 0 0; min-height: 1.5em; color: var(--muted); }
-.hint b { color: var(--text); font-weight: 600; }
+.caption { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin: 12px 0 0; }
+.hint { margin: 0; color: var(--muted); min-height: 1.5em; }
+.hint b { color: var(--ink); font-weight: 600; }
 
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
-.chip {
-  display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 5px; cursor: pointer;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 99px; font-size: .9rem;
-}
-.chip:hover { border-color: var(--gold); }
-.chip.me { border-color: var(--gold); background: var(--surface-2); }
-.chip[disabled] { opacity: .45; cursor: default; }
-.chip[disabled]:hover { border-color: var(--line); }
-.chip .st { color: var(--gold); font-size: .8rem; }
-
-/* Avatar: uitsnede uit dezelfde foto */
-.av {
-  --s: 34px; width: var(--s); height: var(--s); flex: none; border-radius: 50%;
-  background-color: var(--surface-2); background-image: url(photo.jpg); background-repeat: no-repeat;
-  background-size: calc(var(--s) / var(--rf));
-  background-position: calc(var(--s) * (.5 - var(--fx) / var(--rf))) calc(var(--s) * (.5 - var(--fy) * .75 / var(--rf)));
-  box-shadow: 0 0 0 2px var(--line);
-}
-.av.done { box-shadow: 0 0 0 2px var(--gold); }
-.av.part { box-shadow: 0 0 0 2px rgba(224, 184, 104, .5); }
+.people { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 8px; margin: 24px 0 0; }
+@media (min-width: 640px) { .people { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
+.person { display: grid; justify-items: center; gap: 7px; padding: 4px 0; border: 0; background: none; cursor: pointer; text-align: center; }
+.person span { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; line-height: 1.2; }
+.person.me span { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.av { display: block; width: 64px; height: 64px; border-radius: 50%; background: var(--paper); outline: 1px solid var(--rule); outline-offset: 2px; }
+.av.done { outline: 2px solid var(--ink); }
+.av.part { outline: 2px dashed var(--ink); }
+.person .av { width: min(72px, 100%); height: auto; aspect-ratio: 1; }
+.person:hover .av { transform: rotate(-4deg); }
 
 /* Tabs */
-.tabs { display: flex; gap: 6px; margin-top: 26px; padding-bottom: 0; border-bottom: 1px solid var(--line); }
-.tab { background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 14px; cursor: pointer; color: var(--muted); font-weight: 600; }
-.tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--gold); }
-.badge { margin-left: 6px; padding: 1px 8px; border-radius: 99px; background: var(--surface-2); color: var(--gold); font-size: .8rem; }
+.tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px; margin: 40px auto 0; border-bottom: 1px solid var(--ink); }
+.tab { background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -2px; padding: 12px 2px; cursor: pointer; color: var(--muted); font: 600 .78rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.badge { margin-left: 6px; font-weight: 500; }
 
-main { padding-bottom: 80px; }
+main { padding-bottom: 90px; }
 section[hidden] { display: none; }
-.banner { margin: 16px 0 0; padding: 10px 14px; border-radius: 10px; background: #2a1814; border: 1px solid #5c2c22; color: var(--bad); }
+.banner { margin: 18px 0 0; padding: 10px 14px; border: 1px solid var(--ink); background: var(--soft); }
 
 /* Formulier */
-.who { display: flex; align-items: center; gap: 12px; margin: 22px 0 6px; }
-.who .av { --s: 48px; }
-.who h2 { margin: 0; font: 700 1.5rem/1.1 var(--display); }
-.who .meta { color: var(--muted); font-size: .9rem; }
-.linkbtn { background: none; border: 0; padding: 0; color: var(--gold); text-decoration: underline; cursor: pointer; }
-h3.sec { margin: 34px 0 4px; color: var(--gold); font: 600 .85rem/1 var(--body); letter-spacing: .1em; text-transform: uppercase; }
-fieldset.q { margin: 14px 0 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); min-width: 0; }
-fieldset.q legend { padding: 0 6px; margin-left: -6px; font: 700 1.2rem/1.25 var(--display); text-wrap: balance; }
-.help { margin: 2px 0 14px; color: var(--muted); font-size: .92rem; max-width: 62ch; }
-.opts { display: grid; gap: 8px; }
-.opts.chipsgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (min-width: 640px) { .opts.chipsgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.opt {
-  display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; cursor: pointer;
-  background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
-}
-.opt:hover { border-color: #5a4a33; }
+.who { display: flex; align-items: center; gap: 14px; margin: 26px 0 0; }
+.who .av { width: 56px; height: 56px; }
+.who h2 { margin: 0; font: 400 1.5rem/1.1 var(--title); letter-spacing: .13em; text-transform: uppercase; }
+.who .meta { color: var(--muted); font-size: .86rem; }
+.linkbtn { background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.sec { margin: 40px 0 0; }
+.q { margin: 18px 0 0; padding: 16px 0 0; border: 0; border-top: 1px solid var(--rule); min-width: 0; }
+.q legend { float: left; width: 100%; padding: 0; margin: 0 0 3px; font: 400 1.08rem/1.35 var(--quote); }
+.help { clear: both; margin: 0 0 10px; color: var(--muted); font-size: .85rem; max-width: 64ch; }
+.opts { clear: both; display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 6px; }
+.opt { position: relative; display: grid; gap: 1px; padding: 8px 10px; cursor: pointer; border: 1px solid #cfcfcf; background: var(--paper); font-size: .88rem; line-height: 1.3; }
+.opt:hover { border-color: var(--ink); }
 .opt input { position: absolute; opacity: 0; pointer-events: none; }
-.opt .mark {
-  flex: none; width: 20px; height: 20px; margin-top: 2px; border: 2px solid var(--muted); border-radius: 50%;
-  display: grid; place-items: center;
-}
-.opt.multi .mark { border-radius: 6px; }
-.opt .txt { display: grid; gap: 2px; min-width: 0; }
-.opt .txt b { font-weight: 600; }
-.opt .txt small { color: var(--muted); font-size: .85rem; line-height: 1.4; }
-.opt:has(input:checked) { border-color: var(--gold); background: var(--surface-2); }
-.opt:has(input:checked) .mark { border-color: var(--gold); background: var(--gold); }
-.opt:has(input:checked) .mark::after { content: "✓"; color: var(--gold-ink); font: 700 12px/1 var(--body); }
-.opt:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
-textarea {
-  width: 100%; min-height: 92px; padding: 12px 14px; resize: vertical; border-radius: 10px;
-  border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit;
-}
-.bar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 24px 0 0; }
-.btn { padding: 11px 18px; border-radius: 99px; border: 1px solid var(--gold); background: var(--gold); color: var(--gold-ink); font-weight: 700; cursor: pointer; }
-.btn.ghost { background: transparent; color: var(--text); border-color: var(--line); font-weight: 600; }
-.btn.ghost:hover { border-color: var(--gold); }
-.status { color: var(--muted); font-size: .9rem; }
-.status.err { color: var(--bad); }
-.prompt { margin: 28px 0 0; padding: 22px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); }
-.prompt b { color: var(--text); }
+.opt b { font-weight: 600; }
+.opt small { color: var(--muted); font-size: .74rem; }
+.opt:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.opt:has(input:checked) small { color: #c9c9c9; }
+.opt:has(input:focus-visible) { outline: 2px solid var(--ink); outline-offset: 2px; }
+.note { clear: both; margin: 10px 0 0; padding: 10px 12px; background: var(--soft); font-size: .85rem; }
+.note b { font-weight: 600; }
 
-/* Stand van zaken */
-.tile { margin: 22px 0 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
-.tile h2 { margin: 0 0 4px; font: 700 1.5rem/1.15 var(--display); }
-.progress { height: 8px; margin: 12px 0; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
-.progress i { display: block; height: 100%; background: var(--gold); }
-.faces { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; }
-.face { display: grid; justify-items: center; gap: 4px; font-size: .78rem; color: var(--muted); }
-.face .av { --s: 44px; }
-.qcard { margin: 14px 0 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
-.qcard h3 { margin: 0 0 12px; font: 700 1.15rem/1.25 var(--display); text-wrap: balance; }
-.row { margin: 0 0 12px; }
-.row:last-child { margin-bottom: 0; }
-.rowhead { display: flex; justify-content: space-between; gap: 12px; font-size: .95rem; }
-.rowhead span:last-child { color: var(--muted); }
-.track { height: 10px; margin: 5px 0 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
-.track i { display: block; height: 100%; border-radius: 99px; background: #6f5e3f; }
-.row.lead .track i { background: var(--gold); }
+.costs { margin: 40px 0 0; padding: 22px; border: 1px solid var(--ink); }
+.costs h3 { margin: 0 0 14px; font: 400 1.05rem/1.2 var(--title); letter-spacing: .13em; text-transform: uppercase; }
+.crow { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: .9rem; }
+.crow span:first-child small { display: block; color: var(--muted); font-size: .76rem; }
+.crow span:last-child { white-space: nowrap; }
+.ctotal { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 14px; }
+.ctotal span:last-child { font: 400 1.6rem/1 var(--quote); }
+.costs p { margin: 12px 0 0; color: var(--muted); font-size: .78rem; }
+
+.bar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 26px 0 0; }
+.btn { padding: 11px 20px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); font: 600 .74rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; cursor: pointer; }
+.btn.ghost { background: var(--paper); color: var(--ink); }
+.btn:disabled { opacity: .4; cursor: default; }
+.btn.small { padding: 8px 12px; font-size: .68rem; }
+.status { color: var(--muted); font-size: .86rem; }
+.status.err { color: #a3261b; }
+.prompt { margin: 30px 0 0; padding: 26px; border: 1px solid var(--ink); text-align: center; font: italic 400 1.02rem/1.6 var(--quote); }
+
+/* Ideeën */
+.ideaform { margin: 26px 0 0; padding: 20px; border: 1px solid var(--ink); }
+.field { display: grid; gap: 5px; margin: 0 0 14px; }
+.field > span { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+input[type=text], textarea { width: 100%; padding: 10px 12px; border: 1px solid #cfcfcf; background: var(--paper); border-radius: 0; }
+input[type=text]:focus, textarea:focus { border-color: var(--ink); outline: none; }
+textarea { min-height: 72px; resize: vertical; }
+.picks { display: flex; flex-wrap: wrap; gap: 6px; }
+.pick { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; border: 1px solid #cfcfcf; background: var(--paper); cursor: pointer; font-size: .8rem; }
+.pick .av { width: 26px; height: 26px; outline: 0; }
+.pick[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.pick.cat { padding: 6px 12px; }
+.ideas { display: grid; gap: 14px; margin: 26px 0 0; }
+.idea { padding: 18px 0 0; border-top: 1px solid var(--ink); }
+.idea h3 { margin: 6px 0 6px; font: 400 1.25rem/1.3 var(--quote); }
+.idea p.txt { margin: 0 0 10px; white-space: pre-wrap; }
+.idea .by { color: var(--muted); font-size: .8rem; margin: 0 0 10px; }
+.roles { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 0 0 12px; }
+.role > span { display: block; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.faces { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.mini { display: inline-flex; align-items: center; gap: 5px; font-size: .8rem; }
+.mini .av { width: 26px; height: 26px; outline: 0; }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.empty { color: var(--muted); font: italic 400 1rem/1.6 var(--quote); text-align: center; padding: 28px 0; }
+
+/* Stand */
+.tile { margin: 26px 0 0; padding: 22px; border: 1px solid var(--ink); text-align: center; }
+.tile h2 { margin: 0 0 6px; font: 400 1.3rem/1.2 var(--title); letter-spacing: .13em; text-transform: uppercase; }
+.tile .muted { color: var(--muted); }
+.progress { height: 2px; margin: 14px auto; max-width: 420px; background: var(--rule); }
+.progress i { display: block; height: 100%; background: var(--ink); }
+.qcard { margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid var(--rule); }
+.qcard h3 { margin: 0 0 12px; font: 400 1.05rem/1.35 var(--quote); }
+.row { margin: 0 0 10px; }
+.rowhead { display: flex; justify-content: space-between; gap: 12px; font-size: .88rem; }
+.track { height: 6px; margin: 4px 0 5px; background: var(--soft); }
+.track i { display: block; height: 100%; background: #9a9a9a; }
+.row.lead .track i { background: var(--ink); }
 .row.lead .rowhead span:first-child { font-weight: 700; }
-.names { display: flex; flex-wrap: wrap; gap: 5px; }
-.name { padding: 1px 9px; border-radius: 99px; background: var(--bg); border: 1px solid var(--line); font-size: .78rem; color: var(--muted); }
-.notes { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-.notes li { padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); font-size: .92rem; }
-.notes b { color: var(--gold); font-weight: 600; }
-.muted { color: var(--muted); }
-.tablewrap { overflow-x: auto; margin-top: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
-table { border-collapse: collapse; width: 100%; font-size: .88rem; }
-th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
-tr:last-child td { border-bottom: 0; }
-th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+.names { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tablewrap { overflow-x: auto; margin-top: 12px; border-top: 1px solid var(--ink); }
+table { border-collapse: collapse; width: 100%; font-size: .84rem; }
+th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+th { font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
 td.p { white-space: nowrap; }
 td.p .cell { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-td.p .av { --s: 28px; }
-td.none { color: #6a5d46; }
-.foot { margin: 28px 0 0; color: var(--muted); font-size: .85rem; max-width: 62ch; }
-@media (prefers-reduced-motion: no-preference) { .hs, .opt, .chip { transition: border-color .15s, background .15s; } }
+td.p .av { width: 30px; height: 30px; }
+td.none { color: #b0b0b0; }
+.foot { margin: 30px auto 0; text-align: center; color: var(--muted); font: italic 400 .9rem/1.6 var(--quote); max-width: 58ch; }
+@media (prefers-reduced-motion: no-preference) { .person .av { transition: transform .2s; } .opt, .pick { transition: background .12s, border-color .12s; } }
 </style>
 </head>
 <body>
-<header class="hero wrap">
-  <p class="eyebrow">Padelreis · do 4 t/m zo 7 maart 2027 · Alfàs del Pi</p>
-  <h1>Casa Pino <em>2027</em></h1>
-  <p class="sub">Eerst de wijn, nu de rackets.</p>
-  <p class="nudge">Wie niet invult, speelt in het tweede viertal.</p>
+<header class="hero">
+  <img class="map" src="map.svg" alt="" width="410" height="357">
+  <p class="eyebrow">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
+  <h1>Casa Pino</h1>
+  <p class="year">2027</p>
+  <p class="sub">‘Pils, padel en goeie gesprekken.’</p>
+  <p class="nudge">Jouw stem telt (een beetje).</p>
   <p class="count" id="count"></p>
 </header>
 
 <section class="wrap" aria-label="Wie ben jij">
-  <div class="photo">
-    <img src="photo.jpg" width="1400" height="1050" alt="De groep aan een lange tafel onder een kroonluchter in een donker restaurant">
+  <div class="photo"><div class="inner">
+    <img src="photo.jpg" width="1400" height="1050" alt="De groep aan een lange tafel onder een kroonluchter">
     <div id="hotspots"></div>
-  </div>
-  <p class="hint" id="hint" aria-live="polite"></p>
-  <div class="chips" id="chips"></div>
+  </div></div>
+  <div class="caption"><p class="hint" id="hint" aria-live="polite"></p></div>
+  <div class="people" id="people"></div>
 </section>
 
 <nav class="tabs wrap" role="tablist" aria-label="Weergave">
-  <button class="tab" role="tab" id="tab-mine" aria-selected="true" aria-controls="mine">Mijn keuzes</button>
-  <button class="tab" role="tab" id="tab-stand" aria-selected="false" aria-controls="stand">Stand van zaken <span class="badge" id="badge">0/8</span></button>
+  <button class="tab" role="tab" id="tab-mine" aria-controls="mine">Mijn keuzes</button>
+  <button class="tab" role="tab" id="tab-ideas" aria-controls="ideas">Ideeën <span class="badge" id="ibadge"></span></button>
+  <button class="tab" role="tab" id="tab-stand" aria-controls="stand">Stand <span class="badge" id="badge">0/8</span></button>
 </nav>
 
 <main class="wrap">
   <div id="banner" class="banner" hidden></div>
   <section id="mine" role="tabpanel" aria-labelledby="tab-mine"></section>
+  <section id="ideas" role="tabpanel" aria-labelledby="tab-ideas" hidden>
+    <div id="ideaForm"></div>
+    <div id="ideaList" class="ideas"></div>
+  </section>
   <section id="stand" role="tabpanel" aria-labelledby="tab-stand" hidden></section>
 </main>
 
 <script type="module">
-import { listen, save } from "./store.js";
-import { QUESTIONS } from "./questions.js";
+import { listen, save, listenIdeas, addIdea, editIdea, setHelper } from "./store.js";
+import { QUESTIONS, FLIGHT, COSTS, IDEA_CATS } from "./questions.js";
 import { PEOPLE, TRIP } from "./people.js";
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const byId = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
 const going = PEOPLE.filter((p) => p.going !== false);
-const required = QUESTIONS.filter((q) => q.type !== "text");
+const QIDS = new Set(QUESTIONS.map((q) => q.id));
+const euro = (n) => "€ " + Math.round(n).toLocaleString("nl-NL");
+const range = ([a, b]) => (Math.round(a) === Math.round(b) ? euro(a) : `${euro(a)} – ${Math.round(b).toLocaleString("nl-NL")}`);
 
 let me = null;
-try { me = localStorage.getItem("casaPinoMe"); } catch (e) { /* geen opslag beschikbaar */ }
+try { me = localStorage.getItem("casaPinoMe"); } catch (e) { /* geen opslag */ }
 if (!byId[me] || byId[me].going === false) me = null;
 
-let all = {};        // persoon-id -> { vraag-id: antwoord }
-let mine = {};       // eigen antwoorden (lokaal leidend na de eerste lading)
-let loaded = false;
-let tab = "mine";
+let all = {}, mine = {}, loaded = false, tab = "mine";
+let ideas = [], ideasLoaded = false, editing = null, listDirty = false;
 
 /* ---------- hulpfuncties ---------- */
-const isAnswered = (q, v) =>
-  q.type === "multi" ? Array.isArray(v) && v.length > 0 : typeof v === "string" && v !== "";
-function progress(a) {
-  a = a || {};
-  const done = required.filter((q) => isAnswered(q, a[q.id])).length;
-  return { done, total: required.length };
-}
-function statusOf(id) {
-  const p = progress(all[id]);
-  return p.done === 0 ? "none" : p.done === p.total ? "done" : "part";
-}
-const avatar = (p, size, cls = "") =>
-  `<span class="av ${cls}" style="--s:${size}px;--fx:${p.fx};--fy:${p.fy};--rf:${(p.r * 2).toFixed(4)}" role="img" aria-label="${esc(p.name)}"></span>`;
+const clean = (a) => Object.fromEntries(Object.entries(a || {}).filter(([k]) => QIDS.has(k)));
+const isAnswered = (q, v) => (q.type === "multi" ? Array.isArray(v) && v.length > 0 : typeof v === "string" && v !== "");
+const progress = (a) => ({ done: QUESTIONS.filter((q) => isAnswered(q, (a || {})[q.id])).length, total: QUESTIONS.length });
+function statusOf(id) { const p = progress(all[id]); return p.done === 0 ? "none" : p.done === p.total ? "done" : "part"; }
+const av = (p, cls = "") => `<img class="av ${cls}" src="avatars/${p.id}.svg" alt="" width="64" height="64">`;
 const optOf = (q, id) => (q.options || []).find((o) => o.id === id);
 function fmt(q, v, key = "label") {
-  if (q.type === "text") return v || "-";
   if (q.type === "multi") return Array.isArray(v) && v.length ? v.map((id) => optOf(q, id)?.[key] ?? id).join(", ") : "-";
   return optOf(q, v)?.[key] ?? "-";
 }
 
-/* ---------- kop ---------- */
+/* ---------- prijzen ---------- */
+function flightRange(heen, terug) {
+  const opts = (v) => (v === "transavia" || v === "vueling" ? [v] : ["transavia", "vueling"]);
+  let lo = Infinity, hi = 0;
+  for (const h of opts(heen)) for (const t of opts(terug)) {
+    const r = h === t ? [FLIGHT[h].ret, FLIGHT[h].ret]
+      : [FLIGHT.oneWay[0] * (FLIGHT[h].ret + FLIGHT[t].ret), FLIGHT.oneWay[1] * (FLIGHT[h].ret + FLIGHT[t].ret)];
+    lo = Math.min(lo, r[0]); hi = Math.max(hi, r[1]);
+  }
+  return [lo, hi];
+}
+const base = FLIGHT.transavia.ret;
+const pct = (n) => Math.round((n / base - 1) * 100);
+function flightNote(a) {
+  const h = a.heen, t = a.terug, sure = (v) => v === "transavia" || v === "vueling";
+  if (!sure(h) || !sure(t)) {
+    return `Retour Transavia ${euro(FLIGHT.transavia.ret)} p.p. · retour Vueling ${euro(FLIGHT.vueling.ret)} p.p. (+${pct(FLIGHT.vueling.ret)}%). Mix je maatschappijen, dan worden het twee enkele reizen: indicatie ${range(flightRange("transavia", "vueling"))} p.p.`;
+  }
+  const [lo, hi] = flightRange(h, t);
+  if (h === t) return `<b>${FLIGHT[h].name} retour: ${euro(lo)} p.p.</b> ${h === "transavia" ? "De goedkoopste combinatie." : `Dat is ${pct(lo)}% meer dan Transavia retour.`}`;
+  return `<b>Twee enkele reizen: indicatie ${range([lo, hi])} p.p.</b> Ongeveer ${pct(lo)}% tot ${pct(hi)}% meer dan Transavia retour. Precieze prijs pas bij boeken.`;
+}
+function costRows(a) {
+  const n = (v) => (Array.isArray(v) ? v.filter((x) => x !== "geen").length : 0);
+  const tr = n(a.training), po = n(a.potje), vb = a.voetbal === "ja";
+  const rows = [
+    ["Vluchten", a.heen && a.terug ? "Op basis van je keuze" : "Nog niet gekozen: hele bandbreedte", flightRange(a.heen, a.terug)],
+    ["Padeltraining", `${tr} × 1,5 uur`, [tr * COSTS.training[0], tr * COSTS.training[1]]],
+    ["Potjes", `${po} × 1,5 uur`, [po * COSTS.potje[0], po * COSTS.potje[1]]],
+    ["Voetbal", vb ? "Ticket" : a.voetbal === "nee" ? "Niet nodig" : "Nog niet gekozen", vb ? COSTS.voetbal : [0, 0]],
+    ["Verblijf Casa Pino", "€ 600 gedeeld door 8", COSTS.verblijf],
+    ["Auto's, brandstof, eten & drinken", "Raming, gedeeld door 8", COSTS.rest]
+  ];
+  const tot = rows.reduce((s, r) => [s[0] + r[2][0], s[1] + r[2][1]], [0, 0]);
+  return { rows, tot };
+}
+function renderCosts() {
+  const el = $("#costs"); if (!el) return;
+  const { rows, tot } = costRows(mine);
+  el.innerHTML = `<h3>Wat kost het jou?</h3>${rows.map((r) => `<div class="crow"><span>${r[0]}<small>${esc(r[1])}</small></span><span>${r[2][1] === 0 ? "–" : range(r[2])}</span></div>`).join("")}
+    <div class="ctotal"><span class="label">Indicatie p.p.</span><span>${range(tot)}</span></div>
+    <p>Rekent mee met je keuzes. Retourprijzen zijn bekend, de rest zijn ramingen. Padelprijzen gelden bij volle banen.</p>`;
+}
+
+/* ---------- kop, foto, mensen ---------- */
 (function countdown() {
   const days = Math.ceil((new Date(TRIP.start + "T00:00:00") - new Date()) / 86400000);
   const el = $("#count");
-  if (days > 0) el.innerHTML = `Nog <b>${days} dagen</b> om niet geblesseerd te raken`;
+  if (days > 0) el.innerHTML = `Nog <b>${days}</b> dagen om niet geblesseerd te raken, of te herstellen.`;
   else el.hidden = true;
 })();
 
-/* ---------- foto, chips, badge ---------- */
 let hintText = "";
 function renderHint() {
   const el = $("#hint");
-  if (hintText) { el.innerHTML = hintText; return; }
-  if (!me) { el.innerHTML = "<b>Tik jezelf aan op de foto</b>, of kies je naam hieronder."; return; }
-  el.innerHTML = `Je bent <b>${esc(byId[me].name)}</b>. Gouden ring met vinkje: die heeft alles ingevuld.`;
+  if (hintText) el.innerHTML = hintText;
+  else if (!me) el.innerHTML = "<b>Tik jezelf aan</b> op de foto of hieronder.";
+  else el.innerHTML = `Je bent <b>${esc(byId[me].name)}</b>. Doorgetrokken ring: alles ingevuld.`;
 }
 function renderHotspots() {
   $("#hotspots").innerHTML = PEOPLE.map((p) => {
     const out = p.going === false;
     const cls = out ? "out" : statusOf(p.id) + (p.id === me ? " me" : "");
-    const w = (p.r * 2 * 100).toFixed(2);
-    return `<button class="hs ${cls}" data-id="${p.id}" style="left:${(p.fx * 100).toFixed(2)}%;top:${(p.fy * 100).toFixed(2)}%;width:${w}%" aria-label="${esc(p.name)}${out ? ", gaat niet mee" : ""}"><span class="tag">${esc(p.name)}</span></button>`;
+    return `<button class="hs ${cls}" data-id="${p.id}" style="left:${(p.fx * 100).toFixed(2)}%;top:${(p.fy * 100).toFixed(2)}%;width:${(p.r * 200).toFixed(2)}%" aria-label="${esc(p.name)}"><span class="tag">${esc(p.name)}</span></button>`;
   }).join("");
 }
-function renderChips() {
-  $("#chips").innerHTML = PEOPLE.map((p) => {
-    if (p.going === false) return "";
-    const st = statusOf(p.id);
-    return `<button class="chip ${p.id === me ? "me" : ""}" data-id="${p.id}">${avatar(p, 28, st)}<span>${esc(p.name)}</span>${st === "done" ? '<span class="st">✓</span>' : ""}</button>`;
-  }).join("");
+function renderPeople() {
+  $("#people").innerHTML = going.map((p) =>
+    `<button class="person ${p.id === me ? "me" : ""}" data-id="${p.id}" title="${esc(p.full || p.name)}">${av(p, statusOf(p.id))}<span>${esc(p.name)}</span></button>`).join("");
 }
-function renderBadge() {
-  const n = going.filter((p) => statusOf(p.id) === "done").length;
-  $("#badge").textContent = `${n}/${going.length}`;
+function renderBadges() {
+  $("#badge").textContent = `${going.filter((p) => statusOf(p.id) === "done").length}/${going.length}`;
+  const n = ideas.filter((i) => !i.gone).length;
+  $("#ibadge").textContent = n ? n : "";
 }
+let hintTimer;
 function chooseMe(id) {
-  const p = byId[id];
-  if (!p) return;
-  if (p.going === false) { hintText = "Zit wel op de foto, maar <b>gaat niet mee</b>."; renderHint(); setTimeout(() => { hintText = ""; renderHint(); }, 2600); return; }
+  const p = byId[id]; if (!p) return;
+  if (p.going === false) {
+    hintText = "Altijd welkom. App Kai even, dan schuift er een stoel bij.";
+    renderHint(); clearTimeout(hintTimer); hintTimer = setTimeout(() => { hintText = ""; renderHint(); }, 3500); return;
+  }
   me = id; hintText = "";
   try { localStorage.setItem("casaPinoMe", id); } catch (e) { /* ok */ }
-  mine = structuredClone(all[id] || {});
-  setTab("mine");
+  mine = clean(all[id]);
+  editing = null;
   renderAll(true);
-  $("#mine").scrollIntoView({ behavior: "smooth", block: "start" });
+  if (tab === "stand") setTab("mine");
+  $(".tabs").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 document.addEventListener("click", (e) => {
-  const b = e.target.closest(".hs, .chip");
+  const b = e.target.closest(".hs, .person");
   if (b && b.dataset.id) chooseMe(b.dataset.id);
 });
 
 /* ---------- tabs ---------- */
 function setTab(t) {
   tab = t;
-  $("#mine").hidden = t !== "mine";
-  $("#stand").hidden = t !== "stand";
-  $("#tab-mine").setAttribute("aria-selected", t === "mine");
-  $("#tab-stand").setAttribute("aria-selected", t === "stand");
+  for (const k of ["mine", "ideas", "stand"]) {
+    $("#" + k).hidden = k !== t;
+    $("#tab-" + k).setAttribute("aria-selected", k === t);
+  }
+  if (t === "ideas" && listDirty) renderIdeaList();
 }
-$("#tab-mine").addEventListener("click", () => setTab("mine"));
-$("#tab-stand").addEventListener("click", () => setTab("stand"));
+for (const k of ["mine", "ideas", "stand"]) $("#tab-" + k).addEventListener("click", () => setTab(k));
+setTab("mine");
 
-/* ---------- formulier ---------- */
+/* ---------- mijn keuzes ---------- */
+const pickMe = (what) => `<div class="prompt">Wie ben jij? Tik jezelf aan op de foto of in het rijtje hierboven. ${what}</div>`;
 function renderForm() {
   const box = $("#mine");
-  if (!me) {
-    box.innerHTML = `<div class="prompt"><b>Wie ben jij?</b> Tik jezelf aan op de foto hierboven. Daarna verschijnen hier de vragen. Je keuzes worden meteen opgeslagen en iedereen kan ze zien in de stand van zaken.</div>`;
-    return;
-  }
-  if (!loaded) { box.innerHTML = `<div class="prompt">Gegevens laden…</div>`; return; }
+  if (!me) { box.innerHTML = pickMe("Daarna verschijnen hier de vragen, en alles wordt meteen opgeslagen."); return; }
+  if (!loaded) { box.innerHTML = `<div class="prompt">Laden…</div>`; return; }
   const p = byId[me];
-  let html = `<div class="who">${avatar(p, 48, statusOf(me))}<div><h2>${esc(p.name)}</h2><div class="meta"><span id="prog"></span> · <button class="linkbtn" id="notme">Niet jij?</button></div></div></div>`;
+  let h = `<div class="who">${av(p, statusOf(me))}<div><h2>${esc(p.name)}</h2><div class="meta"><span id="prog"></span> · <button class="linkbtn" id="notme">Niet jij?</button></div></div></div>`;
   let sec = "";
   for (const q of QUESTIONS) {
-    if (q.section !== sec) { sec = q.section; html += `<h3 class="sec">${esc(sec)}</h3>`; }
-    html += `<fieldset class="q" data-q="${q.id}"><legend>${esc(q.title)}</legend>${q.help ? `<p class="help">${esc(q.help)}</p>` : ""}`;
-    if (q.type === "text") {
-      html += `<textarea id="t_${q.id}" data-q="${q.id}" maxlength="500" placeholder="Optioneel"></textarea>`;
-    } else {
-      const multi = q.type === "multi";
-      html += `<div class="opts ${q.layout === "chips" ? "chipsgrid" : ""}">`;
-      for (const o of q.options) {
-        html += `<label class="opt ${multi ? "multi" : ""}"><input type="${multi ? "checkbox" : "radio"}" name="q_${q.id}" value="${o.id}" data-q="${q.id}"><span class="mark"></span><span class="txt"><b>${esc(o.label)}</b>${o.detail ? `<small>${esc(o.detail)}</small>` : ""}</span></label>`;
-      }
-      html += `</div>`;
+    if (q.section !== sec) { sec = q.section; h += `<div class="sec"><p class="label">${esc(sec)}</p></div>`; }
+    const multi = q.type === "multi";
+    h += `<fieldset class="q"><legend>${esc(q.title)}</legend>${q.help ? `<p class="help">${esc(q.help)}</p>` : ""}<div class="opts">`;
+    for (const o of q.options) {
+      h += `<label class="opt"><input type="${multi ? "checkbox" : "radio"}" name="q_${q.id}" value="${o.id}" data-q="${q.id}"><b>${esc(o.label)}</b>${o.detail ? `<small>${esc(o.detail)}</small>` : ""}</label>`;
     }
-    html += `</fieldset>`;
+    h += `</div>${q.id === "terug" ? `<p class="note" id="fnote"></p>` : ""}</fieldset>`;
   }
-  html += `<div class="bar-actions"><button class="btn" id="tostand">Bekijk de stand</button><button class="btn ghost" id="copy">Kopieer als bericht</button><span class="status" id="status" aria-live="polite"></span></div>`;
-  box.innerHTML = html;
-  // bestaande antwoorden terugzetten
+  h += `<div class="costs" id="costs"></div>`;
+  h += `<div class="bar-actions"><button class="btn" id="tostand">Bekijk de stand</button><button class="btn ghost" id="copy">Kopieer als bericht</button><span class="status" id="status" aria-live="polite"></span></div>`;
+  box.innerHTML = h;
   for (const q of QUESTIONS) {
     const v = mine[q.id];
-    if (q.type === "text") { const t = box.querySelector(`#t_${q.id}`); if (t && v) t.value = v; continue; }
     box.querySelectorAll(`input[data-q="${q.id}"]`).forEach((i) => {
       i.checked = q.type === "multi" ? Array.isArray(v) && v.includes(i.value) : v === i.value;
     });
   }
-  updateProg();
+  updateLive();
 }
-function updateProg() {
+function updateLive() {
   const el = $("#prog");
-  if (!el) return;
-  const p = progress(mine);
-  el.textContent = `${p.done} van ${p.total} vragen beantwoord`;
+  if (el) { const p = progress(mine); el.textContent = `${p.done} van ${p.total} beantwoord`; }
+  const fn = $("#fnote"); if (fn) fn.innerHTML = flightNote(mine);
+  renderCosts();
 }
-function setStatus(msg, err = false) {
-  const el = $("#status");
-  if (!el) return;
-  el.textContent = msg; el.className = "status" + (err ? " err" : "");
-}
+function setStatus(msg, err = false) { const el = $("#status"); if (el) { el.textContent = msg; el.className = "status" + (err ? " err" : ""); } }
 
 $("#mine").addEventListener("change", (e) => {
   const input = e.target.closest("input[data-q]");
   if (!input || !me) return;
   const q = QUESTIONS.find((x) => x.id === input.dataset.q);
   if (q.type === "multi") {
-    const all_ = [...$("#mine").querySelectorAll(`input[data-q="${q.id}"]`)];
-    const opt = optOf(q, input.value);
+    const inputs = [...$("#mine").querySelectorAll(`input[data-q="${q.id}"]`)];
     if (input.checked) {
-      all_.forEach((i) => {
-        const o = optOf(q, i.value);
-        if (i !== input && (opt.exclusive || o.exclusive)) i.checked = false;
-      });
+      const ex = optOf(q, input.value).exclusive;
+      inputs.forEach((i) => { if (i !== input && (ex || optOf(q, i.value).exclusive)) i.checked = false; });
     }
-    mine[q.id] = all_.filter((i) => i.checked).map((i) => i.value);
-  } else {
-    mine[q.id] = input.value;
-  }
+    mine[q.id] = inputs.filter((i) => i.checked).map((i) => i.value);
+  } else mine[q.id] = input.value;
   afterEdit();
-});
-let noteTimer;
-$("#mine").addEventListener("input", (e) => {
-  const t = e.target.closest("textarea[data-q]");
-  if (!t || !me) return;
-  clearTimeout(noteTimer);
-  noteTimer = setTimeout(() => { mine[t.dataset.q] = t.value.trim().slice(0, 500); afterEdit(); }, 400);
 });
 $("#mine").addEventListener("click", async (e) => {
   if (e.target.id === "notme") {
     me = null; try { localStorage.removeItem("casaPinoMe"); } catch (x) { /* ok */ }
     renderAll(true); window.scrollTo({ top: 0, behavior: "smooth" });
   }
-  if (e.target.id === "tostand") { setTab("stand"); $("#tab-stand").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  if (e.target.id === "tostand") { setTab("stand"); $(".tabs").scrollIntoView({ behavior: "smooth" }); }
   if (e.target.id === "copy") {
-    const p = byId[me];
-    let t = `Casa Pino 2027, keuzes van ${p.name}\n`;
+    let t = `Casa Pino 2027, keuzes van ${byId[me].name}\n`;
     QUESTIONS.forEach((q) => { t += `\n${q.title}\n→ ${fmt(q, mine[q.id])}`; });
+    t += `\n\nIndicatie p.p.: ${range(costRows(mine).tot)}`;
     try { await navigator.clipboard.writeText(t); setStatus("Gekopieerd. Plak het in de groepsapp."); }
     catch (x) { setStatus("Kopiëren lukte niet op dit apparaat.", true); }
   }
 });
 
-/* ---------- opslaan ---------- */
 let saveTimer, saving = false, again = false;
 function afterEdit() {
   all[me] = mine;
-  updateProg(); renderHotspots(); renderChips(); renderBadge(); renderStand();
+  updateLive(); renderHotspots(); renderPeople(); renderBadges(); renderStand();
   setStatus("Opslaan…");
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(doSave, 500);
+  clearTimeout(saveTimer); saveTimer = setTimeout(doSave, 500);
 }
+const failMsg = (e) => e && e.code === "permission-denied" ? "Opslaan mislukt: de Firestore-regels staan nog niet goed. Geef het door aan Kai." : "Opslaan mislukt. Controleer je verbinding.";
 async function doSave() {
   if (saving) { again = true; return; }
   saving = true;
   do {
     again = false;
     try { await save(me, byId[me].name, mine); setStatus("Opgeslagen ✓"); }
-    catch (e) {
-      setStatus(e && e.code === "permission-denied"
-        ? "Opslaan mislukt: de Firestore-regels staan nog niet goed. Geef dit door aan Kai."
-        : "Opslaan mislukt. Controleer je verbinding en probeer het opnieuw.", true);
-    }
+    catch (e) { setStatus(failMsg(e), true); }
   } while (again);
   saving = false;
 }
 
-/* ---------- stand van zaken ---------- */
-function names(ids) {
-  return ids.map((id) => `<span class="name">${esc(byId[id].name)}</span>`).join("");
+/* ---------- ideeën ---------- */
+function ideaFields(d, pre) {
+  return `<label class="field"><span>Wat</span><input type="text" id="${pre}title" maxlength="80" value="${esc(d.title)}" placeholder="Bijvoorbeeld: tapas in Altea op vrijdagavond"></label>
+  <label class="field"><span>Uitleg</span><textarea id="${pre}text" maxlength="500" placeholder="Optioneel: waarom, waar, wat kost het">${esc(d.text)}</textarea></label>
+  <div class="field"><span>Categorie</span><div class="picks" id="${pre}cat">${IDEA_CATS.map((c) => `<button type="button" class="pick cat" data-cat="${c.id}" aria-pressed="${d.cat === c.id}">${esc(c.label)}</button>`).join("")}</div></div>
+  <div class="field"><span>Trekkers</span><div class="picks" id="${pre}leads">${going.map((p) => `<button type="button" class="pick" data-p="${p.id}" aria-pressed="${d.leads.includes(p.id)}">${av(p)}${esc(p.name)}</button>`).join("")}</div></div>`;
 }
+function readFields(pre) {
+  return {
+    title: $(`#${pre}title`).value.trim().slice(0, 80),
+    text: $(`#${pre}text`).value.trim().slice(0, 500),
+    cat: $(`#${pre}cat [aria-pressed="true"]`)?.dataset.cat || "overig",
+    leads: [...document.querySelectorAll(`#${pre}leads [aria-pressed="true"]`)].map((b) => b.dataset.p)
+  };
+}
+function renderIdeaForm() {
+  const box = $("#ideaForm");
+  if (!me) { box.innerHTML = pickMe("Daarna kun je ideeën toevoegen en je opgeven als hulp."); return; }
+  box.innerHTML = `<div class="ideaform"><p class="label">nieuw idee</p><div style="margin-top:16px">${ideaFields({ title: "", text: "", cat: "eten", leads: [me] }, "n_")}</div>
+    <div class="acts"><button class="btn" id="addIdea">Idee toevoegen</button><span class="status" id="istatus" aria-live="polite"></span></div></div>`;
+}
+const nameList = (ids) => ids.filter((i) => byId[i]).map((i) => `<span class="mini">${av(byId[i])}${esc(byId[i].name)}</span>`).join("") || `<span class="mini" style="color:var(--muted)">nog niemand</span>`;
+function renderIdeaList() {
+  if (editing) { listDirty = true; return; }
+  listDirty = false;
+  const box = $("#ideaList");
+  const list = ideas.filter((i) => !i.gone).sort((a, b) => b.created - a.created);
+  if (!ideasLoaded) { box.innerHTML = `<div class="empty">Laden…</div>`; return; }
+  if (!list.length) { box.innerHTML = `<div class="empty">Nog geen ideeën. Restaurant, avondprogramma, een spel? Zet het erin.</div>`; return; }
+  box.innerHTML = list.map((i) => {
+    const cat = IDEA_CATS.find((c) => c.id === i.cat)?.label || "Overig";
+    const mineIdea = me && i.by === me, lead = me && (i.leads || []).includes(me), helping = me && (i.helpers || []).includes(me);
+    let acts = "";
+    if (me && !lead) acts += `<button class="btn small ${helping ? "ghost" : ""}" data-help="${i.id}" data-on="${!helping}">${helping ? "Toch niet" : "Ik help mee"}</button>`;
+    if (mineIdea) acts += `<button class="btn small ghost" data-edit="${i.id}">Bewerken</button><button class="btn small ghost" data-del="${i.id}">Verwijderen</button>`;
+    return `<article class="idea" id="idea-${i.id}"><p class="label">${esc(cat.toLowerCase())}</p><h3>${esc(i.title)}</h3>${i.text ? `<p class="txt">${esc(i.text)}</p>` : ""}
+      <p class="by">Ingediend door ${esc(byId[i.by]?.name || "?")}</p>
+      <div class="roles"><div class="role"><span>Trekkers</span><div class="faces">${nameList(i.leads || [])}</div></div><div class="role"><span>Helpen mee</span><div class="faces">${nameList(i.helpers || [])}</div></div></div>
+      <div class="acts">${acts}<span class="status" data-st="${i.id}"></span></div></article>`;
+  }).join("");
+}
+function istatus(sel, msg, err) { const el = document.querySelector(sel); if (el) { el.textContent = msg; el.className = "status" + (err ? " err" : ""); } }
+$("#ideas").addEventListener("click", async (e) => {
+  const pick = e.target.closest(".pick");
+  if (pick) {
+    if (pick.classList.contains("cat")) pick.parentElement.querySelectorAll(".pick").forEach((b) => b.setAttribute("aria-pressed", b === pick));
+    else pick.setAttribute("aria-pressed", pick.getAttribute("aria-pressed") !== "true");
+    return;
+  }
+  const b = e.target.closest("button"); if (!b || !me) return;
+  if (b.id === "addIdea") {
+    const d = readFields("n_");
+    if (!d.title) { istatus("#istatus", "Geef je idee een titel.", true); return; }
+    b.disabled = true; istatus("#istatus", "Toevoegen…");
+    try { await addIdea({ ...d, by: me }); renderIdeaForm(); istatus("#istatus", "Toegevoegd ✓"); }
+    catch (x) { b.disabled = false; istatus("#istatus", failMsg(x), true); }
+  }
+  if (b.dataset.help) {
+    try { await setHelper(b.dataset.help, me, b.dataset.on === "true"); }
+    catch (x) { istatus(`[data-st="${b.dataset.help}"]`, failMsg(x), true); }
+  }
+  if (b.dataset.edit) {
+    const i = ideas.find((x) => x.id === b.dataset.edit);
+    editing = i.id;
+    $("#idea-" + i.id).innerHTML = `<p class="label">bewerken</p><div style="margin-top:16px">${ideaFields({ title: i.title, text: i.text || "", cat: i.cat, leads: i.leads || [] }, "e_")}</div>
+      <div class="acts"><button class="btn small" data-save="${i.id}">Opslaan</button><button class="btn small ghost" data-cancel="1">Annuleren</button><span class="status" data-st="${i.id}"></span></div>`;
+  }
+  if (b.dataset.cancel) { editing = null; renderIdeaList(); }
+  if (b.dataset.save) {
+    const d = readFields("e_");
+    if (!d.title) { istatus(`[data-st="${b.dataset.save}"]`, "Titel is verplicht.", true); return; }
+    try { await editIdea(b.dataset.save, d); editing = null; renderIdeaList(); }
+    catch (x) { istatus(`[data-st="${b.dataset.save}"]`, failMsg(x), true); }
+  }
+  if (b.dataset.del) {
+    if (b.dataset.sure !== "1") { b.dataset.sure = "1"; b.textContent = "Zeker weten?"; return; }
+    try { await editIdea(b.dataset.del, { gone: true }); }
+    catch (x) { istatus(`[data-st="${b.dataset.del}"]`, failMsg(x), true); }
+  }
+});
+
+/* ---------- stand ---------- */
 function renderStand() {
-  const resp = going.filter((p) => progress(all[p.id]).done > 0).map((p) => p.id);
   const done = going.filter((p) => statusOf(p.id) === "done");
   const open = going.filter((p) => statusOf(p.id) !== "done");
-  let h = `<div class="tile"><h2>${done.length} van ${going.length} hebben alles ingevuld</h2>`;
-  h += `<div class="progress" aria-hidden="true"><i style="width:${(done.length / going.length) * 100}%"></i></div>`;
-  h += `<div class="muted">${open.length ? `Nog open: ${open.map((p) => esc(p.name)).join(", ")}.` : "Iedereen is er. Nu beslist Kai."}</div>`;
-  h += `<div class="faces">${going.map((p) => `<div class="face">${avatar(p, 44, statusOf(p.id))}<span>${esc(p.name)}</span></div>`).join("")}</div></div>`;
-
+  let h = `<div class="tile"><h2>${done.length} van ${going.length} binnen</h2><div class="progress"><i style="width:${(done.length / going.length) * 100}%"></i></div>`;
+  h += `<div class="muted">${open.length ? `Nog open: ${open.map((p) => esc(p.name)).join(", ")}.` : "Iedereen heeft ingevuld. Nu beslist Kai."}</div></div>`;
+  let sec = "";
   for (const q of QUESTIONS) {
-    h += `<div class="qcard"><h3>${esc(q.title)}</h3>`;
-    if (q.type === "text") {
-      const items = going.filter((p) => (all[p.id] || {})[q.id]);
-      h += items.length
-        ? `<ul class="notes">${items.map((p) => `<li><b>${esc(p.name)}:</b> ${esc(all[p.id][q.id])}</li>`).join("")}</ul>`
-        : `<div class="muted">Nog geen opmerkingen.</div>`;
-    } else {
-      const counts = q.options.map((o) => {
-        const ids = going.filter((p) => {
-          const v = (all[p.id] || {})[q.id];
-          return q.type === "multi" ? Array.isArray(v) && v.includes(o.id) : v === o.id;
-        }).map((p) => p.id);
-        return { o, ids };
-      });
-      const max = Math.max(...counts.map((c) => c.ids.length));
-      const base = Math.max(going.length, 1);
-      if (max === 0) h += `<div class="muted">Nog geen antwoorden.</div>`;
-      counts.forEach((c) => {
-        const lead = max > 0 && c.ids.length === max;
-        h += `<div class="row ${lead ? "lead" : ""}"><div class="rowhead"><span>${esc(c.o.label)}</span><span>${c.ids.length}</span></div><div class="track"><i style="width:${(c.ids.length / base) * 100}%"></i></div><div class="names">${names(c.ids)}</div></div>`;
-      });
-    }
+    if (q.section !== sec) { sec = q.section; h += `<div class="sec"><p class="label">${esc(sec)}</p></div>`; }
+    const counts = q.options.map((o) => ({ o, ids: going.filter((p) => {
+      const v = (all[p.id] || {})[q.id];
+      return q.type === "multi" ? Array.isArray(v) && v.includes(o.id) : v === o.id;
+    }).map((p) => p.id) }));
+    const max = Math.max(...counts.map((c) => c.ids.length));
+    h += `<div class="qcard"><h3>${esc(q.title)}</h3>${max === 0 ? `<div class="names">Nog geen antwoorden</div>` : ""}`;
+    if (max > 0) counts.forEach((c) => {
+      h += `<div class="row ${c.ids.length === max ? "lead" : ""}"><div class="rowhead"><span>${esc(c.o.label)}</span><span>${c.ids.length}</span></div><div class="track"><i style="width:${(c.ids.length / going.length) * 100}%"></i></div><div class="names">${c.ids.map((id) => esc(byId[id].name)).join(" · ")}</div></div>`;
+    });
     h += `</div>`;
   }
-
-  h += `<h3 class="sec">Per persoon</h3><div class="tablewrap"><table><thead><tr><th>Wie</th>${QUESTIONS.filter((q) => q.type !== "text").map((q) => `<th>${esc(q.title.replace(/\?$/, ""))}</th>`).join("")}</tr></thead><tbody>`;
+  h += `<div class="sec"><p class="label">per persoon</p></div><div class="tablewrap"><table><thead><tr><th>Wie</th>${QUESTIONS.map((q) => `<th>${esc(q.id === "tegen" ? "Tegen" : q.id[0].toUpperCase() + q.id.slice(1))}</th>`).join("")}</tr></thead><tbody>`;
   going.forEach((p) => {
-    h += `<tr><td class="p"><span class="cell">${avatar(p, 28, statusOf(p.id))}${esc(p.name)}</span></td>`;
-    QUESTIONS.filter((q) => q.type !== "text").forEach((q) => {
-      const v = (all[p.id] || {})[q.id];
-      h += isAnswered(q, v) ? `<td>${esc(fmt(q, v, "short"))}</td>` : `<td class="none">nog niet</td>`;
-    });
+    h += `<tr><td class="p"><span class="cell">${av(p, statusOf(p.id))}${esc(p.name)}</span></td>`;
+    QUESTIONS.forEach((q) => { const v = (all[p.id] || {})[q.id]; h += isAnswered(q, v) ? `<td>${esc(fmt(q, v, "short"))}</td>` : `<td class="none">–</td>`; });
     h += `</tr>`;
   });
-  h += `</tbody></table></div><p class="foot">Dit zijn voorkeuren, geen stemming. Kai beslist en boekt op basis van deze stand. Prijzen voor padel en tickets zijn schattingen.</p>`;
+  h += `</tbody></table></div><p class="foot">‘Dit zijn voorkeuren, geen stemming. Kai beslist en boekt.’</p>`;
   $("#stand").innerHTML = h;
 }
 
-/* ---------- alles tekenen ---------- */
-function renderAll(withForm) {
-  renderHint(); renderHotspots(); renderChips(); renderBadge(); renderStand();
-  if (withForm) renderForm();
+/* ---------- tekenen ---------- */
+function renderAll(withForms) {
+  renderHint(); renderHotspots(); renderPeople(); renderBadges(); renderStand();
+  if (withForms) { renderForm(); renderIdeaForm(); renderIdeaList(); }
 }
 renderAll(true);
 
 /* ---------- verbinding ---------- */
 const banner = $("#banner");
-const slow = setTimeout(() => {
-  banner.hidden = false;
-  banner.textContent = "De gegevens zijn nog niet bereikbaar. Controleer je verbinding of probeer het zo nog eens.";
-}, 10000);
+const slow = setTimeout(() => { banner.hidden = false; banner.textContent = "De gegevens zijn nog niet bereikbaar. Controleer je verbinding of probeer het zo nog eens."; }, 10000);
+const onErr = (err) => {
+  clearTimeout(slow); banner.hidden = false;
+  banner.textContent = err && err.code === "permission-denied" ? "Geen toegang tot de gegevens. Kai: controleer de Firestore-regels." : "Er ging iets mis met de verbinding. Vernieuw de pagina.";
+};
 listen((data) => {
   clearTimeout(slow); banner.hidden = true;
   const first = !loaded;
-  all = data;
-  if (first) { loaded = true; mine = structuredClone(all[me] || {}); }
-  else if (me) all[me] = mine;
-  renderAll(first);
-}, (err) => {
-  clearTimeout(slow);
-  banner.hidden = false;
-  banner.textContent = err && err.code === "permission-denied"
-    ? "Geen toegang tot de gegevens. Kai: controleer de Firestore-regels."
-    : "Er ging iets mis met de verbinding. Vernieuw de pagina.";
-  if (!loaded) { loaded = true; renderForm(); }
-});
+  all = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, clean(v)]));
+  if (first) { loaded = true; mine = clean(all[me]); } else if (me) all[me] = mine;
+  renderAll(false);
+  if (first) renderForm();
+}, (err) => { onErr(err); if (!loaded) { loaded = true; renderForm(); } });
+listenIdeas((list) => { ideas = list; ideasLoaded = true; renderBadges(); renderIdeaList(); }, (err) => { onErr(err); ideasLoaded = true; renderIdeaList(); });
 </script>
 </body>
 </html>
