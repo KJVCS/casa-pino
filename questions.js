@@ -4,6 +4,8 @@
 export const STORE_KEYS = ["heen", "terug", "training", "potje", "padelNee", "tegen", "voetbal", "rijden", "pos", "_self", "_scout", "_doneAt"];
 
 export const DEADLINE = "2026-11-20";          // invullen vóór (einde van deze dag)
+// Na de deadline gaan Mijn keuzes op slot. Zet op false om ze weer open te zetten (Ideeën blijven altijd open).
+export const LOCK_AFTER_DEADLINE = true;
 
 // Wat al vaststaat (bovenaan en in het programma).
 export const FIXED = [

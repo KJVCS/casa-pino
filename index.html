@@ -174,6 +174,10 @@ section.panel[hidden] { display: none; }
 .steps li i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--rule); flex: none; display: grid; place-items: center; font: 700 9px/1 var(--body); font-style: normal; color: var(--card); }
 .steps li.ok { color: var(--ink); }
 .steps li.ok i { background: var(--terra); border-color: var(--terra); }
+.locknote { margin: 30px 0 0; padding: 14px 16px; background: var(--night); color: var(--cream); font: italic 400 1rem/1.45 var(--quote); border-left: 4px solid var(--gold); }
+#form.locked input, #form.locked button, #form.locked label { pointer-events: none; }
+#form.locked .passes, #form.locked .grid, #form.locked .choices, #form.locked .tri, #form.locked .sliders, #form.locked .nopadel, #form.locked .duel { opacity: .75; }
+.export .btns { justify-content: flex-start; }
 .hello { margin: 30px 0 0; font: italic 400 1.15rem/1.45 var(--quote); }
 .hello b { font-style: normal; font-weight: 700; }
 
@@ -459,7 +463,7 @@ td.nn { color: #B9A994; }
 <header class="hero" id="hero">
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
-    <img src="photo.jpg?v=12" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
+    <img src="photo.jpg?v=13" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
     <div data-hs></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
@@ -506,14 +510,16 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "12";
+const V = "13";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
-const { QUESTIONS, SECTIONS, STORE_KEYS, DECISIONS, DEADLINE, FIXED, FLIGHT, COSTS, TRI, DAYS, PARTS, OFF, SLOT_LABEL, GRID_QUIPS, WHERE, IDEA_CATS } = Q;
+const { QUESTIONS, SECTIONS, STORE_KEYS, DECISIONS, DEADLINE, LOCK_AFTER_DEADLINE, FIXED, FLIGHT, COSTS, TRI, DAYS, PARTS, OFF, SLOT_LABEL, GRID_QUIPS, WHERE, IDEA_CATS } = Q;
 const { PEOPLE, TRIP, ORDER, CAPTION } = P;
 const { STATS, DUELS_PER_STAT, REVEAL, POSITIONS } = C;
 const TOTAL_DUELS = STATS.length * DUELS_PER_STAT;
+const LOCKED = LOCK_AFTER_DEADLINE && Date.now() > Date.parse(DEADLINE + "T23:59:59");
+const KAI_VIEW = new URLSearchParams(location.search).has("kai");
 const REVEALED = Date.now() >= Date.parse(REVEAL);
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -788,7 +794,9 @@ function renderForm() {
   $("#mine .cols").classList.toggle("solo", !me);
   if (!me) { box.innerHTML = `<div class="prompt">Kies hierboven je kaart. Daarna gaat alles vanzelf: elke keuze wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
   if (!loaded) { box.innerHTML = `<div class="prompt">Laden…</div>`; return; }
-  let h = `<p class="hello">Hoi <b>${esc(byId[me].name)}</b>. Vijf minuten werk, dan is je kaart goud.</p>`;
+  let h = LOCKED
+    ? `<p class="locknote">De democratie is vervallen. Aanpassen kan niet meer: dit zijn je keuzes zoals ze zijn doorgegeven.</p>`
+    : `<p class="hello">Hoi <b>${esc(byId[me].name)}</b>. Vijf minuten werk, dan is je kaart goud.</p>`;
   for (const s of SECTIONS) {
     h += `<div class="sec"><span class="nr">${s.nr}</span><h2>${s.title}</h2><span class="ok" data-secok="${s.id}"></span></div>`;
     for (const q of QUESTIONS.filter((x) => x.section === s.id)) {
@@ -810,6 +818,7 @@ function renderForm() {
   }
   h += `<div id="finish"></div>`;
   box.innerHTML = h;
+  box.classList.toggle("locked", LOCKED);
   for (const q of QUESTIONS) {
     if (q.type === "flight") $$(`input[data-q="${q.id}"]`, box).forEach((i) => { i.checked = triOf(mine, q.id)[i.dataset.o] === i.value; });
     else $$(`input[data-q="${q.id}"]`, box).forEach((i) => { i.checked = mine[q.id] === i.value; });
@@ -842,7 +851,7 @@ function live() {
 }
 
 $("#form").addEventListener("change", (e) => {
-  const i = e.target.closest("input[data-q]"); if (!i || !me) return;
+  const i = e.target.closest("input[data-q]"); if (!i || !me || LOCKED) return;
   const q = qOf(i.dataset.q);
   if (q.type === "flight") {
     mine[q.id] = { ...triOf(mine, q.id), [i.dataset.o]: i.value };
@@ -854,6 +863,7 @@ $("#form").addEventListener("change", (e) => {
   edited();
 });
 $("#form").addEventListener("click", async (e) => {
+  if (LOCKED) return;
   const c = e.target.closest(".cell[data-slot]");
   if (c && me) {
     const s = c.dataset.slot, st = cellState(mine, s);
@@ -1020,14 +1030,14 @@ function renderScout() {
   box.innerHTML = h;
 }
 $("#form").addEventListener("input", (e) => {
-  const r = e.target.closest("[data-self]"); if (!r) return;
+  const r = e.target.closest("[data-self]"); if (!r || LOCKED) return;
   scout.self[r.dataset.self] = Number(r.value);
   $("#o-" + r.dataset.self).textContent = r.value; $("#o-" + r.dataset.self).className = "";
   saveScoutSoon();
   if (!mine._self && STATS.every(([k]) => typeof scout.self[k] === "number")) { mine._self = true; quiet = true; edited(); $("#selfOk")?.remove(); }
 });
 $("#form").addEventListener("click", async (e) => {
-  if (!me) return;
+  if (!me || LOCKED) return;
   const pos = e.target.closest("input[data-pos]");
   if (pos) { mine.pos = pos.value; lastQuip = pos.value === "REV" ? "Links. De plek voor de víbora." : pos.value === "DRV" ? "Rechts. Jij houdt het rustig." : "Allround. Handig."; edited(); return; }
   if (e.target.id === "codeGo") {
@@ -1281,6 +1291,7 @@ function renderStand() {
   }
   h += `</tbody></table></div></div>`;
   h += whereHTML();
+  if (KAI_VIEW) h += `<div class="card export"><h3>Export voor de organisatie</h3><p class="sub">Alleen zichtbaar via ?kai in de link. Opent in Excel of Numbers.</p><div class="btns"><button class="btn" id="expAnswers">Download keuzes</button><button class="btn ghost" id="expIdeas">Download ideeën</button></div></div>`;
   $("#stand").innerHTML = h;
 }
 
@@ -1343,6 +1354,33 @@ document.addEventListener("click", async (e) => {
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = file.name; document.body.appendChild(a); a.click(); a.remove();
     toast("Kaart opgeslagen.", "Gooi 'm in de groepsapp");
   } catch (x) { if (x && x.name !== "AbortError") toast("Opslaan lukte niet op dit apparaat.", "", true); }
+});
+
+
+/* ---------- export (alleen met ?kai) ---------- */
+function downloadCSV(name, rows) {
+  const cell = (v) => { const t = String(v ?? ""); return /[";\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
+  const csv = "﻿" + rows.map((r) => r.map(cell).join(";")).join("\r\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" })); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+document.addEventListener("click", (e) => {
+  if (e.target.id === "expAnswers") {
+    const tri = (a, k, x) => TRI.find((t) => t.id === triOf(a, k)[x])?.label || "";
+    const sl = (v) => arr(v).filter((x) => x !== "geen").map((x) => SLOT_LABEL[x]).join(", ") || (arr(v).includes("geen") ? "geen" : "");
+    const rows = [["Naam", "Klaar", "Heen Transavia 09:40", "Heen Vueling 14:35", "Terug Vueling 18:05", "Terug Transavia 20:55", "Training", "Potjes", "Liever niet", "Tegen", "Voetbal", "Rijden", "Positie", "Duels gespeeld", "Zelfbeeld ingevuld", "Indicatie p.p. laag", "Indicatie p.p. hoog"]];
+    for (const p of going) {
+      const a = all[p.id] || {}, { tot } = costs(a), pr = progress(a);
+      rows.push([p.name, `${pr.done}/${pr.total}`, tri(a, "heen", "transavia"), tri(a, "heen", "vueling"), tri(a, "terug", "vueling"), tri(a, "terug", "transavia"), sl(a.training), sl(a.potje), sl(a.padelNee), a.tegen ? optLabel(qOf("tegen"), a.tegen) : "", a.voetbal ? optLabel(qOf("voetbal"), a.voetbal) : "", a.rijden ? optLabel(qOf("rijden"), a.rijden) : "", POSITIONS.find((x) => x.id === a.pos)?.label || "", a._scout || 0, a._self ? "ja" : "nee", Math.round(tot[0]), Math.round(tot[1])]);
+    }
+    downloadCSV("casa-pino-keuzes.csv", rows);
+  }
+  if (e.target.id === "expIdeas") {
+    const names = (ids) => arr(ids).filter((i) => byId[i]).map((i) => byId[i].name).join(", ");
+    const rows = [["Idee", "Uitleg", "Soort", "Van", "Organisatoren", "Helpen mee"]];
+    for (const i of ideas.filter((x) => !x.gone)) rows.push([i.title, i.text || "", IDEA_CATS.find((c) => c.id === i.cat)?.label || "", byId[i.by]?.name || "", names(i.leads), names(i.helpers)]);
+    downloadCSV("casa-pino-ideeen.csv", rows);
+  }
 });
 
 /* ---------- tekenen ---------- */
