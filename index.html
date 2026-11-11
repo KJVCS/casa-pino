@@ -86,7 +86,7 @@ button { cursor: pointer; }
 .fan::-webkit-scrollbar { display: none; }
 .fan button { flex: 0 0 min(62vw, 230px); scroll-snap-align: center; padding: 0; border: 0; background: none; text-align: left; }
 .fan button:hover .pcard, .fan button:focus-visible .pcard { transform: translateY(-6px) rotate(-1.5deg); }
-@media (min-width: 900px) { .fan { justify-content: safe center; flex-wrap: wrap; overflow: visible; row-gap: 26px; } .fan button { flex-basis: 210px; } }
+@media (min-width: 900px) { .fan { display: grid; grid-template-columns: repeat(4, 210px); justify-content: center; gap: 30px 24px; overflow: visible; padding: 18px 20px 14px; } .fan button { width: 210px; } }
 .swipe { margin: 4px 0 0; color: var(--lilac); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; }
 @media (min-width: 900px) { .swipe { display: none; } }
 
@@ -116,7 +116,7 @@ button { cursor: pointer; }
 .pcard .st div { display: flex; align-items: baseline; gap: 3cqw; font: 600 max(5cqw, 11px)/1 var(--body); letter-spacing: .1em; }
 .pcard .st b { min-width: 9cqw; font: 500 max(7cqw, 14px)/1 var(--title); color: var(--m); letter-spacing: 0; }
 .pcard .scout { position: absolute; left: 7cqw; right: 7cqw; top: 101cqw; padding-top: 6cqw; border-top: .5cqw solid var(--m); text-align: center; font: italic 400 max(5.4cqw, 12px)/1.45 var(--quote); opacity: .85; }
-.pcard .scout i { display: block; margin-top: 2cqw; font: 700 max(3.8cqw, 10px)/1 var(--body); font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: var(--m); }
+.pcard .scout i { display: block; margin-top: 2cqw; font: 700 max(3.6cqw, 9px)/1 var(--body); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--m); white-space: nowrap; }
 .pcard .ft { position: absolute; left: 0; right: 0; bottom: 4cqw; text-align: center; font: 700 max(3.2cqw, 9px)/1 var(--body); letter-spacing: .12em; opacity: .6; white-space: nowrap; }
 .pcard .stamp2 { position: absolute; right: -3cqw; top: 58cqw; z-index: 3; transform: rotate(14deg); padding: 2cqw 3.4cqw; border: 1cqw solid #E58A6F; color: #E58A6F; background: rgba(29,22,38,.85); font: 800 max(4.6cqw, 10px)/1 var(--body); letter-spacing: .18em; text-transform: uppercase; }
 .pcard .stamp2.lant { border-color: #E2543A; color: #FFF9EF; background: #B8321F; }
@@ -165,7 +165,7 @@ section.panel[hidden] { display: none; }
 
 /* ---------- Mijn keuzes ---------- */
 .cols { display: block; }
-@media (min-width: 900px) { .cols { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 48px; align-items: start; } }
+@media (min-width: 900px) { .cols { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 48px; align-items: start; } .cols.solo { display: block; } }
 .side { display: none; }
 @media (min-width: 900px) { .side { display: block; position: sticky; top: 76px; margin-top: 40px; } }
 .sidecard { background: var(--card); border: 1px solid var(--rule); padding: 20px; }
@@ -272,7 +272,7 @@ button.cell:active { transform: scale(.96); }
 .btn.ghost { background: transparent; color: inherit; border-color: currentColor; }
 .btn.small { padding: 8px 12px; font-size: .66rem; }
 .btn.gold { background: var(--gold); border-color: var(--gold); color: var(--night); }
-.prompt { margin: 36px 0 0; padding: 30px 22px; background: var(--card); border: 1.5px dashed var(--rule); text-align: center; font: italic 400 1.05rem/1.6 var(--quote); }
+.prompt { max-width: 640px; margin: 36px auto 0; padding: 30px 22px; background: var(--card); border: 1.5px dashed var(--rule); text-align: center; font: italic 400 1.05rem/1.6 var(--quote); }
 
 
 /* Scouting */
@@ -459,7 +459,7 @@ td.nn { color: #B9A994; }
 <header class="hero" id="hero">
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
-    <img src="photo.jpg?v=11" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
+    <img src="photo.jpg?v=12" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
     <div data-hs></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
@@ -506,7 +506,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "11";
+const V = "12";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -785,6 +785,7 @@ function gridHTML(a) {
 }
 function renderForm() {
   const box = $("#form"), side = $("#side");
+  $("#mine .cols").classList.toggle("solo", !me);
   if (!me) { box.innerHTML = `<div class="prompt">Kies hierboven je kaart. Daarna gaat alles vanzelf: elke keuze wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
   if (!loaded) { box.innerHTML = `<div class="prompt">Laden…</div>`; return; }
   let h = `<p class="hello">Hoi <b>${esc(byId[me].name)}</b>. Vijf minuten werk, dan is je kaart goud.</p>`;
