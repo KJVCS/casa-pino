@@ -46,7 +46,7 @@ service cloud.firestore {
         return {'kai-0000':'kai','toobs-0000':'toobs','babbels-0000':'babbels','dubbel-d-0000':'dubbel-d',
                 'yung-marie-0000':'yung-marie','tomba-0000':'tomba','raw-roya-0000':'raw-roya','melph-0000':'melph'};
       }
-      function open() { return request.time < timestamp.date(2026, 11, 19); }
+      function open() { return request.time < timestamp.date(2026, 11, 21); }
       allow get: if doc in codes().keys();
       allow list: if !open();
       allow create, update: if open() && doc in codes().keys()

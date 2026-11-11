@@ -3,13 +3,13 @@
 
 export const STORE_KEYS = ["heen", "terug", "training", "potje", "padelNee", "tegen", "voetbal", "rijden", "pos", "_self", "_scout", "_doneAt"];
 
-export const DEADLINE = "2026-11-18";          // invullen vóór (einde van deze dag)
+export const DEADLINE = "2026-11-20";          // invullen vóór (einde van deze dag)
 
 // Wat al vaststaat (bovenaan en in het programma).
 export const FIXED = [
   { t: "4 – 7 maart 2027", d: "Donderdag tot en met zondag" },
   { t: "Casa Pino, Alfàs del Pi", d: "€ 600 voor de groep, € 75 p.p." },
-  { t: "Twee huurauto's", d: "Voor de hele reis" }
+  { t: "Twee huurauto's", d: "" }
 ];
 
 // Kai zet hier wat besloten is. Dit vult het programma.
@@ -31,12 +31,14 @@ export const COSTS = {
   potje: [4.5, 4.5],
   voetbal: [50, 90],
   verblijf: [75, 75],
-  rest: [190, 255]
+  auto: [45.25, 45.25],     // Sunny Cars: 2 × € 181 all-in, gedeeld door 8
+  brandstof: [12, 20],
+  eten: [145, 185]
 };
 
 export const TRI = [
-  { id: "graag", label: "Graag" },
-  { id: "kan", label: "Kan" },
+  { id: "graag", label: "Voorkeur" },
+  { id: "kan", label: "Kan ook" },
   { id: "nee", label: "Kan niet" }
 ];
 
@@ -68,22 +70,22 @@ export const QUESTIONS = [
       { id: "transavia", airline: "Transavia", dep: "09:40", arr: "12:20", detail: "’s Middags al op de baan" },
       { id: "vueling", airline: "Vueling", dep: "14:35", arr: "17:20", detail: "Aankomen, tapas, pils" }
     ],
-    quips: { graag: "Genoteerd. Kai ziet het.", kan: "Flexibel. Kai houdt van je.", nee: "Helder. Daar houden we rekening mee." }
+    quips: { graag: "Genoteerd. De organisatie is geïnformeerd.", kan: "Flexibel! Daar houden we van.", nee: "Helder. Daar houden we rekening mee." }
   },
   {
     id: "terug", section: "vluchten", type: "flight",
     title: "Terug: zondag 7 maart",
     sub: "Alicante → Amsterdam.",
     options: [
-      { id: "vueling", airline: "Vueling", dep: "18:05", arr: "21:00", detail: "Thuis rond 22:00" },
-      { id: "transavia", airline: "Transavia", dep: "20:55", arr: "23:45", detail: "Thuis rond middernacht" }
+      { id: "vueling", airline: "Vueling", dep: "18:05", arr: "21:00", detail: "" },
+      { id: "transavia", airline: "Transavia", dep: "20:55", arr: "23:45", detail: "" }
     ],
-    quips: { graag: "Nog één pils op het terras? Goede keuze.", kan: "Flexibel. Kai houdt van je.", nee: "Maandag fris op kantoor. Verstandig." }
+    quips: { graag: "Nog één pils op het terras? Goede keuze.", kan: "Flexibel! Daar houden we van.", nee: "Maandag fris op kantoor. Verstandig." }
   },
   {
     id: "padel", section: "padel", type: "grid",
     title: "Wanneer wil je trainen of een potje spelen?",
-    sub: "Tik op een vakje om te wisselen: training, potje, allebei of kan niet. Training: 1,5 uur met trainer, ca. € 16–20. Potje: 1,5 uur zelf spelen, ca. € 4,50."
+    sub: "Tik op een vakje om te wisselen: training, potje, allebei of liever niet. Training: 1,5 uur met trainer, ca. € 16–20. Potje: 1,5 uur zelf spelen, ca. € 4,50."
   },
   {
     id: "tegen", section: "padel", type: "single",
@@ -91,8 +93,8 @@ export const QUESTIONS = [
     sub: "We kunnen via de club lokale spelers proberen te regelen.",
     options: [
       { id: "onderling", label: "Onderling", quip: "Vriendschap op het spel." },
-      { id: "lokaal", label: "Lokale tegenstanders", quip: "Spanjaarden inmaken. Of andersom." },
-      { id: "beide", label: "Allebei leuk", quip: "Alles mag, niks moet." }
+      { id: "lokaal", label: "Lokale tegenstanders", quip: "Vamos!" },
+      { id: "beide", label: "Allebei leuk", quip: "Alles mag, niets moet." }
     ]
   },
   {
@@ -100,16 +102,16 @@ export const QUESTIONS = [
     title: "Zin in een voetbalwedstrijd?",
     sub: "Elche of Hércules moet dan thuis spelen op een moment dat past. Dat weten we pas 3 à 4 weken vooraf. Ticket ca. € 50–90.",
     options: [
-      { id: "ja", label: "Ja, leuk", quip: "Sjaal mee." },
+      { id: "ja", label: "Ja, leuk", quip: "Vamos! Sjaal mee." },
       { id: "nee", label: "Nee, niet zo nodig", quip: "Meer tijd voor pils." }
     ]
   },
   {
     id: "rijden", section: "onderweg", type: "single",
     title: "Wil je rijden?",
-    sub: "Twee huurauto's, dus minstens twee bestuurders. Wie rijdt, drinkt die dag wat minder pils.",
+    sub: "Twee huurauto's met 2 bestuurders per auto.",
     options: [
-      { id: "graag", label: "Ja, graag", quip: "Held. Jij krijgt de beste plek op het terras." },
+      { id: "graag", label: "Ja, prima", quip: "Held. Jij krijgt de beste plek op het terras." },
       { id: "moet", label: "Als het moet", quip: "Reservebestuurder genoteerd." },
       { id: "liever-niet", label: "Liever niet", quip: "Bijrijder met playlist-verantwoordelijkheid." },
       { id: "geen", label: "Geen rijbewijs", quip: "Achterbank it is." }
@@ -124,18 +126,22 @@ QUESTIONS.push({
   sub: "Kies je positie, schat jezelf in en speel de duels. Je stemt anoniem: tot de deadline kan niemand de stemmen zien, ook Kai niet. Daarna gaan alle kaarten tegelijk open."
 });
 
-export const GRID_QUIPS = { t: "De trainer gaat je dropshot ontleden.", p: "Gewoon lekker ballen.", tp: "Volle bak. Fysio alvast gebeld?", nee: "Prima, dan lig je bij het zwembad.", none: "Op een padelreis? Gedurfd." };
+export const GRID_QUIPS = { t: "Bandeja-bootcamp genoteerd.", p: "De interne ranking staat op het spel.", tp: "Volle bak. Fysio alvast gebeld?", nee: "Rust is ook training.", none: "Op een padelreis? Gedurfd." };
 
 export const WHERE = [
   { from: "Vliegveld Alicante", to: "Casa Pino", time: "ca. 45 min" },
   { from: "Casa Pino", to: "Padelpoint La Nucía", time: "ca. 10 min" },
   { from: "Casa Pino", to: "Hércules, Alicante", time: "ca. 35 min" },
-  { from: "Casa Pino", to: "Elche", time: "ca. 50 min" }
+  { from: "Casa Pino", to: "Elche", time: "ca. 50 min" },
+  { from: "Casa Pino", to: "Albir", time: "ca. 5 min" },
+  { from: "Casa Pino", to: "Altea", time: "ca. 10 min" },
+  { from: "Casa Pino", to: "Benidorm", time: "ca. 15 min" },
+  { from: "Casa Pino", to: "Dénia", time: "ca. 45 min" }
 ];
 
 export const IDEA_CATS = [
-  { id: "eten", label: "Eten & drinken" },
-  { id: "avond", label: "Avond" },
+  { id: "avond", label: "Activiteit" },
   { id: "spel", label: "Spel" },
+  { id: "eten", label: "Terras & restaurant" },
   { id: "overig", label: "Overig" }
 ];

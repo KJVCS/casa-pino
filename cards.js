@@ -6,7 +6,7 @@ export const STATS = [
   ["pil", "PIL", "Derde helft", "herstelvermogen na afloop"]
 ];
 export const DUELS_PER_STAT = 4;               // per persoon, per stat
-export const REVEAL = "2026-11-19T00:00:00Z";  // na de deadline gaan de scores open (moet gelijk zijn aan de Firestore-regels)
+export const REVEAL = "2026-11-21T00:00:00Z";  // na de deadline gaan de scores open (moet gelijk zijn aan de Firestore-regels)
 export const POSITIONS = [
   { id: "DRV", label: "Rechts (drive)" },
   { id: "REV", label: "Links (revés)" },

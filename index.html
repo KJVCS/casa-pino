@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1D1626">
-<title>Casa Pino 2027</title>
-<meta property="og:title" content="Casa Pino 2027: pils, padel en goeie gesprekken">
-<meta property="og:description" content="Vul je voorkeuren in vóór 18 november. Jouw stem telt (een beetje).">
+<title>Casa Pino x Padel 2027</title>
+<meta property="og:title" content="Casa Pino x Padel 2027: pils, padel en goeie gesprekken">
+<meta property="og:description" content="Vul je voorkeuren in vóór 20 november. Jouw stem telt (een beetje).">
 <meta property="og:image" content="https://kjvcs.github.io/casa-pino/photo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +53,7 @@ button { cursor: pointer; }
 }
 .ptitle { position: absolute; left: 0; right: 0; top: 7.5%; color: var(--night); line-height: 1; pointer-events: none; }
 .ptitle h1 { margin: 0; font: 500 13.5cqw/1 var(--title); letter-spacing: .1em; text-transform: uppercase; }
-.ptitle p { margin: 1.8cqw 0 0; font: 400 3.6cqw/1 var(--quote); letter-spacing: .5em; }
+.ptitle p { margin: 1.8cqw 0 0; font: 400 3.6cqw/1 var(--quote); letter-spacing: .35em; text-transform: uppercase; }
 .ptap { position: absolute; left: 0; right: 0; bottom: 8%; margin: 0; padding: 0 8%; font: italic 400 3.9cqw/1.4 var(--quote); color: var(--cream); line-height: 1.4; }
 .ptap b { font-style: normal; color: var(--gold); }
 .caption { max-width: 560px; margin: -4px auto 0; padding: 0 20px; color: var(--lilac); font: italic 400 .8rem/1.5 var(--quote); }
@@ -412,12 +412,11 @@ td.nn { color: #B9A994; }
 <header class="hero" id="hero">
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
-    <img src="photo.jpg?v=7" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
-    <div class="ptitle"><h1>Casa Pino</h1><p>2027</p></div>
+    <img src="photo.jpg?v=8" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
+    <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
     <div data-hs></div>
-    <p class="ptap"><b>Tik jezelf aan.</b> Of kies hieronder je kaart.</p>
+    <p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p>
   </div>
-  <p class="caption" id="caption"></p>
   <p class="quote">‘Pils, padel en goeie gesprekken.’</p>
   <p class="nudge">Jouw stem telt (een beetje).</p>
   <div class="count" id="count"></div>
@@ -431,7 +430,7 @@ td.nn { color: #B9A994; }
 </header>
 
 <div class="mini" id="mini" hidden>
-  <b>Casa Pino<span>2027</span></b>
+  <b>Casa Pino<span>× Padel 2027</span></b>
   <div class="who"><span id="mini-av"></span><div><span id="mini-name"></span><br><button data-switch>Niet jij?</button></div></div>
 </div>
 
@@ -450,7 +449,7 @@ td.nn { color: #B9A994; }
     <div class="cols"><div id="form"></div><aside class="side" id="side"></aside></div>
   </section>
   <section class="panel" id="ideas" role="tabpanel" aria-labelledby="tab-ideas" hidden>
-    <div class="ihead"><div><h2>Ideeën</h2><p>Restaurant, avond, spel: gooi het erin. Later stemmen we.</p></div><button class="btn" id="newIdea">+ Nieuw idee</button></div>
+    <div class="ihead"><div><h2>Ideeën</h2><p>Activiteit, spel of terras-/restaurantplan? Gooi 'm erin, we stemmen later nog een rondje.</p></div><button class="btn" id="newIdea">+ Nieuw idee</button></div>
     <div id="ideaForm" class="ideaform" hidden></div>
     <div id="ideaList" class="ideas"></div>
   </section>
@@ -459,16 +458,16 @@ td.nn { color: #B9A994; }
 
 <section class="where">
   <div class="wrap where-in">
-    <img src="map.svg?v=7" alt="Stippelkaart van de Costa Blanca met Casa Pino, Benidorm, Alicante, Elche en het vliegveld" width="410" height="357">
+    <img src="map.svg?v=8" alt="Stippelkaart van de Costa Blanca met Casa Pino, Benidorm, Alicante, Elche en het vliegveld" width="410" height="357">
     <div><h2>Waar we zitten</h2><ul class="legs" id="legs"></ul></div>
   </div>
-  <p class="foot">‘Dit zijn voorkeuren, geen stemming. Kai beslist en boekt.’</p>
+  <p class="foot">‘Goed overleg, geen democratie.’</p>
 </section>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "7";
+const V = "8";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -558,10 +557,10 @@ function flightRange(h, t) {
 const pct = (n) => Math.round((n / FLIGHT.transavia.ret - 1) * 100);
 function flightNote(a) {
   const h = legPick(a, "heen"), t = legPick(a, "terug");
-  if (!h || !t) return `Bij één maatschappij is het een retour: Transavia <b>${eur(FLIGHT.transavia.ret)}</b>, Vueling <b>${eur(FLIGHT.vueling.ret)}</b> (+${pct(FLIGHT.vueling.ret)}%). Mixen wordt twee enkele reizen: ca. <b>${rng(flightRange("transavia", "vueling"))}</b>.`;
+  if (!h || !t) return `Bij één maatschappij zijn dit de prijzen: Transavia <b>${eur(FLIGHT.transavia.ret)}</b>, Vueling <b>${eur(FLIGHT.vueling.ret)}</b>. Bij een mix wijzigt de prijs dus iets.`;
   const [lo, hi] = flightRange(h, t);
-  if (h === t) return h === "transavia" ? `Jouw voorkeur: <b>Transavia retour, ${eur(lo)}</b>. De goedkoopste combinatie.` : `Jouw voorkeur: <b>Vueling retour, ${eur(lo)}</b>. Dat is ${pct(lo)}% meer dan Transavia.`;
-  return `Jouw voorkeur: <b>twee enkele reizen, ca. ${rng([lo, hi])}</b>. Ongeveer ${pct(lo)} tot ${pct(hi)}% meer dan Transavia retour.`;
+  if (h === t) return `Jouw voorkeur: <b>${FLIGHT[h].name} retour, ${eur(lo)}</b>`;
+  return `Jouw voorkeur: <b>twee enkele reizen, ca. ${rng([lo, hi])}</b>.`;
 }
 function costs(a) {
   const n = (k) => arr(a[k]).filter((x) => x !== "geen").length;
@@ -574,14 +573,16 @@ function costs(a) {
     ["Potjes", `${po} × 1,5 uur`, [po * COSTS.potje[0], po * COSTS.potje[1]], "schat"],
     ["Voetbal", vb ? "Ticket" : a.voetbal === "nee" ? "Niet nodig" : "Nog kiezen", vb ? COSTS.voetbal : [0, 0], "schat"],
     ["Casa Pino", "€ 600 gedeeld door 8", COSTS.verblijf, "vast"],
-    ["Auto's, brandstof, eten & drinken", "Raming", COSTS.rest, "schat"]
+    ["Huurauto's", "2 × € 181 all-in, gedeeld door 8", COSTS.auto, "vast"],
+    ["Brandstof en tol", "Gedeeld door 8", COSTS.brandstof, "schat"],
+    ["Eten & drinken", "Uit eten, terras, boodschappen", COSTS.eten, "schat"]
   ];
   return { rows, tot: rows.reduce((s, r) => [s[0] + r[2][0], s[1] + r[2][1]], [0, 0]) };
 }
 const costHTML = (a) => {
   const { rows, tot } = costs(a);
   return rows.map((r) => `<div class="crow"><span>${r[0]}<span class="tg ${r[3]}">${r[3] === "vast" ? "vast" : "schatting"}</span><small>${esc(r[1])}</small></span><span>${r[2][1] ? rng(r[2]) : "–"}</span></div>`).join("")
-    + `<div class="ctot"><small>Indicatie p.p.</small><b>${rng(tot)}</b></div><p class="cnote">Rekent mee met je keuzes. Padelprijzen gelden bij volle banen.</p>`;
+    + `<div class="ctot"><small>Indicatie p.p.</small><b>${rng(tot)}</b></div><p class="cnote">Rekent mee met je keuzes.</p>`;
 };
 
 /* ---------- toast ---------- */
@@ -601,10 +602,9 @@ function toast(msg, sub = "", err = false) {
   const dl = new Date(DEADLINE + "T23:59:59"), left = Math.ceil((dl - now) / day);
   const dlTxt = dl.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
   $("#strip").innerHTML = left >= 0
-    ? `Invullen vóór <b>${dlTxt}</b>${left <= 7 ? ` (nog ${left === 0 ? "vandaag" : left === 1 ? "1 dag" : left + " dagen"})` : ""}. Daarna boekt Kai.`
-    : `De deadline is voorbij, Kai is aan het boeken. Aanpassen mag nog, maar reken nergens op.`;
-  $("#fixed").innerHTML = FIXED.map((f) => `<div><small>Staat vast</small><b>${esc(f.t)}</b><span>${esc(f.d)}</span></div>`).join("");
-  $("#caption").textContent = CAPTION;
+    ? `Invullen vóór <b>${dlTxt}</b>${left <= 7 ? ` (nog ${left === 0 ? "vandaag" : left === 1 ? "1 dag" : left + " dagen"})` : ""}. Daarna vervalt de democratie.`
+    : `De deadline is verlopen, er wordt geboekt.`;
+  $("#fixed").innerHTML = FIXED.map((f) => `<div><small>Staat vast</small><b>${esc(f.t)}</b>${f.d ? `<span>${esc(f.d)}</span>` : ""}</div>`).join("");
   $("#legs").innerHTML = WHERE.map((w) => `<li><span>${esc(w.from)} → ${esc(w.to)}</span><b>${esc(w.time)}</b></li>`).join("");
 })();
 
@@ -612,7 +612,7 @@ function toast(msg, sub = "", err = false) {
 function cardHTML(p, opts = {}) {
   const st = statusOf(p.id), crown = p.id === crownId();
   const tier = crown ? "spec" : st === "done" ? "" : st === "part" ? "zilver" : "brons";
-  const sub = crown ? "Eerste viertal" : st === "done" ? "Ingevuld" : st === "part" ? "Bezig…" : "Nog niks ingevuld";
+  const sub = crown ? "Verrassing!" : st === "done" ? "Ingevuld" : st === "part" ? "Bezig…" : "Nog niets ingevuld";
   const sc = SCORES && SCORES[p.id];
   const pos = (all[p.id] || {}).pos;
   const posTxt = pos === "DRV" || pos === "REV" ? pos : pos === "ALL" ? "ALL" : "";
@@ -625,7 +625,7 @@ function cardHTML(p, opts = {}) {
     <div class="win"><img src="avatars/${p.id}.jpg?v=${V}" alt="" loading="lazy"></div>
     ${ovr !== null || posTxt ? `<div class="ovr"><b>${ovr ?? "??"}</b><span>${posTxt || "???"}</span></div>` : ""}
     <div class="nm"><b>${esc(p.name)}</b><small>${subTxt}</small></div>${stats}
-    <div class="ft">Casa Pino · 2027</div></div>${st === "done" && !crown ? '<span class="stamp2">Ingevuld</span>' : ""}</div></div>`;
+    <div class="ft">Casa Pino × Padel · 2027</div></div>${st === "done" && !crown ? '<span class="stamp2">Ingevuld</span>' : ""}</div></div>`;
 }
 
 /* ---------- kop ---------- */
@@ -690,7 +690,7 @@ document.addEventListener("click", (e) => {
   const hs = e.target.closest("[data-pick]");
   if (hs) {
     const p = byId[hs.dataset.pick];
-    if (p.going === false) { toast(`${p.real}, altijd welkom.`, "App Kai, dan schuift er een stoel bij"); return; }
+    if (p.going === false) { toast("Altijd welkom!"); return; }
     openSheet("confirm", `<div class="confirm">${av(p)}<p>Ben jij ${esc(p.name)}?</p><div class="btns"><button class="btn" data-id="${p.id}">Ja, dat ben ik</button><button class="btn ghost" data-close>Nee</button></div></div>`);
     return;
   }
@@ -725,15 +725,15 @@ function gridHTML(a) {
       if (OFF[s]) { h += `<div class="cell off">${OFF[s]}</div>`; continue; }
       const st = cellState(a, s);
       const warn = s === "do-mid" && triOf(a, "heen").transavia === "nee";
-      const txt = { t: "Training", p: "Potje", tp: "Allebei", nee: "Kan niet" }[st] || `<span class="plus">+</span>`;
-      h += `<button type="button" class="cell ${st}${warn ? " warn" : ""}" data-slot="${s}" aria-label="${d.long} ${pt.label}: ${st ? txt : "leeg"}">${txt}${warn ? "<small>vroege vlucht kan niet</small>" : ""}</button>`;
+      const txt = { t: "Training", p: "Potje", tp: "Allebei", nee: "Liever niet" }[st] || `<span class="plus">+</span>`;
+      h += `<button type="button" class="cell ${st}${warn ? " warn" : ""}" data-slot="${s}" aria-label="${d.long} ${pt.label}: ${st ? txt : "leeg"}">${txt}${warn ? "<small>Kan alleen met de vroege vlucht</small>" : ""}</button>`;
     }
   }
   return h + `</div>`;
 }
 function renderForm() {
   const box = $("#form"), side = $("#side");
-  if (!me) { box.innerHTML = `<div class="prompt">Tik jezelf aan op de foto of kies je kaart. Daarna verschijnen hier je keuzes, en alles wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
+  if (!me) { box.innerHTML = `<div class="prompt">Kies hierboven je kaart. Daarna gaat alles vanzelf: elke keuze wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
   if (!loaded) { box.innerHTML = `<div class="prompt">Laden…</div>`; return; }
   let h = `<p class="hello">Hoi <b>${esc(byId[me].name)}</b>. Vijf minuten werk, dan is je kaart goud.</p>`;
   for (const s of SECTIONS) {
@@ -742,11 +742,11 @@ function renderForm() {
       const dec = DECISIONS[q.id];
       h += `<div class="q" data-q="${q.id}">${typeof dec === "string" ? `<span class="decided">Besloten: ${esc(optLabel(q, dec))}</span>` : ""}<h3>${esc(q.title)}</h3><p class="sub">${esc(q.sub)}</p>`;
       if (q.type === "flight") {
-        h += `<div class="passes">${q.options.map((o) => `<div class="pass" data-pass="${q.id}-${o.id}"><div class="main"><div class="air">${o.airline}</div><div class="time">${o.dep}<span>→</span>${o.arr}</div><div class="det">${esc(o.detail)}</div></div><div class="stub"><b>${eur(FLIGHT[o.id].ret)}</b><small>retour</small></div>
+        h += `<div class="passes">${q.options.map((o) => `<div class="pass" data-pass="${q.id}-${o.id}"><div class="main"><div class="air">${o.airline}</div><div class="time">${o.dep}<span>→</span>${o.arr}</div>${o.detail ? `<div class="det">${esc(o.detail)}</div>` : ""}</div><div class="stub"><b>${eur(FLIGHT[o.id].ret)}</b><small>retour</small></div>
           <div class="tri" role="radiogroup" aria-label="${o.airline} ${o.dep}">${TRI.map((t) => `<label class="${t.id[0]}"><input type="radio" name="${q.id}-${o.id}" value="${t.id}" data-q="${q.id}" data-o="${o.id}">${t.label}</label>`).join("")}</div></div>`).join("")}</div>`;
         if (q.id === "terug") h += `<p class="fnote" id="fnote"></p>`;
       } else if (q.type === "grid") {
-        h += `<div id="grid"></div><div class="gridfoot"><div class="keys"><span><i style="background:var(--terra)"></i>Training</span><span><i style="background:var(--pils)"></i>Potje</span><span><i style="background:linear-gradient(135deg,var(--terra) 50%,var(--pils) 50%)"></i>Allebei</span><span><i style="background:repeating-linear-gradient(-45deg,var(--card) 0 3px,#C9B9A3 3px 4px)"></i>Kan niet</span></div><button type="button" class="nopadel" id="nopadel" aria-pressed="false">Geen padel voor mij</button></div>`;
+        h += `<div id="grid"></div><div class="gridfoot"><div class="keys"><span><i style="background:var(--terra)"></i>Training</span><span><i style="background:var(--pils)"></i>Potje</span><span><i style="background:linear-gradient(135deg,var(--terra) 50%,var(--pils) 50%)"></i>Allebei</span><span><i style="background:repeating-linear-gradient(-45deg,var(--card) 0 3px,#C9B9A3 3px 4px)"></i>Liever niet</span></div><button type="button" class="nopadel" id="nopadel" aria-pressed="false">Geen padel voor mij</button></div>`;
       } else if (q.type === "scout") {
         h += `<div id="scout"></div>`;
       } else {
@@ -778,11 +778,11 @@ function live() {
   $("#sd-cost").innerHTML = costHTML(mine);
   const pr = progress(mine), f = $("#finish");
   if (pr.done === pr.total) {
-    f.innerHTML = `<div class="finish"><div style="max-width:220px;margin:0 auto">${cardHTML(byId[me])}</div><h3>Je kaart is goud. Eerste viertal.</h3><p>Aanpassen mag tot de deadline, alles wordt meteen opgeslagen.</p><div class="btns"><button class="btn gold" data-go="stand">Bekijk het plan</button><button class="btn ghost" data-go="ideas">Idee toevoegen</button><button class="btn ghost" id="copy">Kopieer voor de app</button></div></div>`;
+    f.innerHTML = `<div class="finish"><div style="max-width:220px;margin:0 auto">${cardHTML(byId[me])}</div><h3>Je kaart is goud. Er wacht een speciale verrassing op je!</h3><p>Aanpassen kan tot de deadline.</p><div class="btns"><button class="btn gold" data-go="stand">Bekijk het plan</button><button class="btn ghost" data-go="ideas">Idee toevoegen</button></div></div>`;
   } else {
     const left = pr.total - pr.done;
     const open = QUESTIONS.filter((q) => !answered(q, mine)).map((q) => STEPN[q.id].toLowerCase()).join(", ");
-    f.innerHTML = `<div class="finish todo"><h3>Nog ${left} ${left === 1 ? "vraag" : "vragen"} te gaan</h3><p>Open: ${esc(open)}. Wie niet invult, speelt in het tweede viertal.</p></div>`;
+    f.innerHTML = `<div class="finish todo"><h3>Nog ${left} ${left === 1 ? "vraag" : "vragen"} te gaan</h3><p>Open: ${esc(open)}. Wie niet invult, wacht ook een verrassing. Een minder leuke.</p></div>`;
   }
   $("#mini-av").innerHTML = avS(byId[me]);
   renderBars();
@@ -957,7 +957,7 @@ function renderScout() {
     const d = list[i], st = STATS.find((x) => x[0] === d.s);
     h += `<div class="duel"><p>Wie heeft de betere <b>${esc(st[2].toLowerCase())}</b>?<small>${esc(st[3])}</small></p><div class="vs"><button data-win="${d.a}">${av(byId[d.a])}<span>${esc(byId[d.a].name)}</span></button><em>of</em><button data-win="${d.b}">${av(byId[d.b])}<span>${esc(byId[d.b].name)}</span></button></div><button class="linkbtn" data-win="">Geen idee</button></div>`;
   } else {
-    h += `<div class="duel done"><p>Alle ${list.length} duels gespeeld. Op 19 november gaan de kaarten open.</p><button class="linkbtn" id="redo">Opnieuw doen</button></div>`;
+    h += `<div class="duel done"><p>Alle ${list.length} duels gespeeld. Op 21 november gaan de kaarten open.</p><button class="linkbtn" id="redo">Opnieuw doen</button></div>`;
   }
   box.innerHTML = h;
 }
@@ -997,10 +997,10 @@ $("#form").addEventListener("click", async (e) => {
 
 /* ---------- ideeën ---------- */
 function ideaFields(d, pre) {
-  return `<label class="field"><span>Wat</span><input type="text" id="${pre}title" maxlength="80" value="${esc(d.title)}" placeholder="Tapas in Altea op vrijdagavond"></label>
+  return `<label class="field"><span>Idee</span><input type="text" id="${pre}title" maxlength="80" value="${esc(d.title)}" placeholder="Tapas in Altea op vrijdagavond"></label>
   <label class="field"><span>Uitleg</span><textarea id="${pre}text" maxlength="500" placeholder="Waarom, waar, wat kost het (mag leeg)">${esc(d.text)}</textarea></label>
-  <div class="field"><span>Categorie</span><div class="chips" id="${pre}cat">${IDEA_CATS.map((c) => `<button type="button" class="chip cat" data-cat="${c.id}" aria-pressed="${d.cat === c.id}">${esc(c.label)}</button>`).join("")}</div></div>
-  <div class="field"><span>Trekkers</span><div class="chips" id="${pre}leads">${going.map((p) => `<button type="button" class="chip" data-p="${p.id}" aria-pressed="${d.leads.includes(p.id)}">${av(p)}${esc(p.name)}</button>`).join("")}</div></div>`;
+  <div class="field"><span>Soort</span><div class="chips" id="${pre}cat">${IDEA_CATS.map((c) => `<button type="button" class="chip cat" data-cat="${c.id}" aria-pressed="${d.cat === c.id}">${esc(c.label)}</button>`).join("")}</div></div>
+  <div class="field"><span>Organisatoren</span><div class="chips" id="${pre}leads">${going.map((p) => `<button type="button" class="chip" data-p="${p.id}" aria-pressed="${d.leads.includes(p.id)}">${av(p)}${esc(p.name)}</button>`).join("")}</div></div>`;
 }
 const readFields = (pre) => ({
   title: $(`#${pre}title`).value.trim().slice(0, 80),
@@ -1025,15 +1025,15 @@ function renderIdeaList() {
   const box = $("#ideaList");
   if (!ideasLoaded) { box.innerHTML = `<div class="empty">Laden…</div>`; return; }
   const list = ideas.filter((i) => !i.gone).sort((a, b) => b.created - a.created);
-  if (!list.length) { box.innerHTML = `<div class="empty">Nog geen ideeën. Wie durft de eerste te zijn?</div>`; return; }
+  if (!list.length) { box.innerHTML = `<div class="empty">Nog geen ideeën. Wie o wie?</div>`; return; }
   box.innerHTML = list.map((i) => {
     const cat = IDEA_CATS.find((c) => c.id === i.cat)?.label || "Overig";
     const own = me && i.by === me, lead = me && arr(i.leads).includes(me), helping = me && arr(i.helpers).includes(me);
     let acts = "";
     if (me && !lead) acts += `<button class="btn small ${helping ? "ghost" : ""}" data-help="${i.id}" data-on="${!helping}">${helping ? "Toch niet" : "Ik help mee"}</button>`;
     if (own) acts += `<button class="btn small ghost" data-edit="${i.id}">Bewerken</button><button class="btn small ghost" data-del="${i.id}">Verwijderen</button>`;
-    return `<article class="idea c-${esc(i.cat)}" id="idea-${i.id}"><p class="kicker">${esc(cat)}</p><h3>${esc(i.title)}</h3>${i.text ? `<p class="txt">${esc(i.text)}</p>` : ""}<p class="by">Ingediend door ${esc(byId[i.by]?.name || "?")}</p>
-      <div class="roles"><div class="role"><span>Trekkers</span>${stack(arr(i.leads), "nog niemand")}</div><div class="role"><span>Helpen mee</span>${stack(arr(i.helpers), "nog niemand")}</div></div>
+    return `<article class="idea c-${esc(i.cat)}" id="idea-${i.id}"><p class="kicker">${esc(cat)}</p><h3>${esc(i.title)}</h3>${i.text ? `<p class="txt">${esc(i.text)}</p>` : ""}<p class="by">Van ${esc(byId[i.by]?.name || "?")}</p>
+      <div class="roles"><div class="role"><span>Organisatoren</span>${stack(arr(i.leads), "nog niemand")}</div><div class="role"><span>Helpen mee</span>${stack(arr(i.helpers), "nog niemand")}</div></div>
       <div class="acts">${acts}</div></article>`;
   }).join("");
 }
@@ -1096,18 +1096,14 @@ function planHTML() {
   for (const x of arr(D.extra)) if (items[x.dag]) add(x.dag, x.tijd || "", x.wat);
   if (D.terug && fo(ft, D.terug)) { const o = fo(ft, D.terug); add("zo", o.dep, `Vlucht ${o.airline} naar huis`); }
   else add("zo", "", "Terugvlucht: volgt na de deadline", true);
-  return `<div class="plan"><h2>Het programma</h2><p>Groeit mee met wat Kai besluit. Nog niet alles staat vast.</p><div class="days">${DAYS.map((d) => `<div class="day"><h4>${d.long}<small>${d.date}</small></h4><ul>${items[d.id].map((i) => `<li class="${i.tbd ? "tbd" : ""}"><span>${esc(i.tijd)}</span>${esc(i.wat)}</li>`).join("")}</ul></div>`).join("")}</div></div>`;
+  return `<div class="plan"><h2>Het programma</h2><p>Groeit mee met wat de organisatie besluit. Nog niet alles staat vast.</p><div class="days">${DAYS.map((d) => `<div class="day"><h4>${d.long}<small>${d.date}</small></h4><ul>${items[d.id].map((i) => `<li class="${i.tbd ? "tbd" : ""}"><span>${esc(i.tijd)}</span>${esc(i.wat)}</li>`).join("")}</ul></div>`).join("")}</div></div>`;
 }
 function renderStand() {
   const A = (id) => all[id] || {};
   const open = going.filter((p) => statusOf(p.id) !== "done");
   let h = planHTML();
-  h += `<div class="stand-top"><h2>${going.length - open.length} van ${going.length} binnen</h2><p>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist Kai."} Scouting: ${duelsPlayed()} van ${going.length * TOTAL_DUELS} duels gespeeld${REVEALED ? ", de kaarten zijn open" : ", kaarten gaan open op 19 november"}.</p>`;
-  if (open.length) {
-    h += `<div class="todo-list">${open.map((p) => `<div class="p">${av(p)}${esc(p.name)}</div>`).join("")}</div>`;
-    const msg = `${open.map((p) => p.name).join(", ")}: de Casa Pino-pagina wacht op je, invullen vóór 18 november. Wie niet invult, speelt in het tweede viertal. ${PAGE}`;
-    h += `<a class="btn" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Por ze via WhatsApp</a>`;
-  }
+  h += `<div class="stand-top"><h2>${going.length - open.length} van ${going.length} binnen</h2><p>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist de organisatie."} Scouting: ${duelsPlayed()} van ${going.length * TOTAL_DUELS} duels gespeeld${REVEALED ? ", de kaarten zijn open" : ", kaarten gaan open op 21 november"}.</p>`;
+  if (open.length) h += `<div class="todo-list">${open.map((p) => `<div class="p">${av(p)}${esc(p.name)}</div>`).join("")}</div>`;
   h += `</div>`;
 
   // vluchten: welke combinatie werkt voor iedereen
@@ -1124,7 +1120,7 @@ function renderStand() {
     combos.push({ ho, to, score, no, yes });
   }
   const best = Math.max(...combos.filter((c) => !c.no.length).map((c) => c.score), 0);
-  h += `<div class="card"><h3>Vluchten: welke combinatie werkt?</h3><p class="sub">Punten: graag = 2, kan = 1 per richting. Doorgestreept als iemand niet kan. Gezichten: wie beide graag wil.</p><div class="mtx"><span></span>${ft.options.map((o) => `<div class="hd">Terug<b>${o.airline} ${o.dep}</b></div>`).join("")}`;
+  h += `<div class="card"><h3>Vluchten: welke combinatie werkt?</h3><p class="sub">Punten: voorkeur = 2, kan ook = 1 per richting. Doorgestreept als iemand niet kan. Gezichten: wie bij allebei een voorkeur heeft.</p><div class="mtx"><span></span>${ft.options.map((o) => `<div class="hd">Terug<b>${o.airline} ${o.dep}</b></div>`).join("")}`;
   for (const ho of fh.options) {
     h += `<div class="hd">Heen<b>${ho.airline} ${ho.dep}</b></div>`;
     for (const to of ft.options) {
@@ -1135,7 +1131,7 @@ function renderStand() {
   h += `</div></div>`;
 
   // padel
-  h += `<div class="card"><h3>Padelrooster</h3><p class="sub">Per dagdeel: hoeveel willen trainen, spelen, en wie kan niet.</p><div class="grid hgrid"><span></span>${DAYS.map((d) => `<div class="h"><b>${d.label}</b><small>${d.date}</small></div>`).join("")}`;
+  h += `<div class="card"><h3>Padelrooster</h3><p class="sub">Per dagdeel: hoeveel willen trainen, spelen, en wie liever niet.</p><div class="grid hgrid"><span></span>${DAYS.map((d) => `<div class="h"><b>${d.label}</b><small>${d.date}</small></div>`).join("")}`;
   for (const pt of PARTS) {
     h += `<div class="rl">${pt.label}</div>`;
     for (const d of DAYS) {
@@ -1145,7 +1141,7 @@ function renderStand() {
       const pp = going.filter((p) => arr(A(p.id).potje).includes(s)).length;
       const n = going.filter((p) => arr(A(p.id).padelNee).includes(s)).length;
       const k = Math.max(t, pp) / going.length;
-      h += `<div class="cell" style="background:rgba(181,72,42,${(k * 0.9).toFixed(2)});color:${k > 0.45 ? "var(--card)" : "var(--ink)"}"><span><b>${t}</b> <small>training</small></span><span><b>${pp}</b> <small>potje</small></span>${n ? `<small>${n} kan niet</small>` : ""}</div>`;
+      h += `<div class="cell" style="background:rgba(181,72,42,${(k * 0.9).toFixed(2)});color:${k > 0.45 ? "var(--card)" : "var(--ink)"}"><span><b>${t}</b> <small>training</small></span><span><b>${pp}</b> <small>potje</small></span>${n ? `<small>${n} liever niet</small>` : ""}</div>`;
     }
   }
   const np = going.filter((p) => noPadel(A(p.id)));
@@ -1155,7 +1151,7 @@ function renderStand() {
     const q = qOf(id);
     const cs = q.options.map((o) => ({ o, ids: going.filter((p) => A(p.id)[id] === o.id).map((p) => p.id) }));
     const m = Math.max(...cs.map((c) => c.ids.length));
-    const extra = id === "rijden" ? `<p class="sub">Nodig: minstens twee bestuurders. Nu ${cs[0].ids.length} met ‘Ja, graag’ en ${cs[1].ids.length} met ‘Als het moet’.</p>` : "";
+    const extra = id === "rijden" ? `<p class="sub">Nodig: 4 bestuurders (2 per auto). Nu ${cs[0].ids.length} met ‘Ja, prima’ en ${cs[1].ids.length} met ‘Als het moet’.</p>` : "";
     h += `<div class="card"><h3>${esc(q.title)}</h3>${extra}<div class="camps">${cs.map((c) => `<div class="camp ${m && c.ids.length === m ? "lead" : ""}"><div class="lb"><span>${esc(c.o.label)}</span><b>${c.ids.length}</b></div>${faces(c.ids)}</div>`).join("")}</div></div>`;
   }
 
