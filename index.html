@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#1D1626">
 <title>Casa Pino x Padel 2027</title>
 <meta property="og:title" content="Casa Pino x Padel 2027: pils, padel en goeie gesprekken">
-<meta property="og:description" content="Vul je voorkeuren in vóór 20 november. Jouw stem telt (een beetje).">
+<meta property="og:description" content="Vul je voorkeuren in, uiterlijk 20 november. Jouw stem telt (een beetje).">
 <meta property="og:image" content="https://kjvcs.github.io/casa-pino/photo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -464,7 +464,7 @@ td.nn { color: #B9A994; }
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
-    <div class="pimg"><img src="photo-hero.jpg?v=14" width="1200" height="896" alt="De groep in sportkleren, in warm zwart-wit; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
+    <div class="pimg"><img src="photo-hero.jpg?v=15" width="1200" height="896" alt="De groep in sportkleren, in warm zwart-wit; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
   </div>
   <div class="count" id="count"></div>
@@ -509,7 +509,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "14";
+const V = "15";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -657,10 +657,11 @@ function toast(msg, sub = "", err = false) {
   const day = 86400000, now = new Date();
   const d = Math.ceil((new Date(TRIP.start + "T00:00:00") - now) / day);
   if (d > 0) $("#count").innerHTML = `<b>${d}</b><span>dagen om niet geblesseerd te raken, of te herstellen</span>`; else $("#count").hidden = true;
-  const dl = new Date(DEADLINE + "T23:59:59"), left = Math.ceil((dl - now) / day);
+  const dl = new Date(DEADLINE + "T23:59:59");
+  const left = Math.round((new Date(DEADLINE + "T12:00:00") - new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12)) / day);   // hele kalenderdagen
   const dlTxt = dl.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
-  $("#strip").innerHTML = left >= 0
-    ? `Invullen vóór <b>${dlTxt}</b>${left <= 7 ? ` (nog ${left === 0 ? "vandaag" : left === 1 ? "1 dag" : left + " dagen"})` : ""}. Daarna vervalt de democratie.`
+  $("#strip").innerHTML = now <= dl
+    ? `Invullen uiterlijk <b>${dlTxt}</b>${left <= 7 ? ` (${left === 0 ? "vandaag nog" : left === 1 ? "nog 1 dag" : "nog " + left + " dagen"})` : ""}. Daarna vervalt de democratie.`
     : `De deadline is verlopen, er wordt geboekt.`;
 })();
 
@@ -700,7 +701,7 @@ function renderHead() {
     $("#mini-name").textContent = byId[me].name;
   } else {
     $$("[data-hs]").forEach((el) => { el.innerHTML = hotspots(); });
-    $("#fan").innerHTML = going.map((p) => `<button data-id="${p.id}" aria-label="Ik ben ${esc(p.name)}">${cardHTML(p)}</button>`).join("");
+    $("#fan").innerHTML = going.map((p) => `<button data-pick="${p.id}" aria-label="Ik ben ${esc(p.name)}">${cardHTML(p)}</button>`).join("");
   }
 }
 function renderBars() {
@@ -952,11 +953,18 @@ function computeScores(docs) {
   const res = Object.fromEntries(ids.map((id) => [id, {}]));
   for (const [s] of STATS) {
     const W = Array(n).fill(0), N = ids.map(() => Array(n).fill(0));
-    for (const d of docs) for (const v of arr(d.duels)) {
-      if (!v || v.s !== s || !v.w || !(v.a in ix) || !(v.b in ix) || v.a === d.by || v.b === d.by) continue;
+    for (const d of docs) {
+      // alleen duels uit het eigen schema tellen, elk hooguit één keer
+      const open = new Set((SCHEDULE[d.by] || []).filter((x) => x.s === s).map((x) => [x.a, x.b].sort().join("|")));
+      for (const v of arr(d.duels)) {
+      if (!v || v.s !== s || !v.w || !(v.a in ix) || !(v.b in ix) || v.a === v.b) continue;
       if (v.w !== v.a && v.w !== v.b) continue;
+      const key = [v.a, v.b].sort().join("|");
+      if (!open.has(key)) continue;
+      open.delete(key);
       const w = ix[v.w], l = ix[v.w === v.a ? v.b : v.a];
       W[w]++; N[w][l]++; N[l][w]++;
+      }
     }
     let p = Array(n).fill(1);
     for (let it = 0; it < 400; it++) {
@@ -1059,7 +1067,10 @@ $("#form").addEventListener("click", async (e) => {
     if (mine._scout === TOTAL_DUELS) lastQuip = "Alle duels gespeeld. Wacht maar tot 19 november.";
     edited(); renderScout(); return;
   }
-  if (e.target.id === "redo") { scout.duels = []; mine._scout = 0; saveScoutSoon(); quiet = true; edited(); renderScout(); }
+  if (e.target.id === "redo") {
+    if (e.target.dataset.sure !== "1") { e.target.dataset.sure = "1"; e.target.textContent = "Zeker weten? Je 16 duels worden gewist"; return; }
+    scout.duels = []; mine._scout = 0; saveScoutSoon(); quiet = true; edited(); renderScout();
+  }
 });
 
 /* ---------- ideeën ---------- */
