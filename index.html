@@ -7,21 +7,21 @@
 <meta name="theme-color" content="#1D1626">
 <title>Casa Pino 2027</title>
 <meta property="og:title" content="Casa Pino 2027: pils, padel en goeie gesprekken">
-<meta property="og:description" content="Vul je voorkeuren in. Jouw stem telt (een beetje).">
+<meta property="og:description" content="Vul je voorkeuren in vóór 18 november. Jouw stem telt (een beetje).">
 <meta property="og:image" content="https://kjvcs.github.io/casa-pino/photo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Libre+Baskerville:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Avond in Altea: de kop is nacht en goud, de rest zandpapier met terracotta en pilsgeel. */
+/* Avond in Altea: kop in nacht en goud, inhoud op zandpapier met terracotta en pilsgeel. */
 :root {
-  --paper: #F3EADB; --card: #FFF9EF; --ink: #2A211B; --muted: #75655A; --rule: #DCCDB5;
-  --terra: #B5482A; --terra-d: #923520; --pils: #E9B949; --pils-l: #F6E3AE;
-  --night: #1D1626; --night-2: #2B2236; --night-3: #3D3249; --gold: #E7B85A; --cream: #F2E7D3; --lilac: #B7AAC3;
+  --paper: #F3EADB; --card: #FFF9EF; --ink: #2A211B; --muted: #6F5F54; --rule: #DCCDB5;
+  --terra: #B5482A; --terra-d: #923520; --terra-l: #FBE9E1; --pils: #E9B949; --pils-l: #F6E3AE;
+  --night: #1D1626; --night-2: #2B2236; --night-3: #3D3249; --gold: #E7B85A; --cream: #F2E7D3; --lilac: #BDB1C8;
   --title: "Bodoni Moda", Didot, "Bodoni 72", Georgia, serif;
   --quote: "Libre Baskerville", Baskerville, Georgia, serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --nav-h: 64px;
+  --nav-h: 62px;
 }
 * { box-sizing: border-box; }
 html { background: var(--paper); }
@@ -33,110 +33,127 @@ button { cursor: pointer; }
 .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
 .kicker { margin: 0; font: 600 .7rem/1.3 var(--body); letter-spacing: .2em; text-transform: uppercase; }
 
-/* ---------- Kop (nacht) ---------- */
-.hero { background: var(--night); color: var(--cream); padding: 46px 0 34px; text-align: center; }
-.hero .kicker { color: var(--gold); }
-h1 { font-family: var(--title); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
-.year { font-family: var(--quote); letter-spacing: .5em; }
-.quote { margin: 24px auto 0; max-width: 28ch; font: italic 400 clamp(1.2rem, 3.8vw, 1.6rem)/1.35 var(--quote); }
+/* ---------- Deadline-strip ---------- */
+.strip { background: var(--pils); color: var(--ink); text-align: center; padding: 9px 16px; font: 600 .78rem/1.35 var(--body); letter-spacing: .04em; }
+.strip b { font-weight: 700; }
+
+/* ---------- Kop ---------- */
+.hero { position: relative; background: var(--night); color: var(--cream); text-align: center; overflow: hidden; }
+.hero .kicker { color: var(--gold); padding-top: 22px; }
+.poster { position: relative; container-type: inline-size; max-width: 640px; margin: 10px auto 0; line-height: 0; }
+.poster > img { width: 100%; height: auto; display: block;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%); }
+@media (min-width: 680px) {
+  .poster > img {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%), linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%), linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+            mask-composite: intersect; }
+}
+.ptitle { position: absolute; left: 0; right: 0; top: 7.5%; color: var(--night); line-height: 1; pointer-events: none; }
+.ptitle h1 { margin: 0; font: 500 13.5cqw/1 var(--title); letter-spacing: .1em; text-transform: uppercase; }
+.ptitle p { margin: 1.8cqw 0 0; font: 400 3.6cqw/1 var(--quote); letter-spacing: .5em; }
+.ptap { position: absolute; left: 0; right: 0; bottom: 8%; margin: 0; padding: 0 8%; font: italic 400 3.9cqw/1.4 var(--quote); color: var(--cream); line-height: 1.4; }
+.ptap b { font-style: normal; color: var(--gold); }
+.caption { max-width: 560px; margin: -4px auto 0; padding: 0 20px; color: var(--lilac); font: italic 400 .8rem/1.5 var(--quote); }
+.hs { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; padding: 0; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.9); background: transparent; box-shadow: 0 0 0 1px rgba(29,22,38,.25); }
+.hs::before { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 46px); height: max(100%, 46px); transform: translate(-50%, -50%); border-radius: 50%; }
+.hs:hover, .hs:focus-visible { border-style: solid; border-color: var(--gold); background: rgba(231,184,90,.15); }
+.hs.out { border: 1.5px dotted rgba(255,255,255,.45); }
+.hs .tag { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); opacity: 0; pointer-events: none; background: var(--gold); color: var(--night); font: 700 10px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; padding: 5px 7px; white-space: nowrap; line-height: 1; }
+.hs:hover .tag, .hs:focus-visible .tag { opacity: 1; }
+.quote { margin: 26px auto 0; padding: 0 20px; max-width: 30ch; font: italic 400 clamp(1.2rem, 3.8vw, 1.55rem)/1.35 var(--quote); }
 .nudge { margin: 8px 0 0; color: var(--lilac); }
-.count { display: inline-flex; align-items: baseline; gap: 12px; margin: 26px auto 0; padding: 12px 22px; border: 1px solid var(--night-3); text-align: left; }
+.count { display: inline-flex; align-items: center; gap: 14px; margin: 24px auto 0; padding: 12px 22px; border: 1px solid var(--night-3); text-align: left; }
 .count b { font: 500 2.6rem/1 var(--title); color: var(--gold); }
 .count span { font: 400 .85rem/1.35 var(--quote); max-width: 22ch; }
-.pick { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--night-3); }
-.pick[hidden] { display: none; }
-.pick h2 { margin: 0 0 14px; font: 400 1.05rem/1.2 var(--title); letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.fixed { display: grid; gap: 1px; max-width: 760px; margin: 28px auto 0; padding: 0 20px; text-align: left; }
+@media (min-width: 640px) { .fixed { grid-template-columns: repeat(3, 1fr); } }
+.fixed div { padding: 12px 14px; background: var(--night-2); }
+.fixed small { display: block; font: 700 .62rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.fixed b { display: block; font: 500 1rem/1.25 var(--title); letter-spacing: .02em; }
+.fixed span { font-size: .8rem; color: var(--lilac); }
 
-/* Poster */
-.poster { position: relative; container-type: inline-size; max-width: 540px; margin: 20px auto 0; line-height: 0; box-shadow: 0 0 0 1px var(--gold), 0 0 0 7px var(--night), 0 0 0 8px var(--night-3); }
-.poster img { width: 100%; height: auto; display: block; }
-#spots img { position: absolute; inset: 0; transition: clip-path .5s; }
-.ptitle { position: absolute; left: 0; right: 0; top: 3.5%; color: var(--night); line-height: 1; }
-.ptitle h1 { margin: 0; font-size: 13.5cqw; }
-.ptitle .year { margin: 1.6cqw 0 0; color: var(--night); font-size: 3.6cqw; }
-.pfoot { position: absolute; left: 6%; right: 6%; bottom: 4%; margin: 0; color: var(--cream); font: italic 400 3.7cqw/1.35 var(--quote); }
-.pfoot b { font-style: normal; color: var(--gold); }
-.caption { max-width: 540px; margin: 14px auto 0; color: var(--lilac); font: italic 400 .8rem/1.5 var(--quote); }
-.hero .quote { margin-top: 26px; }
-.pick-sub { margin: -6px 0 20px; color: var(--lilac); font: italic 400 .95rem/1.4 var(--quote); }
-.deck { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; max-width: 980px; margin: 0 auto; }
-@media (min-width: 720px) { .deck { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 22px; } }
-.deck button { padding: 0; border: 0; background: none; text-align: inherit; }
-.deck button:hover .pcard, .deck button:focus-visible .pcard { transform: translateY(-6px) rotate(-1.5deg); }
+/* Kaartenwaaier */
+.pick { margin: 34px 0 0; padding: 30px 0 38px; border-top: 1px solid var(--night-3); }
+.pick h2 { margin: 0; font: 500 1.05rem/1.2 var(--title); letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.pick p { margin: 6px 0 18px; color: var(--lilac); font: italic 400 .92rem/1.4 var(--quote); }
+.fan { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 18px 20px 14px; scroll-padding: 0 20px; scrollbar-width: none; }
+.fan::-webkit-scrollbar { display: none; }
+.fan button { flex: 0 0 min(62vw, 230px); scroll-snap-align: center; padding: 0; border: 0; background: none; text-align: left; }
+.fan button:hover .pcard, .fan button:focus-visible .pcard { transform: translateY(-6px) rotate(-1.5deg); }
+@media (min-width: 900px) { .fan { justify-content: safe center; flex-wrap: wrap; overflow: visible; row-gap: 26px; } .fan button { flex-basis: 210px; } }
+.swipe { margin: 4px 0 0; color: var(--lilac); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; }
+@media (min-width: 900px) { .swipe { display: none; } }
 
-/* Padelkaart (maten in cqw: 100cqw = kaartbreedte) */
+/* Ingeklapte kop voor wie al gekozen heeft */
+.mini { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; background: var(--night); color: var(--cream); }
+.mini b { font: 500 1.15rem/1 var(--title); letter-spacing: .12em; text-transform: uppercase; }
+.mini b span { color: var(--gold); font: 400 .8rem/1 var(--quote); letter-spacing: .3em; margin-left: 8px; }
+.mini .who { display: flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--lilac); }
+.mini .who .av { width: 34px; }
+.mini .who button { padding: 0; border: 0; background: none; color: var(--lilac); text-decoration: underline; text-underline-offset: 2px; font-size: .78rem; }
+.mini[hidden], .hero[hidden] { display: none; }
+
+/* ---------- Padelkaart (100cqw = kaartbreedte) ---------- */
 .cw { container-type: inline-size; width: 100%; }
-.pcard { --m: var(--gold); --bg: var(--night); --t: var(--cream); position: relative; aspect-ratio: 250 / 370; padding: 2cqw; background: var(--m); border-radius: 50% 50% 7cqw 7cqw / 30% 30% 5% 5%; box-shadow: 0 5cqw 9cqw rgba(0,0,0,.35); transition: transform .2s; text-align: left; }
+.pcard { --m: var(--gold); --bg: var(--night); --t: var(--cream); position: relative; aspect-ratio: 250 / 370; padding: 2cqw; background: var(--m); border-radius: 50% 50% 7cqw 7cqw / 30% 30% 5% 5%; box-shadow: 0 5cqw 9cqw rgba(0,0,0,.35); transition: transform .2s; }
 .pcard .in { position: relative; height: 100%; background: var(--bg); color: var(--t); border-radius: 50% 50% 5.6cqw 5.6cqw / 29% 29% 4% 4%; overflow: hidden; }
 .pcard .str { position: absolute; inset: 0; opacity: .07; background: repeating-linear-gradient(0deg, var(--t) 0 1px, transparent 1px 4.4cqw), repeating-linear-gradient(90deg, var(--t) 0 1px, transparent 1px 4.4cqw); }
 .pcard .win { position: absolute; left: 50%; top: 5.6cqw; transform: translateX(-50%); width: 80cqw; height: 71cqw; border-radius: 50% 50% 4cqw 4cqw / 50% 50% 6% 6%; background: #FDEED9; overflow: hidden; border: .8cqw solid var(--m); }
 .pcard .win img { width: 100%; margin-top: -2.4cqw; display: block; }
 .pcard .ovr { position: absolute; left: 5.6cqw; top: 38cqw; z-index: 2; padding: 2.4cqw 2.8cqw 2.8cqw; background: var(--bg); border: .6cqw solid var(--m); text-align: center; }
 .pcard .ovr b { display: block; font: 500 12cqw/1 var(--title); color: var(--m); }
-.pcard .ovr span { display: block; margin-top: 1.2cqw; font: 700 4cqw/1 var(--body); letter-spacing: .14em; }
+.pcard .ovr span { display: block; margin-top: 1.2cqw; font: 700 max(4.4cqw, 10px)/1 var(--body); letter-spacing: .14em; }
 .pcard .nm { position: absolute; left: 0; right: 0; top: 81cqw; text-align: center; }
-.pcard .nm b { display: block; font: 500 8.6cqw/1 var(--title); letter-spacing: .12em; text-transform: uppercase; color: var(--m); }
-.pcard .nm small { display: block; margin-top: 2cqw; font: italic 400 4.8cqw/1 var(--quote); opacity: .85; }
-.pcard .st { position: absolute; left: 7cqw; right: 7cqw; top: 101cqw; display: grid; grid-template-columns: 1fr 1fr; column-gap: 6cqw; row-gap: 2.4cqw; padding-top: 4cqw; border-top: .5cqw solid var(--m); }
-.pcard .st div { display: flex; align-items: baseline; gap: 3cqw; font: 600 4.8cqw/1 var(--body); letter-spacing: .1em; }
-.pcard .st b { min-width: 9cqw; font: 500 6.8cqw/1 var(--title); color: var(--m); letter-spacing: 0; }
-.pcard .ft { position: absolute; left: 0; right: 0; bottom: 4cqw; text-align: center; font: 700 3.4cqw/1 var(--body); letter-spacing: .26em; opacity: .6; }
-.pcard .stamp2 { position: absolute; right: -3cqw; top: 58cqw; z-index: 3; transform: rotate(14deg); padding: 2cqw 3.4cqw; border: 1cqw solid #E58A6F; color: #E58A6F; background: rgba(29,22,38,.8); font: 800 4.6cqw/1 var(--body); letter-spacing: .18em; }
+.pcard .nm b { display: block; font: 500 max(8.6cqw, 15px)/1 var(--title); letter-spacing: .12em; text-transform: uppercase; color: var(--m); }
+.pcard .nm small { display: block; margin-top: 2cqw; font: italic 400 max(5cqw, 11px)/1 var(--quote); opacity: .9; }
+.pcard .st { position: absolute; left: 7cqw; right: 7cqw; top: 101cqw; display: grid; grid-template-columns: 1fr 1fr; column-gap: 6cqw; row-gap: 2.6cqw; padding-top: 4cqw; border-top: .5cqw solid var(--m); }
+.pcard .st div { display: flex; align-items: baseline; gap: 3cqw; font: 600 max(5cqw, 11px)/1 var(--body); letter-spacing: .1em; }
+.pcard .st b { min-width: 9cqw; font: 500 max(7cqw, 14px)/1 var(--title); color: var(--m); letter-spacing: 0; }
+.pcard .scout { position: absolute; left: 7cqw; right: 7cqw; top: 101cqw; padding-top: 6cqw; border-top: .5cqw solid var(--m); text-align: center; font: italic 400 max(5.4cqw, 12px)/1.45 var(--quote); opacity: .85; }
+.pcard .scout i { display: block; margin-top: 2cqw; font: 700 max(3.8cqw, 10px)/1 var(--body); font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: var(--m); }
+.pcard .ft { position: absolute; left: 0; right: 0; bottom: 4cqw; text-align: center; font: 700 max(3.4cqw, 9px)/1 var(--body); letter-spacing: .26em; opacity: .6; }
+.pcard .stamp2 { position: absolute; right: -3cqw; top: 58cqw; z-index: 3; transform: rotate(14deg); padding: 2cqw 3.4cqw; border: 1cqw solid #E58A6F; color: #E58A6F; background: rgba(29,22,38,.85); font: 800 max(4.6cqw, 10px)/1 var(--body); letter-spacing: .18em; text-transform: uppercase; }
 .pcard .crown2 { position: absolute; left: 50%; top: -12cqw; z-index: 4; transform: translateX(-50%); width: 22cqw; height: 14cqw; background: var(--gold); clip-path: polygon(0 100%, 0 25%, 25% 60%, 50% 0, 75% 60%, 100% 25%, 100% 100%); }
 .pcard.brons { --m: #B7764A; --bg: #2B2236; --t: #D8CDBF; }
 .pcard.brons .win img { filter: grayscale(1); opacity: .7; }
 .pcard.zilver { --m: #CFC8BE; --bg: #2B2236; }
 .pcard.spec { --m: var(--gold); --bg: var(--terra-d); --t: #FFF9EF; }
-.pcard.me { outline: 3px solid var(--cream); outline-offset: 5px; }
-
-/* Foto met ringen */
-.hs { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; padding: 0; border-radius: 50%; border: 2px dashed rgba(255,255,255,.5); background: transparent; }
-.hs:hover { background: rgba(231,184,90,.15); }
-.hs.part { border: 2px dashed var(--gold); }
-.hs.done { border: 3px solid var(--gold); }
-.hs.done::after { content: "✓"; position: absolute; right: -6px; bottom: -6px; width: 20px; height: 20px; border-radius: 50%; background: var(--gold); color: var(--night); font: 700 11px/20px var(--body); }
-.hs.me { outline: 2px solid #fff; outline-offset: 4px; }
-.hs.out { border: 2px dotted rgba(255,255,255,.3); }
-.hs .tag { position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); opacity: 0; pointer-events: none; background: var(--gold); color: var(--night); font: 700 .66rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; padding: 5px 8px; white-space: nowrap; }
-.hs:hover .tag, .hs:focus-visible .tag, .hs.me .tag { opacity: 1; }
+.pcard.me { outline: 3px solid var(--gold); outline-offset: 5px; }
 
 /* Avatars */
 .av { position: relative; display: inline-block; flex: none; width: 56px; aspect-ratio: 1; border-radius: 50%; }
-.av img { display: block; width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 0 1.5px var(--rule); }
+.av img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px var(--rule); background: #FDEED9; }
 .av.done img { box-shadow: 0 0 0 3px var(--terra); }
 .av.part img { box-shadow: 0 0 0 2px var(--pils); }
 .av.crown::before { content: ""; position: absolute; left: 50%; top: -34%; width: 58%; aspect-ratio: 1.4; transform: translateX(-50%) rotate(-8deg); background: var(--gold); clip-path: polygon(0 100%, 0 25%, 25% 60%, 50% 0, 75% 60%, 100% 25%, 100% 100%); z-index: 1; }
-.legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 0; color: var(--lilac); font-size: .78rem; }
-.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 
 /* ---------- Navigatie ---------- */
 .nav { position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; height: calc(var(--nav-h) + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); display: flex; background: var(--night); border-top: 1px solid var(--night-3); }
-.tab { flex: 1; display: grid; place-content: center; gap: 3px; border: 0; background: none; color: var(--lilac); font: 600 .66rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; }
-.tab b { font: 500 1.05rem/1 var(--title); letter-spacing: .04em; text-transform: none; color: var(--cream); }
+.tab { flex: 1; position: relative; display: grid; place-content: center; gap: 3px; border: 0; background: none; color: var(--lilac); font: 600 .62rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; }
+.tab[hidden] { display: none; }
+.tab b { font: 500 1rem/1 var(--title); letter-spacing: .03em; text-transform: none; color: var(--cream); }
 .tab[aria-selected="true"] { color: var(--gold); box-shadow: inset 0 3px 0 var(--gold); }
 .tab[aria-selected="true"] b { color: var(--gold); }
+.tab.price b { font-family: var(--quote); font-size: .9rem; color: var(--gold); }
+.tab .bar { position: absolute; left: 18%; right: 18%; bottom: 7px; height: 2px; background: var(--night-3); }
+.tab .bar i { display: block; height: 100%; background: var(--gold); transition: width .4s; }
 @media (min-width: 900px) {
-  .nav { position: sticky; top: 0; bottom: auto; height: 58px; padding: 0; justify-content: center; gap: 8px; border: 0; }
-  .tab { flex: none; display: flex; align-items: center; gap: 10px; padding: 0 24px; font-size: .74rem; }
+  .nav { position: sticky; top: 0; bottom: auto; height: 56px; padding: 0; justify-content: center; gap: 8px; border: 0; }
+  .tab { flex: none; display: flex; align-items: center; gap: 10px; padding: 0 24px; font-size: .72rem; }
   .tab[aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--gold); }
+  .tab.price, .tab .bar { display: none; }
 }
-
-/* Mobiele statusbalk */
-.topbar { position: sticky; top: 0; z-index: 25; background: var(--night-2); color: var(--cream); }
-.topbar[hidden] { display: none; }
-.topbar .row { display: flex; align-items: center; gap: 12px; padding: 9px 16px; }
-.topbar .av { width: 34px; }
-.topbar .av img { box-shadow: 0 0 0 1.5px var(--night-3); }
-.topbar .nm { font: 600 .74rem/1.2 var(--body); letter-spacing: .12em; text-transform: uppercase; }
-.topbar .sw { display: block; padding: 0; border: 0; background: none; color: var(--lilac); font-size: .74rem; text-decoration: underline; text-underline-offset: 2px; }
-.topbar .price { margin-left: auto; display: grid; justify-items: end; padding: 0; border: 0; background: none; color: var(--cream); }
-.topbar .price small { color: var(--lilac); font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; }
-.topbar .price b { font: 400 1.05rem/1.2 var(--quote); color: var(--gold); }
-.pbar { height: 3px; background: var(--night-3); }
-.pbar i { display: block; height: 100%; background: var(--gold); transition: width .4s; }
-.drop { padding: 4px 16px 16px; background: var(--card); color: var(--ink); border-bottom: 1px solid var(--rule); }
-.drop[hidden] { display: none; }
-@media (min-width: 900px) { .topbar { display: none !important; } }
+.sheet { position: fixed; z-index: 29; left: 0; right: 0; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom)); max-height: 70vh; overflow-y: auto; padding: 16px 20px 18px; background: var(--card); border-top: 2px solid var(--ink); box-shadow: 0 -12px 30px rgba(0,0,0,.18); }
+.sheet[hidden] { display: none; }
+.sheet h3 { margin: 0 0 6px; font: 500 1rem/1.2 var(--title); letter-spacing: .14em; text-transform: uppercase; }
+.sheet .close { float: right; padding: 4px 0; border: 0; background: none; color: var(--muted); font-size: .8rem; text-decoration: underline; }
+.confirm { text-align: center; }
+.confirm .av { width: 84px; margin: 4px 0 10px; }
+.confirm p { margin: 0 0 14px; font: italic 400 1.15rem/1.3 var(--quote); }
+@media (min-width: 900px) { .sheet { bottom: 0; max-width: 420px; left: 50%; transform: translateX(-50%); border: 2px solid var(--ink); } }
 
 main { padding-top: 8px; padding-bottom: 40px; }
 section.panel[hidden] { display: none; }
@@ -146,17 +163,15 @@ section.panel[hidden] { display: none; }
 .cols { display: block; }
 @media (min-width: 900px) { .cols { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 48px; align-items: start; } }
 .side { display: none; }
-@media (min-width: 900px) { .side { display: block; position: sticky; top: 82px; margin-top: 40px; } }
+@media (min-width: 900px) { .side { display: block; position: sticky; top: 76px; margin-top: 40px; } }
 .sidecard { background: var(--card); border: 1px solid var(--rule); padding: 20px; }
-.sidecard .who { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.sidecard .who .av { width: 52px; }
-.sidecard .who b { display: block; font: 500 1.2rem/1.1 var(--title); letter-spacing: .1em; text-transform: uppercase; }
-.sidecard .who button { padding: 0; border: 0; background: none; color: var(--muted); font-size: .8rem; text-decoration: underline; }
 .steps { display: grid; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; font-size: .85rem; }
 .steps li { display: flex; align-items: center; gap: 8px; color: var(--muted); }
 .steps li i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--rule); flex: none; display: grid; place-items: center; font: 700 9px/1 var(--body); font-style: normal; color: var(--card); }
 .steps li.ok { color: var(--ink); }
 .steps li.ok i { background: var(--terra); border-color: var(--terra); }
+.hello { margin: 30px 0 0; font: italic 400 1.15rem/1.45 var(--quote); }
+.hello b { font-style: normal; font-family: var(--title); letter-spacing: .08em; text-transform: uppercase; }
 
 .sec { display: flex; align-items: baseline; gap: 14px; margin: 46px 0 6px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .sec .nr { font: 400 2.4rem/1 var(--title); color: var(--terra); }
@@ -164,58 +179,64 @@ section.panel[hidden] { display: none; }
 .sec .ok { margin-left: auto; font: 600 .7rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--terra); }
 .q { margin: 26px 0 0; }
 .q h3 { margin: 0; font: 400 1.12rem/1.35 var(--quote); }
-.q .sub { margin: 3px 0 12px; color: var(--muted); font-size: .86rem; max-width: 60ch; }
+.q .sub { margin: 3px 0 12px; color: var(--muted); font-size: .86rem; max-width: 62ch; }
 .decided { display: inline-block; margin: 0 0 10px; padding: 5px 10px; border: 2px solid var(--terra); color: var(--terra); font: 700 .7rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; transform: rotate(-2deg); }
 
-/* Boardingpass */
-.passes { display: grid; gap: 10px; }
+/* Boardingpass met graag/kan/kan niet */
+.passes { display: grid; gap: 12px; }
 @media (min-width: 560px) { .passes { grid-template-columns: 1fr 1fr; } }
-.pass { position: relative; display: grid; grid-template-columns: 1fr auto; background: var(--card); border: 1.5px solid var(--rule); cursor: pointer; transition: border-color .15s, transform .15s; }
-.pass:hover { border-color: var(--ink); }
-.pass input { position: absolute; opacity: 0; pointer-events: none; }
-.pass .main { padding: 14px 16px; }
+.pass { position: relative; display: grid; grid-template-columns: 1fr auto; background: var(--card); border: 1.5px solid var(--rule); transition: border-color .15s; }
+.pass.graag { border-color: var(--terra); }
+.pass.nee { opacity: .72; }
+.pass .main { padding: 14px 16px 10px; }
 .pass .air { font: 700 .66rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-.pass .time { margin: 8px 0 4px; font: 500 1.65rem/1 var(--title); letter-spacing: .02em; white-space: nowrap; }
+.pass .time { margin: 8px 0 4px; font: 500 1.6rem/1 var(--title); letter-spacing: .02em; white-space: nowrap; }
 .pass .time span { font-size: .9rem; color: var(--muted); margin: 0 4px; }
+.pass.nee .time { text-decoration: line-through; text-decoration-thickness: 2px; }
 .pass .det { font-size: .8rem; color: var(--muted); }
-.pass .stub { position: relative; display: grid; align-content: center; justify-items: center; min-width: 86px; padding: 10px 12px; border-left: 2px dashed var(--rule); text-align: center; }
+.pass .stub { position: relative; display: grid; align-content: center; justify-items: center; min-width: 82px; padding: 10px 12px; border-left: 2px dashed var(--rule); text-align: center; }
 .pass .stub::before, .pass .stub::after { content: ""; position: absolute; left: -9px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--rule); }
 .pass .stub::before { top: -9px; } .pass .stub::after { bottom: -9px; }
-.pass .stub b { font: 400 1.1rem/1 var(--quote); }
-.pass .stub small { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
-.pass:has(input:checked) { border-color: var(--terra); transform: translateY(-2px); }
-.pass:has(input:checked) .stub { background: var(--terra); color: var(--card); border-left-color: var(--terra-d); }
-.pass:has(input:checked) .stub small { color: var(--pils-l); }
-.pass:has(input:focus-visible) { outline: 2px solid var(--terra); outline-offset: 3px; }
-.anybtn { position: relative; display: inline-flex; align-items: center; gap: 8px; margin: 10px 0 0; padding: 7px 14px; border: 1.5px solid var(--rule); background: transparent; font-size: .84rem; cursor: pointer; }
-.anybtn input { position: absolute; opacity: 0; pointer-events: none; }
-.anybtn:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--card); }
+.pass .stub b { font: 400 1.05rem/1 var(--quote); }
+.pass .stub small { font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.pass.graag .stub { background: var(--terra); color: var(--card); border-left-color: var(--terra-d); }
+.pass.graag .stub small { color: var(--pils-l); }
+.tri { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1.5px solid var(--rule); }
+.tri label { position: relative; padding: 10px 4px; text-align: center; font: 600 .8rem/1 var(--body); cursor: pointer; border-left: 1px solid var(--rule); }
+.tri label:first-child { border-left: 0; }
+.tri input { position: absolute; opacity: 0; pointer-events: none; }
+.tri label:hover { background: var(--paper); }
+.tri label:has(input:checked) { background: var(--ink); color: var(--card); }
+.tri label.g:has(input:checked) { background: var(--terra); }
+.tri label.n:has(input:checked) { background: #6E5D52; }
+.tri label:has(input:focus-visible) { outline: 2px solid var(--terra); outline-offset: -3px; }
 .fnote { margin: 14px 0 0; padding: 12px 14px; background: var(--pils-l); font-size: .88rem; border-left: 4px solid var(--pils); }
 
 /* Rooster */
-.grid { display: grid; grid-template-columns: 62px repeat(4, minmax(0, 1fr)); gap: 5px; }
+.grid { display: grid; grid-template-columns: 58px repeat(4, minmax(0, 1fr)); gap: 5px; }
 .grid .h { padding: 4px 0 6px; text-align: center; }
 .grid .h b { display: block; font: 500 1.05rem/1 var(--title); letter-spacing: .08em; text-transform: uppercase; }
 .grid .h small { color: var(--muted); font-size: .7rem; }
-.grid .rl { display: flex; align-items: center; font: 600 .62rem/1.2 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.cell { position: relative; min-height: 64px; display: grid; place-content: center; gap: 3px; padding: 6px 4px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); text-align: center; font: 600 .74rem/1.15 var(--body); letter-spacing: .04em; transition: background .15s, transform .1s; }
+.grid .rl { display: flex; align-items: center; font: 600 .6rem/1.2 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.cell { position: relative; min-height: 64px; display: grid; place-content: center; gap: 3px; padding: 6px 3px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); text-align: center; font: 600 .74rem/1.15 var(--body); letter-spacing: .02em; transition: background .15s, transform .1s; }
 button.cell:active { transform: scale(.96); }
 .cell .plus { font: 400 1.4rem/1 var(--title); color: #C7B497; }
-.cell small { font-weight: 500; font-size: .6rem; letter-spacing: .02em; opacity: .85; }
+.cell small { font-weight: 500; font-size: .62rem; opacity: .85; }
 .cell.t { background: var(--terra); border-color: var(--terra); color: var(--card); }
 .cell.p { background: var(--pils); border-color: var(--pils); color: var(--ink); }
-.cell.tp { background: linear-gradient(135deg, var(--terra) 50%, var(--pils) 50%); border-color: var(--terra); color: var(--card); text-shadow: 0 1px 2px rgba(0,0,0,.4); }
+.cell.tp { background: linear-gradient(135deg, var(--terra) 50%, var(--pils) 50%); border-color: var(--terra); color: var(--card); text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+.cell.nee { background: repeating-linear-gradient(-45deg, var(--card) 0 7px, #E4D6C2 7px 9px); border-color: #B9A994; color: var(--muted); }
 .cell.off { background: repeating-linear-gradient(-45deg, transparent 0 6px, var(--rule) 6px 7px); color: var(--muted); font-weight: 500; }
 .cell.warn::after { content: "!"; position: absolute; top: 4px; right: 6px; font: 700 .7rem/1 var(--body); }
 .gridfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: 12px 0 0; }
-.keys { display: flex; flex-wrap: wrap; gap: 14px; font-size: .78rem; color: var(--muted); }
-.keys i { display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; }
-.nopadel { padding: 7px 12px; border: 1.5px solid var(--rule); background: transparent; font-size: .8rem; }
+.keys { display: flex; flex-wrap: wrap; gap: 12px; font-size: .76rem; color: var(--muted); }
+.keys i { display: inline-block; width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; }
+.nopadel { padding: 8px 12px; border: 1.5px solid var(--rule); background: transparent; font-size: .8rem; }
 .nopadel[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
 
 /* Gewone keuzes */
 .choices { display: flex; flex-wrap: wrap; gap: 8px; }
-.choice { position: relative; padding: 11px 18px; border: 1.5px solid var(--rule); background: var(--card); cursor: pointer; font-weight: 600; font-size: .9rem; transition: background .15s, border-color .15s; }
+.choice { position: relative; padding: 11px 16px; border: 1.5px solid var(--rule); background: var(--card); cursor: pointer; font-weight: 600; font-size: .9rem; transition: background .15s, border-color .15s; }
 .choice:hover { border-color: var(--ink); }
 .choice input { position: absolute; opacity: 0; pointer-events: none; }
 .choice:has(input:checked) { background: var(--terra); border-color: var(--terra); color: var(--card); }
@@ -224,6 +245,9 @@ button.cell:active { transform: scale(.96); }
 /* Kosten */
 .crow { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: .86rem; }
 .crow small { display: block; color: var(--muted); font-size: .74rem; }
+.crow .tg { display: inline-block; margin-left: 6px; padding: 2px 5px; font: 700 .58rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; vertical-align: 1px; }
+.tg.vast { background: var(--ink); color: var(--card); }
+.tg.schat { border: 1px solid var(--muted); color: var(--muted); }
 .crow span:last-child { white-space: nowrap; }
 .ctot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding: 12px 14px; background: var(--night); color: var(--cream); }
 .ctot small { font: 600 .66rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--lilac); }
@@ -231,13 +255,11 @@ button.cell:active { transform: scale(.96); }
 .cnote { margin: 10px 0 0; color: var(--muted); font-size: .74rem; }
 
 /* Klaar */
-.finish { position: relative; margin: 50px 0 0; padding: 34px 24px; background: var(--night); color: var(--cream); text-align: center; overflow: hidden; }
-.finish .av { width: 96px; }
-.finish .av img { box-shadow: 0 0 0 3px var(--gold); }
-.stamp { position: absolute; left: 50%; top: 62px; transform: translateX(-50%) rotate(-12deg); padding: 6px 12px; border: 3px solid #E58A6F; color: #E58A6F; background: rgba(29,22,38,.65); font: 700 1.1rem/1 var(--body); letter-spacing: .2em; }
-.finish h3 { margin: 18px 0 4px; font: italic 400 1.35rem/1.3 var(--quote); }
+.finish { margin: 50px 0 0; padding: 40px 24px 30px; background: var(--night); color: var(--cream); text-align: center; }
+.finish h3 { margin: 22px 0 4px; font: italic 400 1.35rem/1.3 var(--quote); }
 .finish p { margin: 0 0 18px; color: var(--lilac); }
-.finish.todo { background: var(--card); color: var(--ink); border: 1.5px dashed var(--rule); }
+.finish.todo { padding: 26px 20px; background: var(--card); color: var(--ink); border: 1.5px dashed var(--rule); }
+.finish.todo h3 { margin-top: 0; }
 .finish.todo p { color: var(--muted); margin: 0; }
 .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .btn { display: inline-block; padding: 12px 20px; border: 1.5px solid var(--terra); background: var(--terra); color: var(--card); font: 700 .72rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
@@ -279,34 +301,53 @@ textarea { min-height: 76px; resize: vertical; }
 .chip .av { width: 24px; }
 .chip .av img { box-shadow: none; }
 .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--card); }
-.empty { padding: 40px 20px; text-align: center; background: var(--card); border: 1.5px dashed var(--rule); font: italic 400 1.05rem/1.6 var(--quote); }
+.empty { padding: 40px 20px; text-align: center; background: var(--card); border: 1.5px dashed var(--rule); font: italic 400 1.05rem/1.6 var(--quote); grid-column: 1 / -1; }
 
-/* ---------- Stand ---------- */
-.stand-top { margin: 36px 0 0; padding: 22px; background: var(--night); color: var(--cream); }
-.stand-top h2 { margin: 0 0 4px; font: 500 1.35rem/1.1 var(--title); letter-spacing: .14em; text-transform: uppercase; }
-.stand-top p { margin: 0; color: var(--lilac); }
+/* ---------- Plan & stand ---------- */
+.plan { margin: 36px 0 0; padding: 24px 20px; background: var(--night); color: var(--cream); }
+.plan h2 { margin: 0 0 4px; font: 500 1.35rem/1.1 var(--title); letter-spacing: .14em; text-transform: uppercase; }
+.plan > p { margin: 0 0 18px; color: var(--lilac); font: italic 400 .92rem/1.4 var(--quote); }
+.days { display: grid; gap: 12px; }
+@media (min-width: 760px) { .days { grid-template-columns: repeat(4, 1fr); } }
+.day { padding: 14px; background: var(--night-2); }
+.day h4 { margin: 0 0 10px; font: 500 1rem/1 var(--title); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.day h4 small { margin-left: 6px; font: 400 .74rem/1 var(--quote); letter-spacing: .04em; text-transform: none; color: var(--lilac); }
+.day ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: .86rem; }
+.day li { display: grid; grid-template-columns: 54px 1fr; gap: 8px; }
+.day li span { color: var(--lilac); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; padding-top: 2px; }
+.day li.tbd { color: var(--lilac); font-style: italic; font-family: var(--quote); }
+.stand-top { margin: 22px 0 0; padding: 22px; background: var(--card); border: 1px solid var(--rule); }
+.stand-top h2 { margin: 0 0 4px; font: 500 1.25rem/1.1 var(--title); letter-spacing: .14em; text-transform: uppercase; }
+.stand-top p { margin: 0; color: var(--muted); }
 .todo-list { display: flex; flex-wrap: wrap; gap: 14px; margin: 18px 0 16px; }
 .todo-list .p { display: grid; justify-items: center; gap: 5px; font: 600 .62rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; }
-.todo-list .av { width: 46px; filter: grayscale(1) opacity(.65); }
+.todo-list .av { width: 46px; filter: grayscale(1) opacity(.7); }
 .card { margin: 22px 0 0; padding: 20px; background: var(--card); border: 1px solid var(--rule); }
 .card h3 { margin: 0 0 4px; font: 400 1.1rem/1.3 var(--quote); }
 .card .sub { margin: 0 0 14px; color: var(--muted); font-size: .82rem; }
 .mtx { display: grid; grid-template-columns: 84px 1fr 1fr; gap: 5px; }
 .mtx .hd { padding: 4px 6px; font: 600 .6rem/1.25 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .mtx .hd b { display: block; font: 500 .98rem/1.15 var(--title); letter-spacing: .02em; color: var(--ink); text-transform: none; }
-.mtx .c { min-height: 92px; padding: 10px; border: 1.5px solid var(--rule); background: var(--paper); }
-.mtx .c.lead { border-color: var(--terra); background: #FBE9E1; }
-.mtx .c .pr { font: 400 .8rem/1.2 var(--quote); color: var(--muted); margin-bottom: 8px; }
+.mtx .c { min-height: 92px; padding: 10px; border: 1.5px solid var(--rule); background: var(--paper); font-size: .8rem; }
+.mtx .c.lead { border-color: var(--terra); background: var(--terra-l); }
+.mtx .c.blocked { background: repeating-linear-gradient(-45deg, var(--paper) 0 8px, #EADCC8 8px 10px); }
+.mtx .c .pr { font: 400 .8rem/1.2 var(--quote); color: var(--muted); margin-bottom: 6px; }
+.mtx .c .sc { font: 500 1.3rem/1 var(--title); }
+.mtx .c .sc small { font: 400 .72rem/1 var(--body); color: var(--muted); margin-left: 4px; }
+.mtx .c .no { margin-top: 6px; color: var(--terra-d); font-weight: 600; }
 .flex-note { margin: 12px 0 0; font-size: .82rem; color: var(--muted); }
-.hgrid .cell { min-height: 74px; }
-.hgrid .cell b { font: 500 1.15rem/1 var(--title); }
+.hgrid .cell { min-height: 78px; }
+.hgrid .cell b { font: 500 1.1rem/1 var(--title); }
 .camps { display: grid; gap: 8px; }
 @media (min-width: 560px) { .camps { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
 .camp { padding: 12px; border: 1.5px solid var(--rule); background: var(--paper); }
-.camp.lead { border-color: var(--terra); background: #FBE9E1; }
+.camp.lead { border-color: var(--terra); background: var(--terra-l); }
 .camp .lb { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 10px; font-weight: 600; font-size: .86rem; }
 .camp .lb b { font: 500 1.3rem/1 var(--title); }
 .none { color: var(--muted); font-size: .8rem; }
+.card-sec { margin: 22px 0 0; padding: 24px 0 26px; background: var(--night-2); }
+.card-sec h3 { margin: 0 0 6px; color: var(--gold); font: 500 1.1rem/1 var(--title); letter-spacing: .16em; text-transform: uppercase; text-align: center; }
+.card-sec .fan button { cursor: default; }
 .tablewrap { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-size: .82rem; }
 th, td { padding: 9px 8px; text-align: left; border-bottom: 1px solid var(--rule); white-space: nowrap; }
@@ -314,10 +355,6 @@ th { font: 600 .62rem/1 var(--body); letter-spacing: .14em; text-transform: uppe
 td.pp { display: flex; align-items: center; gap: 8px; font-weight: 600; }
 td.pp .av { width: 28px; }
 td.nn { color: #B9A994; }
-
-.card-sec { margin: 22px 0 0; padding: 24px 18px 30px; background: var(--night-2); }
-.card-sec h3 { margin: 0 0 20px; color: var(--gold); font: 500 1.1rem/1 var(--title); letter-spacing: .16em; text-transform: uppercase; text-align: center; }
-.pcard.me { outline-color: var(--gold); }
 
 /* ---------- Waar ---------- */
 .where { margin-top: 30px; padding: 40px 0 10px; border-top: 2px solid var(--ink); }
@@ -331,54 +368,51 @@ td.nn { color: #B9A994; }
 .foot { padding: 26px 20px 30px; text-align: center; color: var(--muted); font: italic 400 .9rem/1.6 var(--quote); }
 
 /* Toast */
-.toast { position: fixed; z-index: 40; left: 50%; bottom: calc(var(--nav-h) + 14px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; width: max-content; max-width: calc(100vw - 32px); padding: 11px 18px; background: var(--ink); color: var(--card); font: italic 400 .92rem/1.35 var(--quote); transition: opacity .25s, transform .25s; text-align: center; }
+.toast { position: fixed; z-index: 40; left: 50%; top: 14px; transform: translate(-50%, -20px); opacity: 0; pointer-events: none; width: max-content; max-width: calc(100vw - 32px); padding: 11px 18px; background: var(--ink); color: var(--card); font: italic 400 .92rem/1.35 var(--quote); transition: opacity .25s, transform .25s; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
 .toast small { display: block; margin-top: 4px; font: 600 .62rem/1 var(--body); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--pils); }
 .toast.err small { color: #F2A48D; }
-@media (min-width: 900px) { .toast { bottom: 26px; } }
-@media (prefers-reduced-motion: no-preference) { .person .av { transition: transform .2s; } }
-@media (prefers-reduced-motion: reduce) { .pass, .cell, .toast, .pbar i { transition: none; } }
+@media (min-width: 900px) { .toast { top: 70px; } }
+@media (prefers-reduced-motion: reduce) { .pcard, .cell, .toast, .tab .bar i { transition: none; } }
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
-    <div class="poster">
-      <img class="duo" src="photo-duo.jpg" width="1200" height="1600" alt="De groep in sportkleren, Yung Marie ligt vooraan op de vloer">
-      <div id="spots"></div>
-      <div class="ptitle"><h1>Casa Pino</h1><p class="year">2027</p></div>
-      <div data-hs></div>
-      <p class="pfoot" id="pfoot"></p>
-    </div>
-    <p class="caption" id="caption"></p>
-    <p class="quote">‘Pils, padel en goeie gesprekken.’</p>
-    <p class="nudge">Jouw stem telt (een beetje).</p>
-    <div class="count" id="count"></div>
-    <div class="pick" id="pick">
-      <h2>Kies je kaart</h2>
-      <p class="pick-sub">Je kaart wordt goud als je alles hebt ingevuld.</p>
-      <div class="deck" id="people"></div>
-      <div class="legend"><span><i style="background:#B7764A"></i>Brons: nog niks</span><span><i style="background:#CFC8BE"></i>Zilver: bezig</span><span><i style="background:var(--gold)"></i>Goud: ingevuld</span><span><i style="background:var(--terra-d);box-shadow:0 0 0 2px var(--gold)"></i>Eerste viertal</span></div>
-    </div>
+<div class="strip" id="strip"></div>
+
+<header class="hero" id="hero">
+  <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
+  <div class="poster">
+    <img src="photo.jpg?v=6" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
+    <div class="ptitle"><h1>Casa Pino</h1><p>2027</p></div>
+    <div data-hs></div>
+    <p class="ptap"><b>Tik jezelf aan.</b> Of kies hieronder je kaart.</p>
+  </div>
+  <p class="caption" id="caption"></p>
+  <p class="quote">‘Pils, padel en goeie gesprekken.’</p>
+  <p class="nudge">Jouw stem telt (een beetje).</p>
+  <div class="count" id="count"></div>
+  <div class="fixed" id="fixed"></div>
+  <div class="pick">
+    <h2>Kies je kaart</h2>
+    <p>Je kaart wordt goud als je alles hebt ingevuld.</p>
+    <div class="fan" id="fan"></div>
+    <p class="swipe">← Veeg voor de hele selectie →</p>
   </div>
 </header>
 
+<div class="mini" id="mini" hidden>
+  <b>Casa Pino<span>2027</span></b>
+  <div class="who"><span id="mini-av"></span><div><span id="mini-name"></span><br><button data-switch>Niet jij?</button></div></div>
+</div>
+
 <nav class="nav" role="tablist" aria-label="Onderdelen">
-  <button class="tab" role="tab" id="tab-mine" aria-controls="mine"><b id="b-mine">–</b>Mijn keuzes</button>
+  <button class="tab" role="tab" id="tab-mine" aria-controls="mine"><b id="b-mine">–</b>Mijn keuzes<span class="bar"><i id="b-bar" style="width:0"></i></span></button>
   <button class="tab" role="tab" id="tab-ideas" aria-controls="ideas"><b id="b-ideas">0</b>Ideeën</button>
-  <button class="tab" role="tab" id="tab-stand" aria-controls="stand"><b id="b-stand">0/8</b>Stand</button>
+  <button class="tab" role="tab" id="tab-stand" aria-controls="stand"><b id="b-stand">0/8</b>Plan & stand</button>
+  <button class="tab price" id="tab-price" aria-controls="sheet" aria-expanded="false" hidden><b id="b-price">–</b>Jouw kosten</button>
 </nav>
 
-<div class="topbar" id="topbar" hidden>
-  <div class="row">
-    <span id="tb-av"></span>
-    <div><div class="nm" id="tb-name"></div><button class="sw" data-switch>Niet jij?</button></div>
-    <button class="price" id="tb-price" aria-expanded="false" aria-controls="drop"><small>Indicatie p.p. ▾</small><b id="tb-total"></b></button>
-  </div>
-  <div class="pbar"><i id="tb-prog" style="width:0"></i></div>
-  <div class="drop" id="drop" hidden></div>
-</div>
+<div class="sheet" id="sheet" hidden></div>
 
 <main class="wrap">
   <div id="banner" class="banner" hidden></div>
@@ -395,7 +429,7 @@ td.nn { color: #B9A994; }
 
 <section class="where">
   <div class="wrap where-in">
-    <img src="map.svg" alt="Stippelkaart van de Costa Blanca met Casa Pino, Benidorm, Alicante, Elche en het vliegveld" width="410" height="357">
+    <img src="map.svg?v=6" alt="Stippelkaart van de Costa Blanca met Casa Pino, Benidorm, Alicante, Elche en het vliegveld" width="410" height="357">
     <div><h2>Waar we zitten</h2><ul class="legs" id="legs"></ul></div>
   </div>
   <p class="foot">‘Dit zijn voorkeuren, geen stemming. Kai beslist en boekt.’</p>
@@ -404,33 +438,47 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-import { listen, save, listenIdeas, addIdea, editIdea, setHelper } from "./store.js";
-import { QUESTIONS, SECTIONS, STORE_KEYS, DECISIONS, FLIGHT, COSTS, DAYS, PARTS, OFF, SLOT_LABEL, GRID_QUIPS, WHERE, IDEA_CATS } from "./questions.js";
-import { PEOPLE, TRIP, ORDER, CAPTION } from "./people.js";
-import { STATS, CARDS } from "./cards.js";
+const V = "6";
+const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper }, Q, P, C] = await Promise.all([
+  import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
+]);
+const { QUESTIONS, SECTIONS, STORE_KEYS, DECISIONS, DEADLINE, FIXED, FLIGHT, COSTS, TRI, DAYS, PARTS, OFF, SLOT_LABEL, GRID_QUIPS, WHERE, IDEA_CATS } = Q;
+const { PEOPLE, TRIP, ORDER, CAPTION } = P;
+const { STATS, CARDS } = C;
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const byId = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
-const going = ORDER.map((id) => PEOPLE.find((p) => p.id === id));
+const going = ORDER.map((id) => byId[id]);
 const KEYS = new Set(STORE_KEYS);
 const eur = (n) => "€ " + Math.round(n).toLocaleString("nl-NL");
 const rng = ([a, b]) => (Math.round(a) === Math.round(b) ? eur(a) : `${eur(a)} – ${Math.round(b).toLocaleString("nl-NL")}`);
 const PAGE = location.origin + location.pathname;
+const arr = (v) => (Array.isArray(v) ? v : []);
+const AIRS = ["transavia", "vueling"];
 
+/* ---------- wie ben ik ---------- */
 let me = null;
-try { me = localStorage.getItem("casaPinoMe"); } catch (e) { /* geen opslag */ }
+const qp = new URLSearchParams(location.search).get("ik");
+try { me = byId[qp] && byId[qp].going !== false ? qp : localStorage.getItem("casaPinoMe"); if (me) localStorage.setItem("casaPinoMe", me); } catch (e) { me = byId[qp] ? qp : null; }
 if (!byId[me] || byId[me].going === false) me = null;
 let all = {}, mine = {}, loaded = false;
 let ideas = [], ideasLoaded = false, editing = null, listDirty = false;
 
-/* ---------- logica ---------- */
-const clean = (a) => Object.fromEntries(Object.entries(a || {}).filter(([k]) => KEYS.has(k)));
-const arr = (v) => (Array.isArray(v) ? v : []);
+/* ---------- data ---------- */
+function clean(a) {
+  const out = Object.fromEntries(Object.entries(a || {}).filter(([k]) => KEYS.has(k)));
+  for (const k of ["heen", "terug"]) {            // oud formaat: één gekozen vlucht
+    if (typeof out[k] === "string") out[k] = AIRS.includes(out[k]) ? { [out[k]]: "graag" } : out[k] === "maakt-niet-uit" ? { transavia: "kan", vueling: "kan" } : {};
+    if (out[k] && typeof out[k] !== "object") out[k] = {};
+  }
+  return out;
+}
 function answered(q, a) {
   a = a || {};
-  if (q.type === "grid") return arr(a.training).length > 0 || arr(a.potje).length > 0;
+  if (q.type === "flight") return AIRS.every((x) => a[q.id] && a[q.id][x]);
+  if (q.type === "grid") return arr(a.training).length + arr(a.potje).length + arr(a.padelNee).length > 0;
   return typeof a[q.id] === "string" && a[q.id] !== "";
 }
 const progress = (a) => ({ done: QUESTIONS.filter((q) => answered(q, a)).length, total: QUESTIONS.length });
@@ -440,24 +488,31 @@ function crownId() {
   for (const p of going) { const t = (all[p.id] || {})._doneAt; if (statusOf(p.id) === "done" && t && (!best || t < best.t)) best = { id: p.id, t }; }
   return best && best.id;
 }
-const av = (p, cls = "") => `<span class="av ${cls}${p.id === crownId() ? " crown" : ""}"><img src="avatars/${p.id}.jpg" alt="" width="64" height="64"></span>`;
+const av = (p, cls = "") => `<span class="av ${cls}${p.id === crownId() ? " crown" : ""}"><img src="avatars/${p.id}.jpg?v=${V}" alt="" width="64" height="64" loading="lazy"></span>`;
 const avS = (p) => av(p, statusOf(p.id));
 const qOf = (id) => QUESTIONS.find((q) => q.id === id);
-const optLabel = (q, id) => {
-  if (q.type === "flight") { if (id === q.any.id) return "Maakt niet uit"; const o = q.options.find((x) => x.id === id); return o ? `${o.airline} ${o.dep}` : "–"; }
-  return q.options.find((x) => x.id === id)?.label ?? "–";
-};
-function cellState(a, slot) {
-  const t = arr(a.training).includes(slot), p = arr(a.potje).includes(slot);
+const optLabel = (q, id) => q.type === "flight" ? (q.options.find((x) => x.id === id) ? `${q.options.find((x) => x.id === id).airline} ${q.options.find((x) => x.id === id).dep}` : "–") : (q.options.find((x) => x.id === id)?.label ?? "–");
+function cellState(a, s) {
+  if (arr(a.padelNee).includes(s)) return "nee";
+  const t = arr(a.training).includes(s), p = arr(a.potje).includes(s);
   return t && p ? "tp" : t ? "t" : p ? "p" : "";
 }
 const noPadel = (a) => arr(a.training).includes("geen") && arr(a.potje).includes("geen");
+const triOf = (a, k) => (a && a[k]) || {};
 
-/* prijzen */
+/* ---------- prijzen ---------- */
+function legPick(a, k) {           // welke maatschappij voor deze richting, of null als nog open
+  const t = triOf(a, k);
+  const g = AIRS.filter((x) => t[x] === "graag");
+  if (g.length === 1) return g[0];
+  const ok = AIRS.filter((x) => t[x] && t[x] !== "nee");
+  if (ok.length === 1) return ok[0];
+  return null;
+}
 function flightRange(h, t) {
-  const opts = (v) => (v === "transavia" || v === "vueling" ? [v] : ["transavia", "vueling"]);
+  const o = (v) => (AIRS.includes(v) ? [v] : AIRS);
   let lo = Infinity, hi = 0;
-  for (const x of opts(h)) for (const y of opts(t)) {
+  for (const x of o(h)) for (const y of o(t)) {
     const s = FLIGHT[x].ret + FLIGHT[y].ret;
     const r = x === y ? [FLIGHT[x].ret, FLIGHT[x].ret] : [FLIGHT.oneWay[0] * s, FLIGHT.oneWay[1] * s];
     lo = Math.min(lo, r[0]); hi = Math.max(hi, r[1]);
@@ -466,29 +521,31 @@ function flightRange(h, t) {
 }
 const pct = (n) => Math.round((n / FLIGHT.transavia.ret - 1) * 100);
 function flightNote(a) {
-  const sure = (v) => v === "transavia" || v === "vueling";
-  if (!sure(a.heen) || !sure(a.terug)) return `Blijf je bij één maatschappij, dan is het een retour: Transavia <b>${eur(FLIGHT.transavia.ret)}</b>, Vueling <b>${eur(FLIGHT.vueling.ret)}</b> (+${pct(FLIGHT.vueling.ret)}%). Mixen wordt twee enkele reizen: ca. <b>${rng(flightRange("transavia", "vueling"))}</b>.`;
-  const [lo, hi] = flightRange(a.heen, a.terug);
-  if (a.heen === a.terug) return a.heen === "transavia" ? `Jouw combinatie: <b>Transavia retour, ${eur(lo)}</b>. De goedkoopste optie.` : `Jouw combinatie: <b>Vueling retour, ${eur(lo)}</b>. Dat is ${pct(lo)}% meer dan Transavia.`;
-  return `Jouw combinatie: <b>twee enkele reizen, ca. ${rng([lo, hi])}</b>. Ongeveer ${pct(lo)} tot ${pct(hi)}% meer dan Transavia retour.`;
+  const h = legPick(a, "heen"), t = legPick(a, "terug");
+  if (!h || !t) return `Bij één maatschappij is het een retour: Transavia <b>${eur(FLIGHT.transavia.ret)}</b>, Vueling <b>${eur(FLIGHT.vueling.ret)}</b> (+${pct(FLIGHT.vueling.ret)}%). Mixen wordt twee enkele reizen: ca. <b>${rng(flightRange("transavia", "vueling"))}</b>.`;
+  const [lo, hi] = flightRange(h, t);
+  if (h === t) return h === "transavia" ? `Jouw voorkeur: <b>Transavia retour, ${eur(lo)}</b>. De goedkoopste combinatie.` : `Jouw voorkeur: <b>Vueling retour, ${eur(lo)}</b>. Dat is ${pct(lo)}% meer dan Transavia.`;
+  return `Jouw voorkeur: <b>twee enkele reizen, ca. ${rng([lo, hi])}</b>. Ongeveer ${pct(lo)} tot ${pct(hi)}% meer dan Transavia retour.`;
 }
 function costs(a) {
   const n = (k) => arr(a[k]).filter((x) => x !== "geen").length;
   const tr = n("training"), po = n("potje"), vb = a.voetbal === "ja";
+  const h = legPick(a, "heen"), t = legPick(a, "terug");
+  const fr = flightRange(h, t);
   const rows = [
-    ["Vluchten", a.heen && a.terug ? "Volgens je keuze" : "Nog kiezen: hele bandbreedte", flightRange(a.heen, a.terug)],
-    ["Training", `${tr} × 1,5 uur met trainer`, [tr * COSTS.training[0], tr * COSTS.training[1]]],
-    ["Potjes", `${po} × 1,5 uur`, [po * COSTS.potje[0], po * COSTS.potje[1]]],
-    ["Voetbal", vb ? "Ticket" : a.voetbal === "nee" ? "Niet nodig" : "Nog kiezen", vb ? COSTS.voetbal : [0, 0]],
-    ["Casa Pino", "€ 600 gedeeld door 8", COSTS.verblijf],
-    ["Auto's, brandstof, eten & drinken", "Raming", COSTS.rest]
+    ["Vluchten", h && t ? (h === t ? "Retour, prijs bekend" : "Twee enkele reizen") : "Nog niet duidelijk: hele bandbreedte", fr, h && t && h === t ? "vast" : "schat"],
+    ["Training", `${tr} × 1,5 uur met trainer`, [tr * COSTS.training[0], tr * COSTS.training[1]], "schat"],
+    ["Potjes", `${po} × 1,5 uur`, [po * COSTS.potje[0], po * COSTS.potje[1]], "schat"],
+    ["Voetbal", vb ? "Ticket" : a.voetbal === "nee" ? "Niet nodig" : "Nog kiezen", vb ? COSTS.voetbal : [0, 0], "schat"],
+    ["Casa Pino", "€ 600 gedeeld door 8", COSTS.verblijf, "vast"],
+    ["Auto's, brandstof, eten & drinken", "Raming", COSTS.rest, "schat"]
   ];
   return { rows, tot: rows.reduce((s, r) => [s[0] + r[2][0], s[1] + r[2][1]], [0, 0]) };
 }
 const costHTML = (a) => {
   const { rows, tot } = costs(a);
-  return rows.map((r) => `<div class="crow"><span>${r[0]}<small>${esc(r[1])}</small></span><span>${r[2][1] ? rng(r[2]) : "–"}</span></div>`).join("")
-    + `<div class="ctot"><small>Indicatie p.p.</small><b>${rng(tot)}</b></div><p class="cnote">Retourprijzen zijn bekend, de rest zijn ramingen. Padel bij volle banen.</p>`;
+  return rows.map((r) => `<div class="crow"><span>${r[0]}<span class="tg ${r[3]}">${r[3] === "vast" ? "vast" : "schatting"}</span><small>${esc(r[1])}</small></span><span>${r[2][1] ? rng(r[2]) : "–"}</span></div>`).join("")
+    + `<div class="ctot"><small>Indicatie p.p.</small><b>${rng(tot)}</b></div><p class="cnote">Rekent mee met je keuzes. Padelprijzen gelden bij volle banen.</p>`;
 };
 
 /* ---------- toast ---------- */
@@ -497,24 +554,25 @@ function toast(msg, sub = "", err = false) {
   const t = $("#toast");
   t.innerHTML = `${esc(msg)}${sub ? `<small>${esc(sub)}</small>` : ""}`;
   t.className = "toast on" + (err ? " err" : "");
-  clearTimeout(toastT); toastT = setTimeout(() => { t.className = "toast"; }, err ? 5000 : 2600);
+  clearTimeout(toastT); toastT = setTimeout(() => { t.className = "toast"; }, err ? 5000 : 2400);
 }
 
-/* ---------- kop ---------- */
+/* ---------- vaste stukken ---------- */
 (function () {
-  const d = Math.ceil((new Date(TRIP.start + "T00:00:00") - new Date()) / 86400000);
-  if (d > 0) $("#count").innerHTML = `<b>${d}</b><span>dagen om niet geblesseerd te raken, of te herstellen</span>`;
-  else $("#count").hidden = true;
+  const day = 86400000, now = new Date();
+  const d = Math.ceil((new Date(TRIP.start + "T00:00:00") - now) / day);
+  if (d > 0) $("#count").innerHTML = `<b>${d}</b><span>dagen om niet geblesseerd te raken, of te herstellen</span>`; else $("#count").hidden = true;
+  const dl = new Date(DEADLINE + "T23:59:59"), left = Math.ceil((dl - now) / day);
+  const dlTxt = dl.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
+  $("#strip").innerHTML = left >= 0
+    ? `Invullen vóór <b>${dlTxt}</b>${left <= 7 ? ` (nog ${left === 0 ? "vandaag" : left === 1 ? "1 dag" : left + " dagen"})` : ""}. Daarna boekt Kai.`
+    : `De deadline is voorbij, Kai is aan het boeken. Aanpassen mag nog, maar reken nergens op.`;
+  $("#fixed").innerHTML = FIXED.map((f) => `<div><small>Staat vast</small><b>${esc(f.t)}</b><span>${esc(f.d)}</span></div>`).join("");
+  $("#caption").textContent = CAPTION;
   $("#legs").innerHTML = WHERE.map((w) => `<li><span>${esc(w.from)} → ${esc(w.to)}</span><b>${esc(w.time)}</b></li>`).join("");
 })();
 
-function hotspots() {
-  return PEOPLE.map((p) => {
-    const out = p.going === false;
-    const cls = out ? "out" : statusOf(p.id) + (p.id === me ? " me" : "");
-    return `<button class="hs ${cls}" data-id="${p.id}" style="left:${(p.fx * 100).toFixed(2)}%;top:${(p.fy * 100).toFixed(2)}%;width:${(p.r * 200).toFixed(2)}%" aria-label="${esc(p.name)}"><span class="tag">${esc(p.name)}</span></button>`;
-  }).join("");
-}
+/* ---------- kaarten ---------- */
 function cardHTML(p, opts = {}) {
   const st = statusOf(p.id), crown = p.id === crownId();
   const tier = crown ? "spec" : st === "done" ? "" : st === "part" ? "zilver" : "brons";
@@ -522,75 +580,102 @@ function cardHTML(p, opts = {}) {
   const c = CARDS[p.id] || {};
   const vals = STATS.map(([k]) => c[k]);
   const ok = vals.every((v) => typeof v === "number");
-  const ovr = ok ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : "??";
+  const ovr = ok ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
+  const stats = ok
+    ? `<div class="st">${STATS.map(([k, l]) => `<div><b>${c[k]}</b>${l}</div>`).join("")}</div>`
+    : `<div class="scout">Scouting loopt…<i>Scores volgen</i></div>`;
   return `<div class="cw"><div class="pcard ${tier}${opts.me ? " me" : ""}">${crown ? '<span class="crown2"></span>' : ""}<div class="in"><div class="str"></div>
-    <div class="win"><img src="avatars/${p.id}.jpg" alt="" loading="lazy"></div>
-    <div class="ovr"><b>${ovr}</b><span>${esc(c.pos || "???")}</span></div>
-    <div class="nm"><b>${esc(p.name)}</b><small>${sub}</small></div>
-    <div class="st">${STATS.map(([k, l]) => `<div><b>${typeof c[k] === "number" ? c[k] : "?"}</b>${l}</div>`).join("")}</div>
+    <div class="win"><img src="avatars/${p.id}.jpg?v=${V}" alt="" loading="lazy"></div>
+    ${ovr !== null ? `<div class="ovr"><b>${ovr}</b><span>${esc(c.pos || "")}</span></div>` : ""}
+    <div class="nm"><b>${esc(p.name)}</b><small>${sub}</small></div>${stats}
     <div class="ft">Casa Pino · 2027</div></div>${st === "done" && !crown ? '<span class="stamp2">Ingevuld</span>' : ""}</div></div>`;
 }
-function renderPick() {
-  $("#pick").hidden = !!me;
-  $$("[data-hs]").forEach((el) => { el.innerHTML = hotspots(); });
-  $("#spots").innerHTML = PEOPLE.filter((p) => p.going !== false && statusOf(p.id) === "done")
-    .map((p) => `<img src="photo.jpg" alt="" style="clip-path:ellipse(${(p.r * 125).toFixed(2)}% ${(p.r * 125 * 0.75).toFixed(2)}% at ${(p.fx * 100).toFixed(2)}% ${(p.fy * 100).toFixed(2)}%)">`).join("");
-  const n = going.filter((p) => statusOf(p.id) === "done").length;
-  $("#pfoot").innerHTML = me ? `Je bent <b>${esc(byId[me].name)}</b>. Wie in kleur staat, heeft alles ingevuld.` : `<b>Tik jezelf aan</b> of kies hieronder je kaart. Wie alles invult, komt in kleur te staan.${n ? ` (${n}/${going.length})` : ""}`;
-  $("#caption").textContent = CAPTION;
-  $("#people").innerHTML = going.map((p) => `<button data-id="${p.id}" class="person-card" aria-label="${esc(p.name)}">${cardHTML(p)}</button>`).join("");
+
+/* ---------- kop ---------- */
+function hotspots() {
+  return PEOPLE.map((p) => {
+    const out = p.going === false;
+    return `<button class="hs${out ? " out" : ""}" data-pick="${p.id}" style="left:${(p.fx * 100).toFixed(2)}%;top:${(p.fy * 100).toFixed(2)}%;width:${(p.r * 200).toFixed(2)}%" aria-label="${esc(out ? p.real + ", gaat niet mee" : p.name)}"><span class="tag">${esc(p.name)}</span></button>`;
+  }).join("");
+}
+function renderHead() {
+  $("#hero").hidden = !!me;
+  $("#mini").hidden = !me;
+  if (me) {
+    $("#mini-av").innerHTML = avS(byId[me]);
+    $("#mini-name").textContent = byId[me].name;
+  } else {
+    $$("[data-hs]").forEach((el) => { el.innerHTML = hotspots(); });
+    $("#fan").innerHTML = going.map((p) => `<button data-id="${p.id}" aria-label="Ik ben ${esc(p.name)}">${cardHTML(p)}</button>`).join("");
+  }
 }
 function renderBars() {
   const done = going.filter((p) => statusOf(p.id) === "done").length;
   $("#b-stand").textContent = `${done}/${going.length}`;
   $("#b-ideas").textContent = ideas.filter((i) => !i.gone).length;
-  const tb = $("#topbar");
-  if (!me) { tb.hidden = true; $("#b-mine").textContent = "–"; return; }
+  const pt = $("#tab-price");
+  if (!me) { $("#b-mine").textContent = "–"; $("#b-bar").style.width = "0"; pt.hidden = true; return; }
   const pr = progress(mine);
   $("#b-mine").textContent = `${pr.done}/${pr.total}`;
-  tb.hidden = false;
-  $("#tb-av").innerHTML = avS(byId[me]);
-  $("#tb-name").textContent = byId[me].name;
-  $("#tb-prog").style.width = (pr.done / pr.total) * 100 + "%";
-  $("#tb-total").textContent = rng(costs(mine).tot);
-  if (!$("#drop").hidden) $("#drop").innerHTML = costHTML(mine);
+  $("#b-bar").style.width = (pr.done / pr.total) * 100 + "%";
+  pt.hidden = false;
+  $("#b-price").textContent = rng(costs(mine).tot).replace("€ ", "€");
+  if (sheetMode === "cost") $("#sheet").innerHTML = costSheet();
 }
-$("#tb-price").addEventListener("click", () => {
-  const d = $("#drop"); d.hidden = !d.hidden;
-  $("#tb-price").setAttribute("aria-expanded", !d.hidden);
-  if (!d.hidden) d.innerHTML = costHTML(mine);
-});
+
+/* ---------- sheet (kosten of bevestigen) ---------- */
+let sheetMode = null;
+const costSheet = () => `<button class="close" data-close>Sluiten</button><h3>Wat kost het jou?</h3>${costHTML(mine)}`;
+function openSheet(mode, html) {
+  sheetMode = mode;
+  const s = $("#sheet"); s.innerHTML = html; s.hidden = false;
+  $("#tab-price").setAttribute("aria-expanded", mode === "cost");
+}
+function closeSheet() { sheetMode = null; $("#sheet").hidden = true; $("#tab-price").setAttribute("aria-expanded", "false"); }
+$("#tab-price").addEventListener("click", () => (sheetMode === "cost" ? closeSheet() : openSheet("cost", costSheet())));
 
 function chooseMe(id) {
-  const p = byId[id]; if (!p) return;
-  if (p.going === false) { toast("Mitchell, altijd welkom. App Kai, dan schuift er een stoel bij."); return; }
-  me = id;
+  const p = byId[id]; if (!p || p.going === false) return;
+  me = id; closeSheet();
   try { localStorage.setItem("casaPinoMe", id); } catch (e) { /* ok */ }
   mine = clean(all[id]); editing = null;
   setTab("mine"); renderAll(true);
   toast(`Hoi ${p.name}.`, `${progress(mine).done} van ${QUESTIONS.length} ingevuld`);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0 });
 }
 function switchMe() {
-  me = null; try { localStorage.removeItem("casaPinoMe"); } catch (e) { /* ok */ }
-  $("#drop").hidden = true;
-  renderAll(true); window.scrollTo({ top: 0, behavior: "smooth" });
+  me = null; closeSheet();
+  try { localStorage.removeItem("casaPinoMe"); } catch (e) { /* ok */ }
+  if (new URLSearchParams(location.search).has("ik")) history.replaceState(null, "", PAGE);
+  renderAll(true); window.scrollTo({ top: 0 });
 }
 document.addEventListener("click", (e) => {
-  const b = e.target.closest(".hs, .person-card");
-  if (b && b.dataset.id) { chooseMe(b.dataset.id); return; }
+  const hs = e.target.closest("[data-pick]");
+  if (hs) {
+    const p = byId[hs.dataset.pick];
+    if (p.going === false) { toast(`${p.real}, altijd welkom.`, "App Kai, dan schuift er een stoel bij"); return; }
+    openSheet("confirm", `<div class="confirm">${av(p)}<p>Ben jij ${esc(p.name)}?</p><div class="btns"><button class="btn" data-id="${p.id}">Ja, dat ben ik</button><button class="btn ghost" data-close>Nee</button></div></div>`);
+    return;
+  }
+  const b = e.target.closest("[data-id]");
+  if (b) { chooseMe(b.dataset.id); return; }
+  if (e.target.closest("[data-close]")) { closeSheet(); return; }
   if (e.target.closest("[data-switch]")) { switchMe(); return; }
   const g = e.target.closest("[data-go]");
-  if (g) { setTab(g.dataset.go); jumpToMain(); }
+  if (g) { setTab(g.dataset.go); window.scrollTo({ top: 0, behavior: "smooth" }); }
 });
 
 /* ---------- tabs ---------- */
 function setTab(t) {
   for (const k of ["mine", "ideas", "stand"]) { $("#" + k).hidden = k !== t; $("#tab-" + k).setAttribute("aria-selected", k === t); }
   if (t === "ideas" && listDirty) renderIdeaList();
+  if (sheetMode === "cost") closeSheet();
 }
-function jumpToMain() { const top = $("main").getBoundingClientRect().top + scrollY - 70; window.scrollTo({ top: Math.max(0, top), behavior: "smooth" }); }
-for (const k of ["mine", "ideas", "stand"]) $("#tab-" + k).addEventListener("click", () => { setTab(k); jumpToMain(); });
+for (const k of ["mine", "ideas", "stand"]) $("#tab-" + k).addEventListener("click", () => {
+  setTab(k);
+  const top = $("main").getBoundingClientRect().top + scrollY - 60;
+  if (scrollY > top) window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+});
 setTab("mine");
 
 /* ---------- mijn keuzes ---------- */
@@ -599,32 +684,32 @@ function gridHTML(a) {
   for (const pt of PARTS) {
     h += `<div class="rl">${pt.label}</div>`;
     for (const d of DAYS) {
-      const slot = `${d.id}-${pt.id}`;
-      if (OFF[slot]) { h += `<div class="cell off">${OFF[slot]}</div>`; continue; }
-      const st = cellState(a, slot);
-      const warn = slot === "do-mid" && a.heen === "vueling";
-      const txt = st === "t" ? "Training" : st === "p" ? "Potje" : st === "tp" ? "Allebei" : `<span class="plus">+</span>`;
-      h += `<button type="button" class="cell ${st}${warn ? " warn" : ""}" data-slot="${slot}" aria-label="${d.label} ${pt.label}: ${st ? txt : "leeg"}">${txt}${warn ? "<small>alleen met vroege vlucht</small>" : ""}</button>`;
+      const s = `${d.id}-${pt.id}`;
+      if (OFF[s]) { h += `<div class="cell off">${OFF[s]}</div>`; continue; }
+      const st = cellState(a, s);
+      const warn = s === "do-mid" && triOf(a, "heen").transavia === "nee";
+      const txt = { t: "Training", p: "Potje", tp: "Allebei", nee: "Kan niet" }[st] || `<span class="plus">+</span>`;
+      h += `<button type="button" class="cell ${st}${warn ? " warn" : ""}" data-slot="${s}" aria-label="${d.long} ${pt.label}: ${st ? txt : "leeg"}">${txt}${warn ? "<small>vroege vlucht kan niet</small>" : ""}</button>`;
     }
   }
   return h + `</div>`;
 }
 function renderForm() {
   const box = $("#form"), side = $("#side");
-  if (!me) { box.innerHTML = `<div class="prompt">Tik jezelf aan op de foto hierboven. Daarna verschijnen hier je keuzes, en alles wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
+  if (!me) { box.innerHTML = `<div class="prompt">Tik jezelf aan op de foto of kies je kaart. Daarna verschijnen hier je keuzes, en alles wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
   if (!loaded) { box.innerHTML = `<div class="prompt">Laden…</div>`; return; }
-  let h = "";
+  let h = `<p class="hello">Hoi <b>${esc(byId[me].name)}</b>. Vijf minuten werk, dan is je kaart goud.</p>`;
   for (const s of SECTIONS) {
     h += `<div class="sec"><span class="nr">${s.nr}</span><h2>${s.title}</h2><span class="ok" data-secok="${s.id}"></span></div>`;
     for (const q of QUESTIONS.filter((x) => x.section === s.id)) {
       const dec = DECISIONS[q.id];
-      h += `<div class="q" data-q="${q.id}">${dec ? `<span class="decided">Besloten: ${esc(optLabel(q, dec))}</span>` : ""}<h3>${esc(q.title)}</h3><p class="sub">${esc(q.sub)}</p>`;
+      h += `<div class="q" data-q="${q.id}">${typeof dec === "string" ? `<span class="decided">Besloten: ${esc(optLabel(q, dec))}</span>` : ""}<h3>${esc(q.title)}</h3><p class="sub">${esc(q.sub)}</p>`;
       if (q.type === "flight") {
-        h += `<div class="passes">${q.options.map((o) => `<label class="pass"><input type="radio" name="q_${q.id}" value="${o.id}" data-q="${q.id}"><div class="main"><div class="air">${o.airline}</div><div class="time">${o.dep}<span>→</span>${o.arr}</div><div class="det">${esc(o.detail)}</div></div><div class="stub"><b>${eur(FLIGHT[o.id].ret)}</b><small>retour</small></div></label>`).join("")}</div>`;
-        h += `<label class="anybtn"><input type="radio" name="q_${q.id}" value="${q.any.id}" data-q="${q.id}">${esc(q.any.label)}</label>`;
+        h += `<div class="passes">${q.options.map((o) => `<div class="pass" data-pass="${q.id}-${o.id}"><div class="main"><div class="air">${o.airline}</div><div class="time">${o.dep}<span>→</span>${o.arr}</div><div class="det">${esc(o.detail)}</div></div><div class="stub"><b>${eur(FLIGHT[o.id].ret)}</b><small>retour</small></div>
+          <div class="tri" role="radiogroup" aria-label="${o.airline} ${o.dep}">${TRI.map((t) => `<label class="${t.id[0]}"><input type="radio" name="${q.id}-${o.id}" value="${t.id}" data-q="${q.id}" data-o="${o.id}">${t.label}</label>`).join("")}</div></div>`).join("")}</div>`;
         if (q.id === "terug") h += `<p class="fnote" id="fnote"></p>`;
       } else if (q.type === "grid") {
-        h += `<div id="grid"></div><div class="gridfoot"><div class="keys"><span><i style="background:var(--terra)"></i>Training</span><span><i style="background:var(--pils)"></i>Potje</span><span><i style="background:linear-gradient(135deg,var(--terra) 50%,var(--pils) 50%)"></i>Allebei</span></div><button type="button" class="nopadel" id="nopadel" aria-pressed="false">Geen padel voor mij</button></div>`;
+        h += `<div id="grid"></div><div class="gridfoot"><div class="keys"><span><i style="background:var(--terra)"></i>Training</span><span><i style="background:var(--pils)"></i>Potje</span><span><i style="background:linear-gradient(135deg,var(--terra) 50%,var(--pils) 50%)"></i>Allebei</span><span><i style="background:repeating-linear-gradient(-45deg,var(--card) 0 3px,#C9B9A3 3px 4px)"></i>Kan niet</span></div><button type="button" class="nopadel" id="nopadel" aria-pressed="false">Geen padel voor mij</button></div>`;
       } else {
         h += `<div class="choices">${q.options.map((o) => `<label class="choice"><input type="radio" name="q_${q.id}" value="${o.id}" data-q="${q.id}">${esc(o.label)}</label>`).join("")}</div>`;
       }
@@ -633,65 +718,73 @@ function renderForm() {
   }
   h += `<div id="finish"></div>`;
   box.innerHTML = h;
-  for (const q of QUESTIONS) $$(`input[data-q="${q.id}"]`, box).forEach((i) => { i.checked = mine[q.id] === i.value; });
-  side.innerHTML = `<div class="sidecard"><div class="who"><span id="sd-av"></span><div><b>${esc(byId[me].name)}</b><button data-switch>Niet jij?</button></div></div><ul class="steps" id="steps"></ul><div id="sd-cost"></div></div>`;
+  for (const q of QUESTIONS) {
+    if (q.type === "flight") $$(`input[data-q="${q.id}"]`, box).forEach((i) => { i.checked = triOf(mine, q.id)[i.dataset.o] === i.value; });
+    else $$(`input[data-q="${q.id}"]`, box).forEach((i) => { i.checked = mine[q.id] === i.value; });
+  }
+  side.innerHTML = `<div class="sidecard"><ul class="steps" id="steps"></ul><div id="sd-cost"></div></div>`;
   live();
 }
+const STEPN = { heen: "Heenvlucht", terug: "Terugvlucht", padel: "Padelrooster", tegen: "Tegenstanders", voetbal: "Voetbal", rijden: "Rijden" };
 function live() {
   if (!me || !loaded || !$("#grid")) { renderBars(); return; }
   $("#grid").innerHTML = gridHTML(mine);
   $("#nopadel").setAttribute("aria-pressed", noPadel(mine));
   $("#fnote").innerHTML = flightNote(mine);
-  for (const s of SECTIONS) {
-    const ok = QUESTIONS.filter((q) => q.section === s.id).every((q) => answered(q, mine));
-    $(`[data-secok="${s.id}"]`).textContent = ok ? "✓ Klaar" : "";
+  for (const q of QUESTIONS.filter((x) => x.type === "flight")) for (const o of q.options) {
+    const el = $(`[data-pass="${q.id}-${o.id}"]`); if (el) el.className = `pass ${triOf(mine, q.id)[o.id] || ""}`;
   }
-  $("#sd-av").innerHTML = avS(byId[me]);
-  const stepName = { heen: "Heenvlucht", terug: "Terugvlucht", padel: "Padelrooster", tegen: "Tegenstanders", voetbal: "Voetbal" };
-  $("#steps").innerHTML = QUESTIONS.map((q) => `<li class="${answered(q, mine) ? "ok" : ""}"><i>✓</i>${stepName[q.id] || esc(q.title)}</li>`).join("");
+  for (const s of SECTIONS) $(`[data-secok="${s.id}"]`).textContent = QUESTIONS.filter((q) => q.section === s.id).every((q) => answered(q, mine)) ? "✓ Klaar" : "";
+  $("#steps").innerHTML = QUESTIONS.map((q) => `<li class="${answered(q, mine) ? "ok" : ""}"><i>✓</i>${STEPN[q.id] || esc(q.title)}</li>`).join("");
   $("#sd-cost").innerHTML = costHTML(mine);
   const pr = progress(mine), f = $("#finish");
   if (pr.done === pr.total) {
-    f.innerHTML = `<div class="finish"><div style="max-width:220px;margin:0 auto">${cardHTML(byId[me])}</div><h3>Je kaart is goud. Eerste viertal.</h3><p>Aanpassen mag altijd, alles wordt meteen opgeslagen.</p><div class="btns"><button class="btn gold" data-go="stand">Bekijk de stand</button><button class="btn ghost" data-go="ideas">Idee toevoegen</button><button class="btn ghost" id="copy">Kopieer voor de app</button></div></div>`;
+    f.innerHTML = `<div class="finish"><div style="max-width:220px;margin:0 auto">${cardHTML(byId[me])}</div><h3>Je kaart is goud. Eerste viertal.</h3><p>Aanpassen mag tot de deadline, alles wordt meteen opgeslagen.</p><div class="btns"><button class="btn gold" data-go="stand">Bekijk het plan</button><button class="btn ghost" data-go="ideas">Idee toevoegen</button><button class="btn ghost" id="copy">Kopieer voor de app</button></div></div>`;
   } else {
     const left = pr.total - pr.done;
-    f.innerHTML = `<div class="finish todo"><h3>Nog ${left} ${left === 1 ? "vraag" : "vragen"} te gaan</h3><p>Wie niet invult, speelt in het tweede viertal.</p></div>`;
+    const open = QUESTIONS.filter((q) => !answered(q, mine)).map((q) => STEPN[q.id].toLowerCase()).join(", ");
+    f.innerHTML = `<div class="finish todo"><h3>Nog ${left} ${left === 1 ? "vraag" : "vragen"} te gaan</h3><p>Open: ${esc(open)}. Wie niet invult, speelt in het tweede viertal.</p></div>`;
   }
+  $("#mini-av").innerHTML = avS(byId[me]);
   renderBars();
 }
 
 $("#form").addEventListener("change", (e) => {
   const i = e.target.closest("input[data-q]"); if (!i || !me) return;
   const q = qOf(i.dataset.q);
-  mine[q.id] = i.value;
-  const o = q.type === "flight" && i.value === q.any.id ? q.any : q.options.find((x) => x.id === i.value);
-  lastQuip = o?.quip || "";
+  if (q.type === "flight") {
+    mine[q.id] = { ...triOf(mine, q.id), [i.dataset.o]: i.value };
+    lastQuip = q.quips[i.value] || "";
+  } else {
+    mine[q.id] = i.value;
+    lastQuip = q.options.find((x) => x.id === i.value)?.quip || "";
+  }
   edited();
 });
 $("#form").addEventListener("click", async (e) => {
   const c = e.target.closest(".cell[data-slot]");
   if (c && me) {
     const s = c.dataset.slot, st = cellState(mine, s);
-    const next = { "": "t", t: "p", p: "tp", tp: "" }[st];
-    const t = arr(mine.training).filter((x) => x !== s && x !== "geen"), p = arr(mine.potje).filter((x) => x !== s && x !== "geen");
-    if (next.includes("t")) t.push(s);
-    if (next.includes("p")) p.push(s);
-    mine.training = t; mine.potje = p;
+    const next = { "": "t", t: "p", p: "tp", tp: "nee", nee: "" }[st];
+    const strip = (k) => arr(mine[k]).filter((x) => x !== s && x !== "geen");
+    const t = strip("training"), p = strip("potje"), n = arr(mine.padelNee).filter((x) => x !== s);
+    if (next === "t" || next === "tp") t.push(s);
+    if (next === "p" || next === "tp") p.push(s);
+    if (next === "nee") n.push(s);
+    mine.training = t; mine.potje = p; mine.padelNee = n;
     lastQuip = next ? GRID_QUIPS[next] : "";
     edited(); return;
   }
   if (e.target.id === "nopadel" && me) {
     const on = !noPadel(mine);
-    mine.training = on ? ["geen"] : []; mine.potje = on ? ["geen"] : [];
+    mine.training = on ? ["geen"] : []; mine.potje = on ? ["geen"] : []; mine.padelNee = [];
     lastQuip = on ? GRID_QUIPS.none : "";
     edited(); return;
   }
   if (e.target.id === "copy") {
-    let t = `Casa Pino 2027, keuzes van ${byId[me].name}\n`;
-    t += `\nHeen: ${optLabel(qOf("heen"), mine.heen)}\nTerug: ${optLabel(qOf("terug"), mine.terug)}`;
+    const fl = (k) => qOf(k).options.map((o) => `${o.airline} ${o.dep}: ${TRI.find((t) => t.id === triOf(mine, k)[o.id])?.label || "–"}`).join(", ");
     const sl = (k) => arr(mine[k]).filter((x) => x !== "geen").map((x) => SLOT_LABEL[x]).join(", ") || "geen";
-    t += `\nTraining: ${sl("training")}\nPotjes: ${sl("potje")}\nTegen: ${optLabel(qOf("tegen"), mine.tegen)}\nVoetbal: ${optLabel(qOf("voetbal"), mine.voetbal)}`;
-    t += `\n\nIndicatie p.p.: ${rng(costs(mine).tot)}\n${PAGE}`;
+    let t = `Casa Pino 2027, keuzes van ${byId[me].name}\n\nHeen: ${fl("heen")}\nTerug: ${fl("terug")}\nTraining: ${sl("training")}\nPotjes: ${sl("potje")}\nTegen: ${optLabel(qOf("tegen"), mine.tegen)}\nVoetbal: ${optLabel(qOf("voetbal"), mine.voetbal)}\nRijden: ${optLabel(qOf("rijden"), mine.rijden)}\n\nIndicatie p.p.: ${rng(costs(mine).tot)}\n${PAGE}`;
     try { await navigator.clipboard.writeText(t); toast("Gekopieerd.", "Plak het in de groepsapp"); }
     catch (x) { toast("Kopiëren lukte niet op dit apparaat.", "", true); }
   }
@@ -700,10 +793,9 @@ $("#form").addEventListener("click", async (e) => {
 /* ---------- opslaan ---------- */
 let saveT, saving = false, again = false;
 function edited() {
-  const complete = progress(mine).done === QUESTIONS.length;
-  if (complete && !mine._doneAt) { mine._doneAt = Date.now(); lastQuip = "Alles ingevuld. Eerste viertal."; }
+  if (progress(mine).done === QUESTIONS.length && !mine._doneAt) { mine._doneAt = Date.now(); lastQuip = "Alles ingevuld. Je kaart is goud."; }
   all[me] = mine;
-  live(); renderPick(); renderStand();
+  live(); renderStand();
   clearTimeout(saveT); saveT = setTimeout(doSave, 450);
 }
 const failMsg = (e) => (e && e.code === "permission-denied" ? "De Firestore-regels staan nog niet goed. Laat het Kai weten." : "Controleer je verbinding en probeer het opnieuw.");
@@ -731,14 +823,13 @@ const readFields = (pre) => ({
   cat: $(`#${pre}cat [aria-pressed="true"]`)?.dataset.cat || "overig",
   leads: $$(`#${pre}leads [aria-pressed="true"]`).map((b) => b.dataset.p)
 });
-function openIdeaForm() {
+$("#newIdea").addEventListener("click", () => {
   const f = $("#ideaForm");
-  if (!me) { toast("Tik eerst jezelf aan op de foto."); setTab("mine"); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  if (!me) { toast("Kies eerst wie je bent."); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
   if (!f.hidden) { f.hidden = true; return; }
   f.innerHTML = `${ideaFields({ title: "", text: "", cat: "eten", leads: [me] }, "n_")}<div class="acts"><button class="btn" id="addIdea">Toevoegen</button><button class="btn ghost small" id="closeIdea">Annuleren</button></div>`;
   f.hidden = false; $("#n_title").focus();
-}
-$("#newIdea").addEventListener("click", openIdeaForm);
+});
 const stack = (ids, empty) => {
   const ps = ids.filter((i) => byId[i]).map((i) => byId[i]);
   return ps.length ? `<div class="stack">${ps.map((p) => av(p)).join("")}<em>${esc(ps.map((p) => p.name).join(", "))}</em></div>` : `<span class="none">${empty}</span>`;
@@ -749,7 +840,7 @@ function renderIdeaList() {
   const box = $("#ideaList");
   if (!ideasLoaded) { box.innerHTML = `<div class="empty">Laden…</div>`; return; }
   const list = ideas.filter((i) => !i.gone).sort((a, b) => b.created - a.created);
-  if (!list.length) { box.innerHTML = `<div class="empty" style="grid-column:1/-1">Nog geen ideeën. Wie durft de eerste te zijn?</div>`; return; }
+  if (!list.length) { box.innerHTML = `<div class="empty">Nog geen ideeën. Wie durft de eerste te zijn?</div>`; return; }
   box.innerHTML = list.map((i) => {
     const cat = IDEA_CATS.find((c) => c.id === i.cat)?.label || "Overig";
     const own = me && i.by === me, lead = me && arr(i.leads).includes(me), helping = me && arr(i.helpers).includes(me);
@@ -800,37 +891,66 @@ $("#ideas").addEventListener("click", async (e) => {
   }
 });
 
-/* ---------- stand ---------- */
+/* ---------- plan & stand ---------- */
 const faces = (ids) => (ids.length ? `<div class="stack">${ids.map((i) => av(byId[i])).join("")}</div>` : `<span class="none">niemand</span>`);
+function planHTML() {
+  const D = DECISIONS, fh = qOf("heen"), ft = qOf("terug");
+  const items = { do: [], vr: [], za: [], zo: [] };
+  const add = (d, tijd, wat, tbd = false) => items[d].push({ tijd, wat, tbd });
+  const fo = (q, id) => q.options.find((o) => o.id === id);
+  if (D.heen && fo(fh, D.heen)) { const o = fo(fh, D.heen); add("do", o.dep, `Vlucht ${o.airline} naar Alicante`); add("do", o.arr, "Landen, auto's ophalen"); }
+  else add("do", "", "Heenvlucht: volgt na de deadline", true);
+  add("do", "", "Inchecken in Casa Pino");
+  for (const d of DAYS) for (const pt of PARTS) {
+    const s = `${d.id}-${pt.id}`;
+    if (arr(D.training).includes(s)) add(d.id, pt.label.slice(0, 3), "Padeltraining met trainer");
+    if (arr(D.potje).includes(s)) add(d.id, pt.label.slice(0, 3), "Potje padel" + (D.tegen === "lokaal" ? " tegen locals" : ""));
+  }
+  if (!D.training && !D.potje) { add("vr", "", "Padel: volgt na de deadline", true); add("za", "", "Padel en de rest van de dag: volgt na de deadline", true); }
+  if (D.voetbal === "ja") add("za", "", "Voetbal: wedstrijd volgt zodra het speelschema bekend is", true);
+  for (const x of arr(D.extra)) if (items[x.dag]) add(x.dag, x.tijd || "", x.wat);
+  if (D.terug && fo(ft, D.terug)) { const o = fo(ft, D.terug); add("zo", o.dep, `Vlucht ${o.airline} naar huis`); }
+  else add("zo", "", "Terugvlucht: volgt na de deadline", true);
+  return `<div class="plan"><h2>Het programma</h2><p>Groeit mee met wat Kai besluit. Nog niet alles staat vast.</p><div class="days">${DAYS.map((d) => `<div class="day"><h4>${d.long}<small>${d.date}</small></h4><ul>${items[d.id].map((i) => `<li class="${i.tbd ? "tbd" : ""}"><span>${esc(i.tijd)}</span>${esc(i.wat)}</li>`).join("")}</ul></div>`).join("")}</div></div>`;
+}
 function renderStand() {
   const A = (id) => all[id] || {};
   const open = going.filter((p) => statusOf(p.id) !== "done");
-  const done = going.length - open.length;
-  let h = `<div class="stand-top"><h2>${done} van ${going.length} binnen</h2><p>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist Kai."}</p>`;
+  let h = planHTML();
+  h += `<div class="stand-top"><h2>${going.length - open.length} van ${going.length} binnen</h2><p>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist Kai."}</p>`;
   if (open.length) {
     h += `<div class="todo-list">${open.map((p) => `<div class="p">${av(p)}${esc(p.name)}</div>`).join("")}</div>`;
-    const msg = `${open.map((p) => p.name).join(", ")}: de Casa Pino-pagina wacht op je. Wie niet invult, speelt in het tweede viertal. ${PAGE}`;
-    h += `<a class="btn gold" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Por ze via WhatsApp</a>`;
+    const msg = `${open.map((p) => p.name).join(", ")}: de Casa Pino-pagina wacht op je, invullen vóór 18 november. Wie niet invult, speelt in het tweede viertal. ${PAGE}`;
+    h += `<a class="btn" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Por ze via WhatsApp</a>`;
   }
-  h += `</div><div class="card-sec"><h3>De selectie</h3><div class="deck light">${going.map((p) => cardHTML(p, { me: p.id === me })).join("")}</div></div>`;
+  h += `</div>`;
 
+  // vluchten: welke combinatie werkt voor iedereen
   const fh = qOf("heen"), ft = qOf("terug");
-  const cellIds = (x, y) => going.filter((p) => A(p.id).heen === x && A(p.id).terug === y).map((p) => p.id);
-  const max = Math.max(...fh.options.flatMap((ho) => ft.options.map((to) => cellIds(ho.id, to.id).length)));
-  h += `<div class="card"><h3>Vluchten</h3><p class="sub">Heen (rijen) × terug (kolommen), met prijs per persoon.</p><div class="mtx"><span></span>${ft.options.map((o) => `<div class="hd">Terug<b>${o.airline} ${o.dep}</b></div>`).join("")}`;
+  const W = { graag: 2, kan: 1 };
+  const combos = [];
+  for (const ho of fh.options) for (const to of ft.options) {
+    let score = 0; const no = [], yes = [];
+    for (const p of going) {
+      const a = triOf(A(p.id), "heen")[ho.id], b = triOf(A(p.id), "terug")[to.id];
+      if (a === "nee" || b === "nee") no.push(p.id);
+      else { score += (W[a] || 0) + (W[b] || 0); if (a === "graag" && b === "graag") yes.push(p.id); }
+    }
+    combos.push({ ho, to, score, no, yes });
+  }
+  const best = Math.max(...combos.filter((c) => !c.no.length).map((c) => c.score), 0);
+  h += `<div class="card"><h3>Vluchten: welke combinatie werkt?</h3><p class="sub">Punten: graag = 2, kan = 1 per richting. Doorgestreept als iemand niet kan. Gezichten: wie beide graag wil.</p><div class="mtx"><span></span>${ft.options.map((o) => `<div class="hd">Terug<b>${o.airline} ${o.dep}</b></div>`).join("")}`;
   for (const ho of fh.options) {
     h += `<div class="hd">Heen<b>${ho.airline} ${ho.dep}</b></div>`;
     for (const to of ft.options) {
-      const ids = cellIds(ho.id, to.id);
-      h += `<div class="c ${max && ids.length === max ? "lead" : ""}"><div class="pr">${rng(flightRange(ho.id, to.id))}</div>${faces(ids)}</div>`;
+      const c = combos.find((x) => x.ho === ho && x.to === to);
+      h += `<div class="c ${c.no.length ? "blocked" : best && c.score === best ? "lead" : ""}"><div class="pr">${rng(flightRange(ho.id, to.id))}</div><div class="sc">${c.score}<small>punten</small></div>${c.yes.length ? faces(c.yes) : ""}${c.no.length ? `<div class="no">Kan niet: ${c.no.map((i) => esc(byId[i].name)).join(", ")}</div>` : ""}</div>`;
     }
   }
-  h += `</div>`;
-  const flex = going.filter((p) => A(p.id).heen === "maakt-niet-uit" || A(p.id).terug === "maakt-niet-uit");
-  if (flex.length) h += `<p class="flex-note">Flexibel (heen of terug maakt niet uit): ${flex.map((p) => esc(p.name)).join(", ")}</p>`;
-  h += `</div>`;
+  h += `</div></div>`;
 
-  h += `<div class="card"><h3>Padelrooster</h3><p class="sub">Aantal mensen per dagdeel. Hoe donkerder, hoe drukker.</p><div class="grid hgrid"><span></span>${DAYS.map((d) => `<div class="h"><b>${d.label}</b><small>${d.date}</small></div>`).join("")}`;
+  // padel
+  h += `<div class="card"><h3>Padelrooster</h3><p class="sub">Per dagdeel: hoeveel willen trainen, spelen, en wie kan niet.</p><div class="grid hgrid"><span></span>${DAYS.map((d) => `<div class="h"><b>${d.label}</b><small>${d.date}</small></div>`).join("")}`;
   for (const pt of PARTS) {
     h += `<div class="rl">${pt.label}</div>`;
     for (const d of DAYS) {
@@ -838,26 +958,31 @@ function renderStand() {
       if (OFF[s]) { h += `<div class="cell off">${OFF[s]}</div>`; continue; }
       const t = going.filter((p) => arr(A(p.id).training).includes(s)).length;
       const pp = going.filter((p) => arr(A(p.id).potje).includes(s)).length;
+      const n = going.filter((p) => arr(A(p.id).padelNee).includes(s)).length;
       const k = Math.max(t, pp) / going.length;
-      h += `<div class="cell" style="background:rgba(181,72,42,${(k * 0.9).toFixed(2)});color:${k > 0.45 ? "var(--card)" : "var(--ink)"}"><span><b>${t}</b> <small>training</small></span><span><b>${pp}</b> <small>potje</small></span></div>`;
+      h += `<div class="cell" style="background:rgba(181,72,42,${(k * 0.9).toFixed(2)});color:${k > 0.45 ? "var(--card)" : "var(--ink)"}"><span><b>${t}</b> <small>training</small></span><span><b>${pp}</b> <small>potje</small></span>${n ? `<small>${n} kan niet</small>` : ""}</div>`;
     }
   }
   const np = going.filter((p) => noPadel(A(p.id)));
   h += `</div>${np.length ? `<p class="flex-note">Geen padel: ${np.map((p) => esc(p.name)).join(", ")}</p>` : ""}</div>`;
 
-  for (const id of ["tegen", "voetbal"]) {
+  for (const id of ["tegen", "voetbal", "rijden"]) {
     const q = qOf(id);
     const cs = q.options.map((o) => ({ o, ids: going.filter((p) => A(p.id)[id] === o.id).map((p) => p.id) }));
     const m = Math.max(...cs.map((c) => c.ids.length));
-    h += `<div class="card"><h3>${esc(q.title)}</h3>${DECISIONS[id] ? `<span class="decided">Besloten: ${esc(optLabel(q, DECISIONS[id]))}</span>` : ""}<div class="camps">${cs.map((c) => `<div class="camp ${m && c.ids.length === m ? "lead" : ""}"><div class="lb"><span>${esc(c.o.label)}</span><b>${c.ids.length}</b></div>${faces(c.ids)}</div>`).join("")}</div></div>`;
+    const extra = id === "rijden" ? `<p class="sub">Nodig: minstens twee bestuurders. Nu ${cs[0].ids.length} met ‘Ja, graag’ en ${cs[1].ids.length} met ‘Als het moet’.</p>` : "";
+    h += `<div class="card"><h3>${esc(q.title)}</h3>${extra}<div class="camps">${cs.map((c) => `<div class="camp ${m && c.ids.length === m ? "lead" : ""}"><div class="lb"><span>${esc(c.o.label)}</span><b>${c.ids.length}</b></div>${faces(c.ids)}</div>`).join("")}</div></div>`;
   }
 
+  h += `<div class="card-sec"><h3>De selectie</h3><div class="fan">${going.map((p) => `<button tabindex="-1" aria-hidden="true">${cardHTML(p, { me: p.id === me })}</button>`).join("")}</div></div>`;
+
   const sl = (v) => arr(v).filter((x) => x !== "geen").map((x) => SLOT_LABEL[x]).join(", ") || (arr(v).includes("geen") ? "geen" : "");
-  h += `<div class="card"><h3>Per persoon</h3><div class="tablewrap"><table><thead><tr><th>Wie</th><th>Heen</th><th>Terug</th><th>Training</th><th>Potje</th><th>Tegen</th><th>Voetbal</th><th>Indicatie</th></tr></thead><tbody>`;
+  const fl = (a, k) => { const t = triOf(a, k); return AIRS.filter((x) => t[x]).map((x) => `${FLIGHT[x].name.slice(0, 4)}: ${TRI.find((y) => y.id === t[x]).label.toLowerCase()}`).join(", "); };
+  h += `<div class="card"><h3>Per persoon</h3><div class="tablewrap"><table><thead><tr><th>Wie</th><th>Heen</th><th>Terug</th><th>Training</th><th>Potje</th><th>Tegen</th><th>Voetbal</th><th>Rijden</th><th>Indicatie</th></tr></thead><tbody>`;
   for (const p of going) {
     const a = A(p.id), any = progress(a).done > 0;
     const td = (v) => (v && v !== "–" ? `<td>${esc(v)}</td>` : `<td class="nn">–</td>`);
-    h += `<tr><td class="pp">${avS(p)}${esc(p.name)}</td>${td(a.heen && optLabel(fh, a.heen))}${td(a.terug && optLabel(ft, a.terug))}${td(sl(a.training))}${td(sl(a.potje))}${td(a.tegen && optLabel(qOf("tegen"), a.tegen))}${td(a.voetbal && optLabel(qOf("voetbal"), a.voetbal))}${td(any ? rng(costs(a).tot) : "")}</tr>`;
+    h += `<tr><td class="pp">${avS(p)}${esc(p.name)}</td>${td(fl(a, "heen"))}${td(fl(a, "terug"))}${td(sl(a.training))}${td(sl(a.potje))}${td(a.tegen && optLabel(qOf("tegen"), a.tegen))}${td(a.voetbal && optLabel(qOf("voetbal"), a.voetbal))}${td(a.rijden && optLabel(qOf("rijden"), a.rijden))}${td(any ? rng(costs(a).tot) : "")}</tr>`;
   }
   h += `</tbody></table></div></div>`;
   $("#stand").innerHTML = h;
@@ -865,7 +990,7 @@ function renderStand() {
 
 /* ---------- tekenen ---------- */
 function renderAll(forms) {
-  renderPick(); renderStand();
+  renderHead(); renderStand();
   if (forms) { renderForm(); renderIdeaList(); $("#ideaForm").hidden = true; }
   renderBars();
 }
@@ -880,8 +1005,9 @@ listen((data) => {
   const first = !loaded;
   all = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, clean(v)]));
   if (first) { loaded = true; mine = clean(all[me]); } else if (me) all[me] = mine;
-  renderPick(); renderStand();
+  renderHead(); renderStand();
   if (first) renderForm(); else live();
+  renderBars();
 }, (err) => { onErr(err); if (!loaded) { loaded = true; renderForm(); } });
 listenIdeas((list) => { ideas = list; ideasLoaded = true; renderBars(); renderIdeaList(); }, (err) => { onErr(err); ideasLoaded = true; renderIdeaList(); });
 </script>
