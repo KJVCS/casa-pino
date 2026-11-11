@@ -1,7 +1,7 @@
 // Inhoud van de pagina. Antwoorden staan in Firestore per sleutel.
 // Nieuwe vraag? Voeg een blok toe met een uniek id en zet de sleutel in STORE_KEYS.
 
-export const STORE_KEYS = ["heen", "terug", "training", "potje", "padelNee", "tegen", "voetbal", "rijden", "_doneAt"];
+export const STORE_KEYS = ["heen", "terug", "training", "potje", "padelNee", "tegen", "voetbal", "rijden", "pos", "_self", "_scout", "_doneAt"];
 
 export const DEADLINE = "2026-11-18";          // invullen vóór (einde van deze dag)
 
@@ -55,7 +55,8 @@ export const SECTIONS = [
   { id: "vluchten", nr: "01", title: "Vluchten" },
   { id: "padel", nr: "02", title: "Padel" },
   { id: "voetbal", nr: "03", title: "Voetbal" },
-  { id: "onderweg", nr: "04", title: "Onderweg" }
+  { id: "onderweg", nr: "04", title: "Onderweg" },
+  { id: "scouting", nr: "05", title: "Scouting" }
 ];
 
 export const QUESTIONS = [
@@ -115,6 +116,13 @@ export const QUESTIONS = [
     ]
   }
 ];
+
+// Scouting staat als laatste vraag; de inhoud bouwt index.html zelf op.
+QUESTIONS.push({
+  id: "scout", section: "scouting", type: "scout",
+  title: "Jouw kaart",
+  sub: "Kies je positie, schat jezelf in en speel de duels. Je stemt anoniem: tot de deadline kan niemand de stemmen zien, ook Kai niet. Daarna gaan alle kaarten tegelijk open."
+});
 
 export const GRID_QUIPS = { t: "De trainer gaat je dropshot ontleden.", p: "Gewoon lekker ballen.", tp: "Volle bak. Fysio alvast gebeld?", nee: "Prima, dan lig je bij het zwembad.", none: "Op een padelreis? Gedurfd." };
 

@@ -1,18 +1,14 @@
-// Padelkaarten. Kai vult de scores in (0–99) en de positie: "DRV" (rechts) of "REV" (links).
-// Zolang iets leeg is, toont de kaart een vraagteken.
+// Padelkaarten. De scores komen uit de scouting (duels), en worden pas na de deadline zichtbaar.
 export const STATS = [
-  ["sma", "SMA", "Smash"], ["net", "NET", "Netspel"],
-  ["ban", "BAN", "Bandeja"], ["gla", "GLA", "Glaswerk"],
-  ["vib", "VIB", "Víbora"], ["pil", "PIL", "Pils"]
+  ["aan", "AAN", "Aanval", "smash en bandeja"],
+  ["ver", "VER", "Verdediging", "glaswerk en lobs"],
+  ["inz", "INZ", "Inzicht", "slim spelen, positie"],
+  ["pil", "PIL", "Derde helft", "herstelvermogen na afloop"]
 ];
-
-export const CARDS = {
-  "kai":        { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "toobs":      { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "babbels":    { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "dubbel-d":   { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "yung-marie": { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "tomba":      { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "raw-roya":   { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null },
-  "melph":      { pos: "", sma: null, net: null, ban: null, gla: null, vib: null, pil: null }
-};
+export const DUELS_PER_STAT = 4;               // per persoon, per stat
+export const REVEAL = "2026-11-19T00:00:00Z";  // na de deadline gaan de scores open (moet gelijk zijn aan de Firestore-regels)
+export const POSITIONS = [
+  { id: "DRV", label: "Rechts (drive)" },
+  { id: "REV", label: "Links (revés)" },
+  { id: "ALL", label: "Maakt niet uit" }
+];

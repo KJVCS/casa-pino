@@ -38,5 +38,24 @@ service cloud.firestore {
         && request.resource.data.createdAt == resource.data.createdAt;
       allow delete: if false;
     }
+
+    // Scouting: alleen met een geldige code schrijven, en pas na de deadline voor iedereen leesbaar.
+    // VERVANG de codes hieronder door de echte (die staan niet in deze openbare repo).
+    match /scout/{doc} {
+      function codes() {
+        return {'kai-0000':'kai','toobs-0000':'toobs','babbels-0000':'babbels','dubbel-d-0000':'dubbel-d',
+                'yung-marie-0000':'yung-marie','tomba-0000':'tomba','raw-roya-0000':'raw-roya','melph-0000':'melph'};
+      }
+      function open() { return request.time < timestamp.date(2026, 11, 19); }
+      allow get: if doc in codes().keys();
+      allow list: if !open();
+      allow create, update: if open() && doc in codes().keys()
+        && request.resource.data.by == codes()[doc]
+        && request.resource.data.keys().hasOnly(['by','self','duels','updatedAt'])
+        && request.resource.data.self is map && request.resource.data.self.size() <= 4
+        && request.resource.data.duels is list && request.resource.data.duels.size() <= 40
+        && request.resource.data.updatedAt is timestamp;
+      allow delete: if false;
+    }
   }
 }

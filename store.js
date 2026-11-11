@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getFirestore, collection, doc, setDoc, addDoc, updateDoc, onSnapshot,
-  serverTimestamp, arrayUnion, arrayRemove
+  serverTimestamp, arrayUnion, arrayRemove, getDoc, getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { firebaseConfig } from "./firebase-config.js";
 
@@ -40,4 +40,17 @@ export function setHelper(id, person, on) {
   return updateDoc(doc(db, "ideas", id), {
     helpers: on ? arrayUnion(person) : arrayRemove(person), updatedAt: serverTimestamp()
   });
+}
+
+// ---------- Scouting: per persoon één document, id = "<naam>-<code>" ----------
+export async function getScout(docId) {
+  const s = await getDoc(doc(db, "scout", docId));     // weigert bij een verkeerde code
+  return s.exists() ? s.data() : null;
+}
+export function saveScout(docId, data) {
+  return setDoc(doc(db, "scout", docId), { ...data, updatedAt: serverTimestamp() });
+}
+export async function listScout() {                     // pas toegestaan na de deadline
+  const snap = await getDocs(collection(db, "scout"));
+  const out = []; snap.forEach((d) => out.push(d.data())); return out;
 }
