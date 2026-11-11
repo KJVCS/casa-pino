@@ -123,7 +123,7 @@ export const QUESTIONS = [
 QUESTIONS.push({
   id: "scout", section: "scouting", type: "scout",
   title: "Jouw kaart",
-  sub: "Kies je positie, schat jezelf in en speel de duels. Je stemt anoniem: tot de deadline kan niemand de stemmen zien, ook Kai niet. Daarna gaan alle kaarten tegelijk open."
+  sub: "Kies je positie, schat jezelf in en speel de duels. Na de deadline worden de kaarten bekend gemaakt!"
 });
 
 export const GRID_QUIPS = { t: "Bandeja-bootcamp genoteerd.", p: "De interne ranking staat op het spel.", tp: "Volle bak. Fysio alvast gebeld?", nee: "Rust is ook training.", none: "Op een padelreis? Gedurfd." };
