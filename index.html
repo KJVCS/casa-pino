@@ -129,7 +129,7 @@ button { cursor: pointer; }
 
 /* Avatars */
 .av { position: relative; display: inline-block; flex: none; width: 56px; aspect-ratio: 1; border-radius: 50%; }
-.av img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px var(--rule); background: #FDEED9; }
+.av img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px var(--rule); background: #FDEED9; }
 .av.done img { box-shadow: 0 0 0 3px var(--terra); }
 .av.part img { box-shadow: 0 0 0 2px var(--pils); }
 .av.crown::before { content: ""; position: absolute; left: 50%; top: -34%; width: 58%; aspect-ratio: 1.4; transform: translateX(-50%) rotate(-8deg); background: var(--gold); clip-path: polygon(0 100%, 0 25%, 25% 60%, 50% 0, 75% 60%, 100% 25%, 100% 100%); z-index: 1; }
@@ -393,8 +393,9 @@ textarea { min-height: 76px; resize: vertical; }
 table { border-collapse: collapse; width: 100%; font-size: .82rem; }
 th, td { padding: 9px 8px; text-align: left; border-bottom: 1px solid var(--rule); white-space: nowrap; }
 th { font: 600 .62rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-td.pp { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-td.pp .av { width: 28px; }
+td.pp { font-weight: 600; }
+td.pp .pc { display: flex; align-items: center; gap: 8px; }
+td.pp .av { width: 28px; height: 28px; }
 td.nn { color: #B9A994; }
 
 /* ---------- Waar ---------- */
@@ -464,7 +465,7 @@ td.nn { color: #B9A994; }
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
-    <div class="pimg"><img src="photo-hero.jpg?v=15" width="1200" height="896" alt="De groep in sportkleren, in warm zwart-wit; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
+    <div class="pimg"><img src="photo-hero.jpg?v=16" width="1200" height="896" alt="De groep in sportkleren, in warm zwart-wit; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
   </div>
   <div class="count" id="count"></div>
@@ -509,7 +510,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "15";
+const V = "16";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -1297,7 +1298,7 @@ function renderStand() {
   for (const p of going) {
     const a = A(p.id), any = progress(a).done > 0;
     const td = (v) => (v && v !== "–" ? `<td>${esc(v)}</td>` : `<td class="nn">–</td>`);
-    h += `<tr><td class="pp">${avS(p)}${esc(p.name)}</td>${td(fl(a, "heen"))}${td(fl(a, "terug"))}${td(sl(a.training))}${td(sl(a.potje))}${td(a.tegen && optLabel(qOf("tegen"), a.tegen))}${td(a.voetbal && optLabel(qOf("voetbal"), a.voetbal))}${td(a.rijden && optLabel(qOf("rijden"), a.rijden))}${td(any ? rng(costs(a).tot) : "")}</tr>`;
+    h += `<tr><td class="pp"><span class="pc">${avS(p)}${esc(p.name)}</span></td>${td(fl(a, "heen"))}${td(fl(a, "terug"))}${td(sl(a.training))}${td(sl(a.potje))}${td(a.tegen && optLabel(qOf("tegen"), a.tegen))}${td(a.voetbal && optLabel(qOf("voetbal"), a.voetbal))}${td(a.rijden && optLabel(qOf("rijden"), a.rijden))}${td(any ? rng(costs(a).tot) : "")}</tr>`;
   }
   h += `</tbody></table></div></div>`;
   h += whereHTML();
