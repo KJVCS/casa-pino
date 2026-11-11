@@ -459,7 +459,7 @@ td.nn { color: #B9A994; }
 <header class="hero" id="hero">
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
-    <img src="photo.jpg?v=10" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
+    <img src="photo.jpg?v=11" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
     <div data-hs></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
@@ -506,7 +506,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "10";
+const V = "11";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -540,12 +540,26 @@ let all = {}, mine = {}, loaded = false;
 let ideas = [], ideasLoaded = false, editing = null, listDirty = false;
 
 /* ---------- data ---------- */
+// Alles wat uit de database komt, wordt hier gecontroleerd: alleen bekende waarden komen de pagina in.
+const SLOTSET = new Set(Object.keys(SLOT_LABEL));
+const TRISET = new Set(TRI.map((t) => t.id));
+const OPTSET = Object.fromEntries(QUESTIONS.filter((q) => q.type === "single").map((q) => [q.id, new Set(q.options.map((o) => o.id))]));
+const POSSET = new Set(POSITIONS.map((p) => p.id));
 function clean(a) {
-  const out = Object.fromEntries(Object.entries(a || {}).filter(([k]) => KEYS.has(k)));
-  for (const k of ["heen", "terug"]) {            // oud formaat: één gekozen vlucht
-    if (typeof out[k] === "string") out[k] = AIRS.includes(out[k]) ? { [out[k]]: "graag" } : out[k] === "maakt-niet-uit" ? { transavia: "kan", vueling: "kan" } : {};
-    if (out[k] && typeof out[k] !== "object") out[k] = {};
+  a = a && typeof a === "object" ? a : {};
+  const out = {};
+  for (const k of ["heen", "terug"]) {
+    let v = a[k];
+    if (typeof v === "string") v = AIRS.includes(v) ? { [v]: "graag" } : v === "maakt-niet-uit" ? { transavia: "kan", vueling: "kan" } : {};
+    if (v && typeof v === "object") { const o = {}; for (const x of AIRS) if (TRISET.has(v[x])) o[x] = v[x]; out[k] = o; }
   }
+  for (const k of ["training", "potje"]) if (Array.isArray(a[k])) out[k] = [...new Set(a[k].filter((x) => x === "geen" || SLOTSET.has(x)))];
+  if (Array.isArray(a.padelNee)) out.padelNee = [...new Set(a.padelNee.filter((x) => SLOTSET.has(x)))];
+  for (const k in OPTSET) if (OPTSET[k].has(a[k])) out[k] = a[k];
+  if (POSSET.has(a.pos)) out.pos = a.pos;
+  if (a._self === true) out._self = true;
+  if (Number.isFinite(a._scout)) out._scout = Math.max(0, Math.min(TOTAL_DUELS, Math.floor(a._scout)));
+  if (Number.isFinite(a._doneAt)) out._doneAt = a._doneAt;
   return out;
 }
 function answered(q, a) {
@@ -881,8 +895,10 @@ async function doSave() {
   saving = true;
   do {
     again = false;
+    const slowT = setTimeout(() => toast("Nog niet opgeslagen.", "Geen verbinding? Laat de pagina open, het gaat vanzelf zodra je weer online bent", true), 8000);
     try { await save(me, byId[me].name, mine); if (!quiet || lastQuip) toast(lastQuip || "Bijgewerkt.", "Opgeslagen ✓"); lastQuip = ""; quiet = false; }
     catch (e) { toast("Opslaan mislukt.", failMsg(e), true); }
+    finally { clearTimeout(slowT); }
   } while (again);
   saving = false;
 }
@@ -962,7 +978,10 @@ async function loadScout() {
   if (!me || !c || REVEALED) { renderScout(); return; }
   try {
     const d = await getScout(`${me}-${c}`);
-    if (d) scout = { self: d.self || {}, duels: arr(d.duels) };
+    if (d) {
+      const self = {}; for (const [k] of STATS) { const v = Number((d.self || {})[k]); if (v >= 50 && v <= 99) self[k] = Math.round(v); }
+      scout = { self, duels: arr(d.duels).filter((v) => v && typeof v === "object").slice(0, TOTAL_DUELS) };
+    }
     else { try { const l = JSON.parse(localStorage.getItem("casaPinoScout-" + me) || "null"); if (l) scout = l; } catch (e) { /* ok */ } }
     scoutLoaded = true;
   } catch (e) { scoutErr = e && e.code === "permission-denied" ? "code" : "net"; }
@@ -1068,9 +1087,9 @@ function renderIdeaList() {
     const cat = IDEA_CATS.find((c) => c.id === i.cat)?.label || "Overig";
     const own = me && i.by === me, lead = me && arr(i.leads).includes(me), helping = me && arr(i.helpers).includes(me);
     let acts = "";
-    if (me && !lead) acts += `<button class="btn small ${helping ? "ghost" : ""}" data-help="${i.id}" data-on="${!helping}">${helping ? "Toch niet" : "Ik help mee"}</button>`;
-    if (own) acts += `<button class="btn small ghost" data-edit="${i.id}">Bewerken</button><button class="btn small ghost" data-del="${i.id}">Verwijderen</button>`;
-    return `<article class="idea c-${esc(i.cat)}" id="idea-${i.id}"><p class="kicker">${esc(cat)}</p><h3>${esc(i.title)}</h3>${i.text ? `<p class="txt">${esc(i.text)}</p>` : ""}<p class="by">Van ${esc(byId[i.by]?.name || "?")}</p>
+    if (me && !lead) acts += `<button class="btn small ${helping ? "ghost" : ""}" data-help="${esc(i.id)}" data-on="${!helping}">${helping ? "Toch niet" : "Ik help mee"}</button>`;
+    if (own) acts += `<button class="btn small ghost" data-edit="${esc(i.id)}">Bewerken</button><button class="btn small ghost" data-del="${esc(i.id)}">Verwijderen</button>`;
+    return `<article class="idea c-${esc(i.cat)}" id="idea-${esc(i.id)}"><p class="kicker">${esc(cat)}</p><h3>${esc(i.title)}</h3>${i.text ? `<p class="txt">${esc(i.text)}</p>` : ""}<p class="by">Van ${esc(byId[i.by]?.name || "?")}</p>
       <div class="roles"><div class="role"><span>Organisatoren</span>${stack(arr(i.leads), "nog niemand")}</div><div class="role"><span>Helpen mee</span>${stack(arr(i.helpers), "nog niemand")}</div></div>
       <div class="acts">${acts}</div></article>`;
   }).join("");
@@ -1098,7 +1117,7 @@ $("#ideas").addEventListener("click", async (e) => {
   }
   if (b.dataset.edit) {
     const i = ideas.find((x) => x.id === b.dataset.edit); editing = i.id;
-    $("#idea-" + i.id).innerHTML = `<p class="kicker">Bewerken</p><div style="margin-top:14px">${ideaFields({ title: i.title, text: i.text || "", cat: i.cat, leads: arr(i.leads) }, "e_")}</div><div class="acts"><button class="btn small" data-save="${i.id}">Opslaan</button><button class="btn small ghost" data-cancel="1">Annuleren</button></div>`;
+    document.getElementById("idea-" + i.id).innerHTML = `<p class="kicker">Bewerken</p><div style="margin-top:14px">${ideaFields({ title: i.title, text: i.text || "", cat: i.cat, leads: arr(i.leads) }, "e_")}</div><div class="acts"><button class="btn small" data-save="${esc(i.id)}">Opslaan</button><button class="btn small ghost" data-cancel="1">Annuleren</button></div>`;
   }
   if (b.dataset.cancel) { editing = null; renderIdeaList(); }
   if (b.dataset.save) {
@@ -1177,7 +1196,7 @@ function loting() {
 }
 function lotingHTML() {
   const m = loting(); if (!m) return "";
-  const duo = (d) => `<div class="duo">${d.ids.map((i) => `<div class="pl">${av(byId[i])}<span>${esc(byId[i].name)}</span><small>${SCORES[i].ovr}${(all[i] || {}).pos && all[i].pos !== "ALL" ? " · " + all[i].pos : ""}</small></div>`).join("")}<b>${d.sum}</b></div>`;
+  const duo = (d) => `<div class="duo">${d.ids.map((i) => `<div class="pl">${av(byId[i])}<span>${esc(byId[i].name)}</span><small>${SCORES[i].ovr}${(all[i] || {}).pos && all[i].pos !== "ALL" ? " · " + esc(all[i].pos) : ""}</small></div>`).join("")}<b>${d.sum}</b></div>`;
   return `<div class="card loting"><h3>De loting</h3><p class="sub">Koppels die samen ongeveer even sterk zijn, zodat elk potje spannend wordt. Voorstel van de computer, de organisatie heeft het laatste woord.</p>${m.map((x, i) => `<div class="match"><p class="kicker">Baan ${i + 1}</p><div class="vsrow">${duo(x[0])}<em>vs</em>${duo(x[1])}</div></div>`).join("")}</div>`;
 }
 
@@ -1332,6 +1351,8 @@ function renderAll(forms) {
   renderBars();
 }
 renderAll(true);
+// Staat de pagina open op het moment van de onthulling, dan herlaadt hij vanzelf.
+{ const t = Date.parse(REVEAL) - Date.now(); if (!REVEALED && t > 0 && t < 864e5) setTimeout(() => location.reload(), t + 5000); }
 
 /* ---------- verbinding ---------- */
 const banner = $("#banner");

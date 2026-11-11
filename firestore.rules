@@ -14,6 +14,7 @@ service cloud.firestore {
         && request.resource.data.name.size() <= 40
         && request.resource.data.answers is map
         && request.resource.data.answers.keys().size() <= 60
+        && request.resource.data.answers.keys().hasOnly(['heen','terug','training','potje','padelNee','tegen','voetbal','rijden','pos','_self','_scout','_doneAt'])
         && request.resource.data.updatedAt is timestamp;
       allow delete: if false;
     }
