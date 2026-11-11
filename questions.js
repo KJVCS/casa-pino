@@ -85,7 +85,7 @@ export const QUESTIONS = [
   {
     id: "padel", section: "padel", type: "grid",
     title: "Wanneer wil je trainen of een potje spelen?",
-    sub: "Tik op een vakje om te wisselen: training, potje, allebei of liever niet. Training: 1,5 uur met trainer, ca. € 16–20. Potje: 1,5 uur zelf spelen, ca. € 4,50."
+    sub: "1× tikken = training · 2× = potje · 3× = allebei · 4× = liever niet. Training is 1,5 uur met trainer (ca. € 16–20), een potje 1,5 uur zelf spelen (ca. € 4,50)."
   },
   {
     id: "tegen", section: "padel", type: "single",
@@ -129,14 +129,14 @@ QUESTIONS.push({
 export const GRID_QUIPS = { t: "Bandeja-bootcamp genoteerd.", p: "De interne ranking staat op het spel.", tp: "Volle bak. Fysio alvast gebeld?", nee: "Rust is ook training.", none: "Op een padelreis? Gedurfd." };
 
 export const WHERE = [
-  { from: "Vliegveld Alicante", to: "Casa Pino", time: "ca. 45 min" },
-  { from: "Casa Pino", to: "Padelpoint La Nucía", time: "ca. 10 min" },
-  { from: "Casa Pino", to: "Hércules, Alicante", time: "ca. 35 min" },
-  { from: "Casa Pino", to: "Elche", time: "ca. 50 min" },
-  { from: "Casa Pino", to: "Albir", time: "ca. 5 min" },
-  { from: "Casa Pino", to: "Altea", time: "ca. 10 min" },
-  { from: "Casa Pino", to: "Benidorm", time: "ca. 15 min" },
-  { from: "Casa Pino", to: "Dénia", time: "ca. 45 min" }
+  { g: "Reizen", from: "Vliegveld Alicante", to: "Casa Pino", time: "ca. 45 min" },
+  { g: "Reizen", from: "Casa Pino", to: "Padelpoint La Nucía", time: "ca. 10 min" },
+  { g: "Reizen", from: "Casa Pino", to: "Hércules, Alicante", time: "ca. 35 min" },
+  { g: "Reizen", from: "Casa Pino", to: "Elche", time: "ca. 50 min" },
+  { g: "Uitjes", from: "Casa Pino", to: "Albir", time: "ca. 5 min" },
+  { g: "Uitjes", from: "Casa Pino", to: "Altea", time: "ca. 10 min" },
+  { g: "Uitjes", from: "Casa Pino", to: "Benidorm", time: "ca. 15 min" },
+  { g: "Uitjes", from: "Casa Pino", to: "Dénia", time: "ca. 45 min" }
 ];
 
 export const IDEA_CATS = [

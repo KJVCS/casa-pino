@@ -42,8 +42,8 @@ button { cursor: pointer; }
 .hero .kicker { color: var(--gold); padding-top: 22px; }
 .poster { position: relative; container-type: inline-size; max-width: 640px; margin: 10px auto 0; line-height: 0; }
 .poster > img { width: 100%; height: auto; display: block;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%); }
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 68%, transparent 94%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 68%, transparent 94%); }
 @media (min-width: 680px) {
   .poster > img {
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 74%, transparent 99%), linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
@@ -54,7 +54,10 @@ button { cursor: pointer; }
 .ptitle { position: absolute; left: 0; right: 0; top: 7.5%; color: var(--night); line-height: 1; pointer-events: none; }
 .ptitle h1 { margin: 0; font: 500 13.5cqw/1 var(--title); letter-spacing: .1em; text-transform: uppercase; }
 .ptitle p { margin: 1.8cqw 0 0; font: 400 3.6cqw/1 var(--quote); letter-spacing: .35em; text-transform: uppercase; }
-.ptap { position: absolute; left: 0; right: 0; bottom: 8%; margin: 0; padding: 0 8%; font: italic 400 3.9cqw/1.4 var(--quote); color: var(--cream); line-height: 1.4; }
+.pbot { position: absolute; left: 0; right: 0; bottom: 4%; padding: 0 7%; line-height: 1.35; }
+.pq { margin: 0; font: italic 400 5.4cqw/1.3 var(--quote); color: var(--cream); }
+.pn { margin: 1cqw 0 0; font: 400 3.4cqw/1.3 var(--body); color: var(--lilac); }
+.ptap { margin: 3.4cqw 0 0; font: italic 400 3.5cqw/1.4 var(--quote); color: var(--cream); }
 .ptap b { font-style: normal; color: var(--gold); }
 .caption { max-width: 560px; margin: -4px auto 0; padding: 0 20px; color: var(--lilac); font: italic 400 .8rem/1.5 var(--quote); }
 .hs { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; padding: 0; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.9); background: transparent; box-shadow: 0 0 0 1px rgba(29,22,38,.25); }
@@ -114,8 +117,9 @@ button { cursor: pointer; }
 .pcard .st b { min-width: 9cqw; font: 500 max(7cqw, 14px)/1 var(--title); color: var(--m); letter-spacing: 0; }
 .pcard .scout { position: absolute; left: 7cqw; right: 7cqw; top: 101cqw; padding-top: 6cqw; border-top: .5cqw solid var(--m); text-align: center; font: italic 400 max(5.4cqw, 12px)/1.45 var(--quote); opacity: .85; }
 .pcard .scout i { display: block; margin-top: 2cqw; font: 700 max(3.8cqw, 10px)/1 var(--body); font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: var(--m); }
-.pcard .ft { position: absolute; left: 0; right: 0; bottom: 4cqw; text-align: center; font: 700 max(3.4cqw, 9px)/1 var(--body); letter-spacing: .26em; opacity: .6; }
+.pcard .ft { position: absolute; left: 0; right: 0; bottom: 4cqw; text-align: center; font: 700 max(3.2cqw, 9px)/1 var(--body); letter-spacing: .12em; opacity: .6; white-space: nowrap; }
 .pcard .stamp2 { position: absolute; right: -3cqw; top: 58cqw; z-index: 3; transform: rotate(14deg); padding: 2cqw 3.4cqw; border: 1cqw solid #E58A6F; color: #E58A6F; background: rgba(29,22,38,.85); font: 800 max(4.6cqw, 10px)/1 var(--body); letter-spacing: .18em; text-transform: uppercase; }
+.pcard .stamp2.lant { border-color: #E2543A; color: #FFF9EF; background: #B8321F; }
 .pcard .crown2 { position: absolute; left: 50%; top: -12cqw; z-index: 4; transform: translateX(-50%); width: 22cqw; height: 14cqw; background: var(--gold); clip-path: polygon(0 100%, 0 25%, 25% 60%, 50% 0, 75% 60%, 100% 25%, 100% 100%); }
 .pcard.brons { --m: #B7764A; --bg: #2B2236; --t: #D8CDBF; }
 .pcard.brons .win img { filter: grayscale(1); opacity: .7; }
@@ -171,7 +175,7 @@ section.panel[hidden] { display: none; }
 .steps li.ok { color: var(--ink); }
 .steps li.ok i { background: var(--terra); border-color: var(--terra); }
 .hello { margin: 30px 0 0; font: italic 400 1.15rem/1.45 var(--quote); }
-.hello b { font-style: normal; font-family: var(--title); letter-spacing: .08em; text-transform: uppercase; }
+.hello b { font-style: normal; font-weight: 700; }
 
 .sec { display: flex; align-items: baseline; gap: 14px; margin: 46px 0 6px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .sec .nr { font: 400 2.4rem/1 var(--title); color: var(--terra); }
@@ -197,8 +201,8 @@ section.panel[hidden] { display: none; }
 .pass .stub { position: relative; display: grid; align-content: center; justify-items: center; min-width: 82px; padding: 10px 12px; border-left: 2px dashed var(--rule); text-align: center; }
 .pass .stub::before, .pass .stub::after { content: ""; position: absolute; left: -9px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--rule); }
 .pass .stub::before { top: -9px; } .pass .stub::after { bottom: -9px; }
-.pass .stub b { font: 400 1.05rem/1 var(--quote); }
-.pass .stub small { font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.pass .stub b { font: 500 1.05rem/1 var(--title); letter-spacing: .12em; }
+.pass .stub small { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 3px 0; }
 .pass.graag .stub { background: var(--terra); color: var(--card); border-left-color: var(--terra-d); }
 .pass.graag .stub small { color: var(--pils-l); }
 .tri { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1.5px solid var(--rule); }
@@ -235,7 +239,8 @@ button.cell:active { transform: scale(.96); }
 .nopadel[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
 
 /* Gewone keuzes */
-.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px; }
+.choice { text-align: center; }
 .choice { position: relative; padding: 11px 16px; border: 1.5px solid var(--rule); background: var(--card); cursor: pointer; font-weight: 600; font-size: .9rem; transition: background .15s, border-color .15s; }
 .choice:hover { border-color: var(--ink); }
 .choice input { position: absolute; opacity: 0; pointer-events: none; }
@@ -283,6 +288,7 @@ button.cell:active { transform: scale(.96); }
 .sl small { margin-left: 6px; color: var(--muted); }
 .sl input { width: 100%; accent-color: var(--terra); }
 .sl output { font: 500 1.2rem/1 var(--title); text-align: right; color: var(--terra); }
+.sl output.tmp { color: #B9A994; }
 #selfOk { margin-top: 10px; }
 .duel { padding: 18px 14px 14px; background: var(--night); color: var(--cream); text-align: center; }
 .duel p { margin: 0 0 14px; font: italic 400 1.1rem/1.35 var(--quote); }
@@ -365,6 +371,7 @@ textarea { min-height: 76px; resize: vertical; }
 .mtx .c .sc { font: 500 1.3rem/1 var(--title); }
 .mtx .c .sc small { font: 400 .72rem/1 var(--body); color: var(--muted); margin-left: 4px; }
 .mtx .c .no { margin-top: 6px; color: var(--terra-d); font-weight: 600; }
+.mtx .c .stack, .camp .stack, .rank .stack { padding-top: 10px; }
 .flex-note { margin: 12px 0 0; font-size: .82rem; color: var(--muted); }
 .hgrid .cell { min-height: 78px; }
 .hgrid .cell b { font: 500 1.1rem/1 var(--title); }
@@ -387,15 +394,55 @@ td.pp .av { width: 28px; }
 td.nn { color: #B9A994; }
 
 /* ---------- Waar ---------- */
-.where { margin-top: 30px; padding: 40px 0 10px; border-top: 2px solid var(--ink); }
+.where { margin-top: 22px; }
 .where-in { display: grid; gap: 24px; align-items: center; }
 @media (min-width: 760px) { .where-in { grid-template-columns: 1.1fr 1fr; } }
 .where img { width: 100%; height: auto; }
-.where h2 { margin: 0 0 14px; font: 500 1.3rem/1 var(--title); letter-spacing: .16em; text-transform: uppercase; }
+.where h4 { margin: 14px 0 2px; font: 600 .66rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
 .legs { margin: 0; padding: 0; list-style: none; }
 .legs li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px dotted var(--muted); font-size: .9rem; }
 .legs li b { font: 400 .95rem/1.2 var(--quote); white-space: nowrap; }
-.foot { padding: 26px 20px 30px; text-align: center; color: var(--muted); font: italic 400 .9rem/1.6 var(--quote); }
+.foot { margin: 0; border-top: 2px solid var(--ink); padding: 26px 20px 30px; text-align: center; color: var(--muted); font: italic 400 .9rem/1.6 var(--quote); }
+
+
+/* Stand extra */
+.stand-top .lines span { display: block; }
+.rank { display: none; margin: 0; padding: 0; list-style: none; }
+.rank li { margin: 0 0 6px; padding: 12px; border: 1.5px solid var(--rule); background: var(--paper); font-size: .84rem; }
+.rank li.lead { border-color: var(--terra); background: var(--terra-l); }
+.rank li.blocked { background: repeating-linear-gradient(-45deg, var(--paper) 0 8px, #EADCC8 8px 10px); }
+.rank .rt b { display: block; font-weight: 600; }
+.rank .rt small { color: var(--muted); }
+.rank .sc { margin-top: 6px; font: 500 1.2rem/1 var(--title); }
+.rank .sc small { font: 400 .72rem/1 var(--body); color: var(--muted); margin-left: 4px; }
+.rank .no { margin-top: 6px; color: var(--terra-d); font-weight: 600; }
+@media (max-width: 759px) { .mtx { display: none; } .rank { display: block; } }
+.plan .fixed { margin: 0 0 14px; padding: 0; max-width: none; }
+.loting .match { margin: 14px 0 0; }
+.vsrow { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; }
+.vsrow em { font: italic 400 1rem/1 var(--quote); color: var(--muted); }
+.duo { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 12px 8px 30px; background: var(--paper); border: 1.5px solid var(--rule); }
+.duo .pl { display: grid; justify-items: center; gap: 4px; text-align: center; }
+.duo .pl .av { width: 46px; }
+.duo .pl span { font: 600 .74rem/1.1 var(--body); }
+.duo .pl small { color: var(--muted); font-size: .7rem; }
+.duo > b { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font: 500 1rem/1 var(--title); color: var(--terra); }
+.card-sec .btns { margin-top: 14px; }
+
+/* Onthulling */
+.reveal { position: fixed; inset: 0; z-index: 60; overflow-y: auto; background: var(--night); color: var(--cream); text-align: center; padding: 34px 16px 50px; }
+.reveal[hidden] { display: none; }
+.reveal .kicker { color: var(--gold); }
+.reveal h2 { margin: 10px 0 26px; font: 500 clamp(1.8rem, 7vw, 3rem)/1.1 var(--title); letter-spacing: .1em; text-transform: uppercase; }
+.flipdeck { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 14px; max-width: 980px; margin: 0 auto 28px; }
+@media (min-width: 760px) { .flipdeck { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.flip { perspective: 1200px; }
+.fi { position: relative; transform-style: preserve-3d; transform: rotateY(180deg); animation: flipin .9s cubic-bezier(.2,.7,.2,1) var(--d) forwards; }
+.fi .front, .fi .back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.fi .back { position: absolute; inset: 0; transform: rotateY(180deg); display: grid; place-items: center; background: var(--night-2); border: 3px solid var(--gold); border-radius: 50% 50% 18px 18px / 30% 30% 5% 5%; }
+.fi .back span { font: 500 2.6rem/1 var(--title); letter-spacing: .15em; color: var(--gold); }
+@keyframes flipin { to { transform: rotateY(0deg); } }
+@media (prefers-reduced-motion: reduce) { .fi { animation: none; transform: none; } }
 
 /* Toast */
 .toast { position: fixed; z-index: 40; left: 50%; top: 14px; transform: translate(-50%, -20px); opacity: 0; pointer-events: none; width: max-content; max-width: calc(100vw - 32px); padding: 11px 18px; background: var(--ink); color: var(--card); font: italic 400 .92rem/1.35 var(--quote); transition: opacity .25s, transform .25s; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
@@ -412,15 +459,12 @@ td.nn { color: #B9A994; }
 <header class="hero" id="hero">
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
-    <img src="photo.jpg?v=9" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
+    <img src="photo.jpg?v=10" width="1200" height="1600" alt="De groep in sportkleren in een witte zaal, Yung Marie ligt vooraan op de vloer">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
     <div data-hs></div>
-    <p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p>
+    <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
   </div>
-  <p class="quote">‘Pils, padel en goeie gesprekken.’</p>
-  <p class="nudge">Jouw stem telt (een beetje).</p>
   <div class="count" id="count"></div>
-  <div class="fixed" id="fixed"></div>
   <div class="pick">
     <h2>Kies je kaart</h2>
     <p>Je kaart wordt goud als je alles hebt ingevuld.</p>
@@ -456,18 +500,13 @@ td.nn { color: #B9A994; }
   <section class="panel" id="stand" role="tabpanel" aria-labelledby="tab-stand" hidden></section>
 </main>
 
-<section class="where">
-  <div class="wrap where-in">
-    <img src="map.svg?v=9" alt="Stippelkaart van de Costa Blanca met Casa Pino, Benidorm, Alicante, Elche en het vliegveld" width="410" height="357">
-    <div><h2>Waar we zitten</h2><ul class="legs" id="legs"></ul></div>
-  </div>
-  <p class="foot">‘Goed overleg, geen democratie.’</p>
-</section>
+<p class="foot">‘Goed overleg, geen democratie.’</p>
+<div class="reveal" id="reveal" hidden></div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "9";
+const V = "10";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -604,8 +643,6 @@ function toast(msg, sub = "", err = false) {
   $("#strip").innerHTML = left >= 0
     ? `Invullen vóór <b>${dlTxt}</b>${left <= 7 ? ` (nog ${left === 0 ? "vandaag" : left === 1 ? "1 dag" : left + " dagen"})` : ""}. Daarna vervalt de democratie.`
     : `De deadline is verlopen, er wordt geboekt.`;
-  $("#fixed").innerHTML = FIXED.map((f) => `<div><small>Staat vast</small><b>${esc(f.t)}</b>${f.d ? `<span>${esc(f.d)}</span>` : ""}</div>`).join("");
-  $("#legs").innerHTML = WHERE.map((w) => `<li><span>${esc(w.from)} → ${esc(w.to)}</span><b>${esc(w.time)}</b></li>`).join("");
 })();
 
 /* ---------- kaarten ---------- */
@@ -619,13 +656,14 @@ function cardHTML(p, opts = {}) {
   const ovr = sc ? sc.ovr : null;
   const stats = sc
     ? `<div class="st">${STATS.map(([k, l]) => `<div><b>${sc[k]}</b>${l}</div>`).join("")}</div>`
-    : `<div class="scout">Scouting loopt…<i>${duelsPlayed()} duels gespeeld</i></div>`;
+    : `<div class="scout">Scouting loopt…<i>Onthulling 21 november</i></div>`;
+  const lantern = lanternIds().includes(p.id);
   const subTxt = sc && sc.self ? `Zelfbeeld ${sc.self} · groep ${sc.ovr}` : sub;
   return `<div class="cw"><div class="pcard ${tier}${opts.me ? " me" : ""}">${crown ? '<span class="crown2"></span>' : ""}<div class="in"><div class="str"></div>
     <div class="win"><img src="avatars/${p.id}.jpg?v=${V}" alt="" loading="lazy"></div>
     ${ovr !== null || posTxt ? `<div class="ovr"><b>${ovr ?? "??"}</b><span>${posTxt || "???"}</span></div>` : ""}
     <div class="nm"><b>${esc(p.name)}</b><small>${subTxt}</small></div>${stats}
-    <div class="ft">Casa Pino × Padel · 2027</div></div>${st === "done" && !crown ? '<span class="stamp2">Ingevuld</span>' : ""}</div></div>`;
+    <div class="ft">Casa Pino × Padel · 2027</div></div>${lantern ? '<span class="stamp2 lant">Rode lantaarn</span>' : st === "done" && !crown ? '<span class="stamp2">Ingevuld</span>' : ""}</div></div>`;
 }
 
 /* ---------- kop ---------- */
@@ -742,7 +780,7 @@ function renderForm() {
       const dec = DECISIONS[q.id];
       h += `<div class="q" data-q="${q.id}">${typeof dec === "string" ? `<span class="decided">Besloten: ${esc(optLabel(q, dec))}</span>` : ""}<h3>${esc(q.title)}</h3><p class="sub">${esc(q.sub)}</p>`;
       if (q.type === "flight") {
-        h += `<div class="passes">${q.options.map((o) => `<div class="pass" data-pass="${q.id}-${o.id}"><div class="main"><div class="air">${o.airline}</div><div class="time">${o.dep}<span>→</span>${o.arr}</div>${o.detail ? `<div class="det">${esc(o.detail)}</div>` : ""}</div><div class="stub"><b>${eur(FLIGHT[o.id].ret)}</b><small>retour</small></div>
+        h += `<div class="passes">${q.options.map((o) => `<div class="pass" data-pass="${q.id}-${o.id}"><div class="main"><div class="air">${o.airline}</div><div class="time">${o.dep}<span>→</span>${o.arr}</div>${o.detail ? `<div class="det">${esc(o.detail)}</div>` : ""}</div><div class="stub"><b>${q.id === "heen" ? "AMS" : "ALC"}</b><small>naar</small><b>${q.id === "heen" ? "ALC" : "AMS"}</b></div>
           <div class="tri" role="radiogroup" aria-label="${o.airline} ${o.dep}">${TRI.map((t) => `<label class="${t.id[0]}"><input type="radio" name="${q.id}-${o.id}" value="${t.id}" data-q="${q.id}" data-o="${o.id}">${t.label}</label>`).join("")}</div></div>`).join("")}</div>`;
         if (q.id === "terug") h += `<p class="fnote" id="fnote"></p>`;
       } else if (q.type === "grid") {
@@ -778,7 +816,7 @@ function live() {
   $("#sd-cost").innerHTML = costHTML(mine);
   const pr = progress(mine), f = $("#finish");
   if (pr.done === pr.total) {
-    f.innerHTML = `<div class="finish"><div style="max-width:220px;margin:0 auto">${cardHTML(byId[me])}</div><h3>Je kaart is goud. Er wacht een speciale verrassing op je!</h3><p>Aanpassen kan tot de deadline.</p><div class="btns"><button class="btn gold" data-go="stand">Bekijk het plan</button><button class="btn ghost" data-go="ideas">Idee toevoegen</button></div></div>`;
+    f.innerHTML = `<div class="finish"><div style="max-width:220px;margin:0 auto">${cardHTML(byId[me])}</div><h3>Je kaart is goud. Er wacht een speciale verrassing op je!</h3><p>Aanpassen kan tot de deadline.</p><div class="btns"><button class="btn gold" data-go="stand">Bekijk het plan</button><button class="btn ghost" data-go="ideas">Idee toevoegen</button>${SCORES ? `<button class="btn ghost" data-savecard="${me}">Bewaar mijn kaart</button>` : ""}</div></div>`;
   } else {
     const left = pr.total - pr.done;
     const open = QUESTIONS.filter((q) => !answered(q, mine)).map((q) => STEPN[q.id].toLowerCase()).join(", ");
@@ -914,7 +952,7 @@ function computeScores(docs) {
 }
 async function reveal() {
   if (!REVEALED) return;
-  try { SCORES = computeScores(await listScout()); renderHead(); renderStand(); live(); }
+  try { SCORES = computeScores(await listScout()); renderHead(); renderStand(); live(); showReveal(); }
   catch (e) { /* nog dicht of geen verbinding: kaarten blijven op scouting */ }
 }
 
@@ -950,7 +988,7 @@ function renderScout() {
   }
   if (scoutErr === "net") { box.innerHTML = h + `<p class="err">De scouting is niet bereikbaar. Vernieuw de pagina.</p>`; return; }
   if (!scoutLoaded) { box.innerHTML = h + `<p class="sub">Laden…</p>`; return; }
-  h += `<h4 class="sh">Zelfbeeld</h4><p class="sub">Hoe goed ben je echt? Na de deadline staat dit naast het oordeel van de groep.</p><div class="sliders">${STATS.map(([k, l, nm, d]) => `<label class="sl"><span><b>${l}</b> ${nm}<small>${d}</small></span><input type="range" min="50" max="99" step="1" value="${scout.self[k] ?? 75}" data-self="${k}"><output id="o-${k}">${scout.self[k] ?? "–"}</output></label>`).join("")}</div>${mine._self ? "" : `<button class="btn small" id="selfOk">Zo is het</button>`}`;
+  h += `<h4 class="sh">Zelfbeeld</h4><p class="sub">Hoe goed ben je echt? Na de deadline staat dit naast het oordeel van de groep.</p><div class="sliders">${STATS.map(([k, l, nm, d]) => `<label class="sl"><span><b>${l}</b> ${nm}<small>${d}</small></span><input type="range" min="50" max="99" step="1" value="${scout.self[k] ?? 75}" data-self="${k}"><output id="o-${k}" class="${typeof scout.self[k] === "number" ? "" : "tmp"}">${scout.self[k] ?? 75}</output></label>`).join("")}</div>${mine._self ? "" : `<button class="btn small" id="selfOk">Zo is het</button>`}`;
   const list = SCHEDULE[me], i = scout.duels.length;
   h += `<h4 class="sh">Duels <span>${Math.min(i, list.length)} van ${list.length}</span></h4>`;
   if (i < list.length) {
@@ -964,7 +1002,7 @@ function renderScout() {
 $("#form").addEventListener("input", (e) => {
   const r = e.target.closest("[data-self]"); if (!r) return;
   scout.self[r.dataset.self] = Number(r.value);
-  $("#o-" + r.dataset.self).textContent = r.value;
+  $("#o-" + r.dataset.self).textContent = r.value; $("#o-" + r.dataset.self).className = "";
   saveScoutSoon();
   if (!mine._self && STATS.every(([k]) => typeof scout.self[k] === "number")) { mine._self = true; quiet = true; edited(); $("#selfOk")?.remove(); }
 });
@@ -1096,17 +1134,68 @@ function planHTML() {
   for (const x of arr(D.extra)) if (items[x.dag]) add(x.dag, x.tijd || "", x.wat);
   if (D.terug && fo(ft, D.terug)) { const o = fo(ft, D.terug); add("zo", o.dep, `Vlucht ${o.airline} naar huis`); }
   else add("zo", "", "Terugvlucht: volgt na de deadline", true);
-  return `<div class="plan"><h2>Het programma</h2><p>Groeit mee met wat de organisatie besluit. Nog niet alles staat vast.</p><div class="days">${DAYS.map((d) => `<div class="day"><h4>${d.long}<small>${d.date}</small></h4><ul>${items[d.id].map((i) => `<li class="${i.tbd ? "tbd" : ""}"><span>${esc(i.tijd)}</span>${esc(i.wat)}</li>`).join("")}</ul></div>`).join("")}</div></div>`;
+  const fixed = `<div class="fixed">${FIXED.map((f) => `<div><small>Staat vast</small><b>${esc(f.t)}</b>${f.d ? `<span>${esc(f.d)}</span>` : ""}</div>`).join("")}</div>`;
+  return `<div class="plan"><h2>Het programma</h2><p>Groeit mee met wat de organisatie besluit. Nog niet alles staat vast.</p>${fixed}<div class="days">${DAYS.map((d) => `<div class="day"><h4>${d.long}<small>${d.date}</small></h4><ul>${items[d.id].map((i) => `<li class="${i.tbd ? "tbd" : ""}"><span>${esc(i.tijd)}</span>${esc(i.wat)}</li>`).join("")}</ul></div>`).join("")}</div></div>`;
 }
+
+/* rode lantaarn: na de deadline wie niet klaar is; daarvoor de laatste die nog moet, of de laatste die klaar was */
+function lanternIds() {
+  const past = Date.now() > Date.parse(DEADLINE + "T23:59:59");
+  const notDone = going.filter((p) => statusOf(p.id) !== "done");
+  if (past) return notDone.map((p) => p.id);
+  if (notDone.length === 1) return [notDone[0].id];
+  if (!notDone.length) {
+    let last = null;
+    for (const p of going) { const t = (all[p.id] || {})._doneAt || 0; if (!last || t > last.t) last = { id: p.id, t }; }
+    return last ? [last.id] : [];
+  }
+  return [];
+}
+
+/* de loting: koppels die samen ongeveer even sterk zijn, links en rechts waar het kan */
+function loting() {
+  if (!SCORES) return null;
+  const ids = going.map((p) => p.id);
+  const sc = (id) => SCORES[id].ovr, pos = (id) => (all[id] || {}).pos;
+  let best = null;
+  (function rec(rest, pairs) {
+    if (!rest.length) {
+      const sums = pairs.map(([a, b]) => sc(a) + sc(b));
+      const mean = sums.reduce((x, y) => x + y, 0) / sums.length;
+      let cost = sums.reduce((t, x) => t + (x - mean) ** 2, 0);
+      for (const [a, b] of pairs) if ((pos(a) === "DRV" || pos(a) === "REV") && pos(a) === pos(b)) cost += 12;
+      if (!best || cost < best.cost) best = { cost, pairs: pairs.map((p) => ({ ids: p, sum: sc(p[0]) + sc(p[1]) })) };
+      return;
+    }
+    const [a, ...r] = rest;
+    r.forEach((b, i) => rec(r.filter((_, j) => j !== i), [...pairs, [a, b]]));
+  })(ids, []);
+  const ps = best.pairs.sort((x, y) => y.sum - x.sum);
+  const matches = [];
+  for (let i = 0; i < ps.length; i += 2) matches.push([ps[i], ps[i + 1]]);
+  return matches;
+}
+function lotingHTML() {
+  const m = loting(); if (!m) return "";
+  const duo = (d) => `<div class="duo">${d.ids.map((i) => `<div class="pl">${av(byId[i])}<span>${esc(byId[i].name)}</span><small>${SCORES[i].ovr}${(all[i] || {}).pos && all[i].pos !== "ALL" ? " · " + all[i].pos : ""}</small></div>`).join("")}<b>${d.sum}</b></div>`;
+  return `<div class="card loting"><h3>De loting</h3><p class="sub">Koppels die samen ongeveer even sterk zijn, zodat elk potje spannend wordt. Voorstel van de computer, de organisatie heeft het laatste woord.</p>${m.map((x, i) => `<div class="match"><p class="kicker">Baan ${i + 1}</p><div class="vsrow">${duo(x[0])}<em>vs</em>${duo(x[1])}</div></div>`).join("")}</div>`;
+}
+
+function whereHTML() {
+  const g = (name) => `<h4>${name}</h4><ul class="legs">${WHERE.filter((w) => w.g === name).map((w) => `<li><span>${esc(w.from)} → ${esc(w.to)}</span><b>${esc(w.time)}</b></li>`).join("")}</ul>`;
+  return `<div class="card where"><h3>Waar we zitten</h3><div class="where-in"><img src="map.svg?v=${V}" alt="Stippelkaart van de Costa Blanca met Casa Pino, Albir, Altea, Benidorm, Dénia, Alicante, Elche en het vliegveld" width="410" height="357"><div>${g("Reizen")}${g("Uitjes")}</div></div></div>`;
+}
+
 function renderStand() {
   const A = (id) => all[id] || {};
   const open = going.filter((p) => statusOf(p.id) !== "done");
-  let h = planHTML();
-  h += `<div class="stand-top"><h2>${going.length - open.length} van ${going.length} binnen</h2><p>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist de organisatie."} Scouting: ${duelsPlayed()} van ${going.length * TOTAL_DUELS} duels gespeeld${REVEALED ? ", de kaarten zijn open" : ", kaarten gaan open op 21 november"}.</p>`;
-  if (open.length) h += `<div class="todo-list">${open.map((p) => `<div class="p">${av(p)}${esc(p.name)}</div>`).join("")}</div>`;
-  h += `</div>`;
+  const past = Date.now() > Date.parse(DEADLINE + "T23:59:59");
+  let top = `<div class="stand-top"><h2>${going.length - open.length} van ${going.length} binnen</h2><p class="lines"><span>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist de organisatie."}</span><span>Scouting: ${duelsPlayed()} van ${going.length * TOTAL_DUELS} duels · ${REVEALED ? "de kaarten zijn open" : "onthulling 21 november"}</span></p>`;
+  if (open.length) top += `<div class="todo-list">${open.map((p) => `<div class="p">${av(p)}${esc(p.name)}</div>`).join("")}</div>`;
+  top += `</div>`;
+  let h = past ? planHTML() + lotingHTML() + top : top + planHTML();
 
-  // vluchten: welke combinatie werkt voor iedereen
+  // vluchten
   const fh = qOf("heen"), ft = qOf("terug");
   const W = { graag: 2, kan: 1 };
   const combos = [];
@@ -1120,15 +1209,17 @@ function renderStand() {
     combos.push({ ho, to, score, no, yes });
   }
   const best = Math.max(...combos.filter((c) => !c.no.length).map((c) => c.score), 0);
+  const cls = (c) => (c.no.length ? "blocked" : best && c.score === best ? "lead" : "");
+  const noTxt = (c) => (c.no.length ? `<div class="no">Kan niet: ${c.no.map((i) => esc(byId[i].name)).join(", ")}</div>` : "");
   h += `<div class="card"><h3>Vluchten: welke combinatie werkt?</h3><p class="sub">Punten: voorkeur = 2, kan ook = 1 per richting. Doorgestreept als iemand niet kan. Gezichten: wie bij allebei een voorkeur heeft.</p><div class="mtx"><span></span>${ft.options.map((o) => `<div class="hd">Terug<b>${o.airline} ${o.dep}</b></div>`).join("")}`;
   for (const ho of fh.options) {
     h += `<div class="hd">Heen<b>${ho.airline} ${ho.dep}</b></div>`;
     for (const to of ft.options) {
       const c = combos.find((x) => x.ho === ho && x.to === to);
-      h += `<div class="c ${c.no.length ? "blocked" : best && c.score === best ? "lead" : ""}"><div class="pr">${rng(flightRange(ho.id, to.id))}</div><div class="sc">${c.score}<small>punten</small></div>${c.yes.length ? faces(c.yes) : ""}${c.no.length ? `<div class="no">Kan niet: ${c.no.map((i) => esc(byId[i].name)).join(", ")}</div>` : ""}</div>`;
+      h += `<div class="c ${cls(c)}"><div class="pr">${rng(flightRange(ho.id, to.id))}</div><div class="sc">${c.score}<small>punten</small></div>${c.yes.length ? faces(c.yes) : ""}${noTxt(c)}</div>`;
     }
   }
-  h += `</div></div>`;
+  h += `</div><ol class="rank">${[...combos].sort((x, y) => (x.no.length > 0) - (y.no.length > 0) || y.score - x.score).map((c) => `<li class="${cls(c)}"><div class="rt"><b>Heen ${c.ho.airline} ${c.ho.dep} · terug ${c.to.airline} ${c.to.dep}</b><small>${rng(flightRange(c.ho.id, c.to.id))}</small></div><div class="sc">${c.score}<small>punten</small></div>${c.yes.length ? faces(c.yes) : ""}${noTxt(c)}</li>`).join("")}</ol></div>`;
 
   // padel
   h += `<div class="card"><h3>Padelrooster</h3><p class="sub">Per dagdeel: hoeveel willen trainen, spelen, en wie liever niet.</p><div class="grid hgrid"><span></span>${DAYS.map((d) => `<div class="h"><b>${d.label}</b><small>${d.date}</small></div>`).join("")}`;
@@ -1147,15 +1238,18 @@ function renderStand() {
   const np = going.filter((p) => noPadel(A(p.id)));
   h += `</div>${np.length ? `<p class="flex-note">Geen padel: ${np.map((p) => esc(p.name)).join(", ")}</p>` : ""}</div>`;
 
+  // kampen: alleen wat gekozen is
   for (const id of ["tegen", "voetbal", "rijden"]) {
     const q = qOf(id);
     const cs = q.options.map((o) => ({ o, ids: going.filter((p) => A(p.id)[id] === o.id).map((p) => p.id) }));
     const m = Math.max(...cs.map((c) => c.ids.length));
+    const shown = cs.filter((c) => c.ids.length);
     const extra = id === "rijden" ? `<p class="sub">Nodig: 4 bestuurders (2 per auto). Nu ${cs[0].ids.length} met ‘Ja, prima’ en ${cs[1].ids.length} met ‘Als het moet’.</p>` : "";
-    h += `<div class="card"><h3>${esc(q.title)}</h3>${extra}<div class="camps">${cs.map((c) => `<div class="camp ${m && c.ids.length === m ? "lead" : ""}"><div class="lb"><span>${esc(c.o.label)}</span><b>${c.ids.length}</b></div>${faces(c.ids)}</div>`).join("")}</div></div>`;
+    h += `<div class="card"><h3>${esc(q.title)}</h3>${extra}${shown.length ? `<div class="camps">${shown.map((c) => `<div class="camp ${c.ids.length === m ? "lead" : ""}"><div class="lb"><span>${esc(c.o.label)}</span><b>${c.ids.length}</b></div>${faces(c.ids)}</div>`).join("")}</div>` : `<p class="none">Nog geen antwoorden.</p>`}</div>`;
   }
 
-  h += `<div class="card-sec"><h3>De selectie</h3><div class="fan">${going.map((p) => `<button tabindex="-1" aria-hidden="true">${cardHTML(p, { me: p.id === me })}</button>`).join("")}</div></div>`;
+  h += `<div class="card-sec"><h3>De selectie</h3><div class="fan">${going.map((p) => `<button tabindex="-1" aria-hidden="true">${cardHTML(p, { me: p.id === me })}</button>`).join("")}</div>${SCORES && me ? `<div class="btns"><button class="btn gold" data-savecard="${me}">Bewaar mijn kaart</button></div>` : ""}</div>`;
+  if (!past) h += lotingHTML();
 
   const sl = (v) => arr(v).filter((x) => x !== "geen").map((x) => SLOT_LABEL[x]).join(", ") || (arr(v).includes("geen") ? "geen" : "");
   const fl = (a, k) => { const t = triOf(a, k); return AIRS.filter((x) => t[x]).map((x) => `${FLIGHT[x].name.slice(0, 4)}: ${TRI.find((y) => y.id === t[x]).label.toLowerCase()}`).join(", "); };
@@ -1166,8 +1260,70 @@ function renderStand() {
     h += `<tr><td class="pp">${avS(p)}${esc(p.name)}</td>${td(fl(a, "heen"))}${td(fl(a, "terug"))}${td(sl(a.training))}${td(sl(a.potje))}${td(a.tegen && optLabel(qOf("tegen"), a.tegen))}${td(a.voetbal && optLabel(qOf("voetbal"), a.voetbal))}${td(a.rijden && optLabel(qOf("rijden"), a.rijden))}${td(any ? rng(costs(a).tot) : "")}</tr>`;
   }
   h += `</tbody></table></div></div>`;
+  h += whereHTML();
   $("#stand").innerHTML = h;
 }
+
+/* ---------- onthulling ---------- */
+function showReveal() {
+  if (!SCORES) return;
+  try { if (localStorage.getItem("casaPinoRevealSeen")) return; } catch (e) { /* ok */ }
+  const r = $("#reveal");
+  r.innerHTML = `<div class="rv-in"><p class="kicker">21 november</p><h2>De scouts zijn eruit.</h2><div class="flipdeck">${going.map((p, i) => `<div class="flip" style="--d:${(0.6 + i * 0.45).toFixed(2)}s"><div class="fi"><div class="back"><span>CP</span></div><div class="front">${cardHTML(p, { me: p.id === me })}</div></div></div>`).join("")}</div><div class="btns"><button class="btn gold" id="revealClose">Bekijk de selectie</button></div></div>`;
+  r.hidden = false; document.body.style.overflow = "hidden";
+}
+document.addEventListener("click", (e) => {
+  if (e.target.id === "revealClose") {
+    try { localStorage.setItem("casaPinoRevealSeen", "1"); } catch (x) { /* ok */ }
+    $("#reveal").hidden = true; document.body.style.overflow = "";
+    setTab("stand"); window.scrollTo({ top: 0 });
+  }
+});
+
+/* ---------- kaart bewaren als plaatje ---------- */
+function loadImg(src) { return new Promise((ok, bad) => { const i = new Image(); i.onload = () => ok(i); i.onerror = bad; i.src = src; }); }
+async function drawCard(p) {
+  await document.fonts.ready;
+  const st = statusOf(p.id), crown = p.id === crownId(), sc = SCORES[p.id];
+  const T = crown ? { m: "#E7B85A", bg: "#923520", t: "#FFF9EF" } : st === "done" ? { m: "#E7B85A", bg: "#1D1626", t: "#F2E7D3" } : st === "part" ? { m: "#CFC8BE", bg: "#2B2236", t: "#F2E7D3" } : { m: "#B7764A", bg: "#2B2236", t: "#D8CDBF" };
+  const W = 750, H = 1110, c = document.createElement("canvas"); c.width = W; c.height = H;
+  const x = c.getContext("2d");
+  x.fillStyle = "#1D1626"; x.fillRect(0, 0, W, H);
+  const arch = (l, t, w, h, rx, ry, rb) => { x.beginPath(); x.moveTo(l, t + ry); x.ellipse(l + w / 2, t + ry, w / 2, ry, 0, Math.PI, 0); x.lineTo(l + w, t + h - rb); x.quadraticCurveTo(l + w, t + h, l + w - rb, t + h); x.lineTo(l + rb, t + h); x.quadraticCurveTo(l, t + h, l, t + h - rb); x.closePath(); };
+  const L = 60, Tp = 50, CW = 630, CH = 1000;
+  arch(L, Tp, CW, CH, CW / 2, 300, 40); x.fillStyle = T.m; x.fill();
+  arch(L + 13, Tp + 13, CW - 26, CH - 26, CW / 2 - 13, 287, 30); x.fillStyle = T.bg; x.fill();
+  const wl = L + 63, wt = Tp + 48, ww = CW - 126, wh = 448;
+  arch(wl, wt, ww, wh, ww / 2, 250, 24); x.fillStyle = T.m; x.fill();
+  arch(wl + 5, wt + 5, ww - 10, wh - 10, ww / 2 - 5, 245, 20); x.save(); x.clip();
+  x.fillStyle = "#FDEED9"; x.fillRect(wl, wt, ww, wh);
+  const img = await loadImg(`avatars/${p.id}.jpg?v=${V}`); x.drawImage(img, wl + 5, wt - 10, ww - 10, ww - 10); x.restore();
+  x.fillStyle = T.bg; x.fillRect(L + 35, Tp + 240, 110, 120); x.strokeStyle = T.m; x.lineWidth = 4; x.strokeRect(L + 35, Tp + 240, 110, 120);
+  x.textAlign = "center"; x.fillStyle = T.m; x.font = "500 66px 'Bodoni Moda', Georgia, serif"; x.fillText(String(sc.ovr), L + 90, Tp + 315);
+  const pos = (all[p.id] || {}).pos; x.fillStyle = T.t; x.font = "700 22px Figtree, sans-serif"; x.fillText(pos && pos !== "ALL" ? pos : "ALL", L + 90, Tp + 347);
+  x.fillStyle = T.m; x.font = "500 54px 'Bodoni Moda', Georgia, serif"; x.letterSpacing = "6px"; x.fillText(p.name.toUpperCase(), W / 2, Tp + 575); x.letterSpacing = "0px";
+  x.fillStyle = T.t; x.font = "italic 400 26px 'Libre Baskerville', Georgia, serif"; x.fillText(sc.self ? `Zelfbeeld ${sc.self} · groep ${sc.ovr}` : "Casa Pino-selectie", W / 2, Tp + 620);
+  x.fillStyle = T.m; x.fillRect(L + 90, Tp + 660, CW - 180, 3);
+  STATS.forEach(([k, l], i) => {
+    const col = i % 2, row = Math.floor(i / 2), cx = L + 120 + col * 230, cy = Tp + 740 + row * 80;
+    x.textAlign = "left"; x.fillStyle = T.m; x.font = "500 48px 'Bodoni Moda', Georgia, serif"; x.fillText(String(sc[k]), cx, cy);
+    x.fillStyle = T.t; x.font = "700 28px Figtree, sans-serif"; x.fillText(l, cx + 80, cy - 4);
+  });
+  x.textAlign = "center"; x.globalAlpha = .65; x.fillStyle = T.t; x.font = "700 20px Figtree, sans-serif"; x.fillText("CASA PINO × PADEL · 2027", W / 2, Tp + CH - 42); x.globalAlpha = 1;
+  if (crown) { x.fillStyle = "#E7B85A"; x.beginPath(); const cx = W / 2, cy = Tp - 20; x.moveTo(cx - 60, cy + 50); x.lineTo(cx - 60, cy + 5); x.lineTo(cx - 30, cy + 30); x.lineTo(cx, cy - 15); x.lineTo(cx + 30, cy + 30); x.lineTo(cx + 60, cy + 5); x.lineTo(cx + 60, cy + 50); x.closePath(); x.fill(); }
+  return c;
+}
+document.addEventListener("click", async (e) => {
+  const b = e.target.closest("[data-savecard]"); if (!b || !SCORES) return;
+  try {
+    const c = await drawCard(byId[b.dataset.savecard]);
+    const blob = await new Promise((ok) => c.toBlob(ok, "image/png"));
+    const file = new File([blob], `casa-pino-${b.dataset.savecard}.png`, { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: "Mijn Casa Pino-kaart" }); return; }
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = file.name; document.body.appendChild(a); a.click(); a.remove();
+    toast("Kaart opgeslagen.", "Gooi 'm in de groepsapp");
+  } catch (x) { if (x && x.name !== "AbortError") toast("Opslaan lukte niet op dit apparaat.", "", true); }
+});
 
 /* ---------- tekenen ---------- */
 function renderAll(forms) {
