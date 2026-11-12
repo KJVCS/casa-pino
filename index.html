@@ -62,10 +62,10 @@ button { cursor: pointer; }
 .ptap b { font-style: normal; color: var(--gold); }
 .hs { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; padding: 0; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.9); background: transparent; box-shadow: 0 0 0 1px rgba(29,22,38,.25); }
 .hs::before { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 46px); height: max(100%, 46px); transform: translate(-50%, -50%); border-radius: 50%; }
-.hs:hover, .hs:focus-visible { border-style: solid; border-color: var(--gold); background: rgba(231,184,90,.15); }
+@media (hover: hover) { .hs:hover, .hs:focus-visible { border-style: solid; border-color: var(--gold); background: rgba(231,184,90,.15); } }
 .hs.out { border: 1.5px dotted rgba(255,255,255,.45); }
 .hs .tag { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); opacity: 0; pointer-events: none; background: var(--gold); color: var(--night); font: 700 10px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; padding: 5px 7px; white-space: nowrap; line-height: 1; }
-.hs:hover .tag, .hs:focus-visible .tag { opacity: 1; }
+@media (hover: hover) { .hs:hover .tag, .hs:focus-visible .tag { opacity: 1; } }
 .quote { margin: 26px auto 0; padding: 0 20px; max-width: 30ch; font: italic 400 clamp(1.2rem, 3.8vw, 1.55rem)/1.35 var(--quote); }
 .nudge { margin: 8px 0 0; color: var(--lilac); }
 .count { display: inline-flex; align-items: center; gap: 14px; margin: 24px auto 0; padding: 12px 22px; border: 1px solid var(--night-3); text-align: left; }
@@ -85,7 +85,7 @@ button { cursor: pointer; }
 .fan { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 18px 20px 14px; scroll-padding: 0 20px; scrollbar-width: none; }
 .fan::-webkit-scrollbar { display: none; }
 .fan button { flex: 0 0 min(62vw, 230px); scroll-snap-align: center; padding: 0; border: 0; background: none; text-align: left; }
-.fan button:hover .pcard, .fan button:focus-visible .pcard { transform: translateY(-6px) rotate(-1.5deg); }
+@media (hover: hover) { .fan button:hover .pcard, .fan button:focus-visible .pcard { transform: translateY(-6px) rotate(-1.5deg); } }
 @media (min-width: 900px) { .fan { display: grid; grid-template-columns: repeat(4, 210px); justify-content: center; gap: 30px 24px; overflow: visible; padding: 18px 20px 14px; } .fan button { width: 210px; } }
 .swipe { margin: 4px 0 0; color: var(--lilac); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; }
 @media (min-width: 900px) { .swipe { display: none; } }
@@ -96,7 +96,11 @@ button { cursor: pointer; }
 .mini b span { color: var(--gold); font: 400 .8rem/1 var(--quote); letter-spacing: .3em; margin-left: 8px; }
 .mini .who { display: flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--lilac); }
 .mini .who .av { width: 34px; }
-.mini .who button { padding: 0; border: 0; background: none; color: var(--lilac); text-decoration: underline; text-underline-offset: 2px; font-size: .78rem; }
+.mini .who > div { display: grid; gap: 2px; }
+@media (max-width: 480px) { .mini b span { display: none; } .mini b { font-size: .95rem; white-space: nowrap; } .mini { padding: 12px 14px; gap: 8px; } }
+.mini-lbl { white-space: nowrap; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--lilac); }
+#mini-name { white-space: nowrap; font: 500 1rem/1.1 var(--title); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.mini .who .swbtn { margin-left: 4px; padding: 9px 12px; border: 1.5px solid var(--lilac); background: none; color: var(--cream); font: 600 .74rem/1 var(--body); letter-spacing: .06em; min-height: 40px; }
 .mini[hidden], .hero[hidden] { display: none; }
 
 /* ---------- Padelkaart (100cqw = kaartbreedte) ---------- */
@@ -213,7 +217,7 @@ section.panel[hidden] { display: none; }
 .tri label { position: relative; padding: 10px 4px; text-align: center; font: 600 .8rem/1 var(--body); cursor: pointer; border-left: 1px solid var(--rule); }
 .tri label:first-child { border-left: 0; }
 .tri input { position: absolute; opacity: 0; pointer-events: none; }
-.tri label:hover { background: var(--paper); }
+@media (hover: hover) { .tri label:hover { background: var(--paper); } }
 .tri label:has(input:checked) { background: var(--ink); color: var(--card); }
 .tri label.g:has(input:checked) { background: var(--terra); }
 .tri label.n:has(input:checked) { background: #6E5D52; }
@@ -246,7 +250,7 @@ button.cell:active { transform: scale(.96); }
 .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px; }
 .choice { text-align: center; }
 .choice { position: relative; padding: 11px 16px; border: 1.5px solid var(--rule); background: var(--card); cursor: pointer; font-weight: 600; font-size: .9rem; transition: background .15s, border-color .15s; }
-.choice:hover { border-color: var(--ink); }
+@media (hover: hover) { .choice:hover { border-color: var(--ink); } }
 .choice input { position: absolute; opacity: 0; pointer-events: none; }
 .choice:has(input:checked) { background: var(--terra); border-color: var(--terra); color: var(--card); }
 .choice:has(input:focus-visible) { outline: 2px solid var(--terra); outline-offset: 2px; }
@@ -272,7 +276,7 @@ button.cell:active { transform: scale(.96); }
 .finish.todo p { color: var(--muted); margin: 0; }
 .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .btn { display: inline-block; padding: 12px 20px; border: 1.5px solid var(--terra); background: var(--terra); color: var(--card); font: 700 .72rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
-.btn:hover { background: var(--terra-d); }
+@media (hover: hover) { .btn:hover { background: var(--terra-d); } }
 .btn.ghost { background: transparent; color: inherit; border-color: currentColor; }
 .btn.small { padding: 8px 12px; font-size: .66rem; }
 .btn.gold { background: var(--gold); border-color: var(--gold); color: var(--night); }
@@ -301,7 +305,7 @@ button.cell:active { transform: scale(.96); }
 .vs { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; }
 .vs em { font: italic 400 1rem/1 var(--quote); color: var(--lilac); }
 .vs button { display: grid; justify-items: center; gap: 8px; padding: 14px 6px; border: 1.5px solid var(--night-3); background: var(--night-2); color: var(--cream); transition: border-color .15s, transform .1s; }
-.vs button:hover { border-color: var(--gold); }
+@media (hover: hover) { .vs button:hover { border-color: var(--gold); } }
 .vs button:active { transform: scale(.97); }
 .vs .av { width: 84px; }
 .vs .av img { box-shadow: 0 0 0 2px var(--night-3); }
@@ -332,7 +336,7 @@ button.cell:active { transform: scale(.96); }
 .ideaform[hidden] { display: none; }
 .field { display: grid; gap: 6px; margin: 0 0 16px; }
 .field > span { font: 600 .66rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; }
-input[type=text], textarea { width: 100%; padding: 11px 12px; border: 1.5px solid var(--rule); background: var(--paper); border-radius: 0; }
+input[type=text], textarea { width: 100%; font-size: 16px; padding: 11px 12px; border: 1.5px solid var(--rule); background: var(--paper); border-radius: 0; }
 input[type=text]:focus, textarea:focus { border-color: var(--ink); outline: none; }
 textarea { min-height: 76px; resize: vertical; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -465,7 +469,7 @@ td.nn { color: #B9A994; }
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
-    <div class="pimg"><img src="photo-hero.jpg?v=16" width="1200" height="896" alt="De groep in sportkleren, in warm zwart-wit; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
+    <div class="pimg"><img src="photo-hero.jpg?v=17" width="1200" height="896" alt="De groep in sportkleren, in warm zwart-wit; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
   </div>
   <div class="count" id="count"></div>
@@ -479,7 +483,7 @@ td.nn { color: #B9A994; }
 
 <div class="mini" id="mini" hidden>
   <b>Casa Pino<span>× Padel 2027</span></b>
-  <div class="who"><span id="mini-av"></span><div><span id="mini-name"></span><br><button data-switch>Niet jij?</button></div></div>
+  <div class="who"><span id="mini-av"></span><div><span class="mini-lbl">Je vult in als</span><span id="mini-name"></span></div><button class="swbtn" data-switch>Niet jij?</button></div>
 </div>
 
 <nav class="nav" role="tablist" aria-label="Onderdelen">
@@ -510,7 +514,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "16";
+const V = "17";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -1021,7 +1025,7 @@ function renderScout() {
   if (REVEALED) { box.innerHTML = h + `<p class="sub" style="margin-top:14px">De scouting is gesloten. Je kaart staat bij Plan & stand.</p>`; return; }
   const c = getCode();
   if (!c || scoutErr === "code") {
-    box.innerHTML = h + `<h4 class="sh">Je code</h4><p class="sub">Vier cijfers. Ze staan in het persoonlijke bericht van Kai.</p><div class="codeform"><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="codeIn" autocomplete="off" aria-label="Je code"><button class="btn" id="codeGo">Verder</button></div>${scoutErr === "code" ? `<p class="err">Die code klopt niet. Kijk nog even in het bericht van Kai.</p>` : ""}`;
+    box.innerHTML = h + `<h4 class="sh">Je code</h4><p class="sub">Vier cijfers. Ze staan in het persoonlijke bericht van Kai. Open je de site in een andere browser of via WhatsApp, dan vraagt hij er opnieuw om. Gebruik het liefst steeds je persoonlijke link.</p><div class="codeform"><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="codeIn" autocomplete="off" aria-label="Je code"><button class="btn" id="codeGo">Verder</button></div>${scoutErr === "code" ? `<p class="err">Die code klopt niet. Kijk nog even in het bericht van Kai.</p>` : ""}`;
     return;
   }
   if (scoutErr === "net") { box.innerHTML = h + `<p class="err">De scouting is niet bereikbaar. Vernieuw de pagina.</p>`; return; }
