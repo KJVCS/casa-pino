@@ -474,7 +474,7 @@ td.nn { color: #B9A994; }
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
-    <div class="pimg"><img src="photo-hero.jpg?v=19" width="1200" height="896" alt="De groep in sportkleren; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
+    <div class="pimg"><img src="photo-hero.jpg?v=20" width="1200" height="896" alt="De groep in sportkleren; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
   </div>
   <div class="count" id="count"></div>
@@ -519,7 +519,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "19";
+const V = "20";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -1010,14 +1010,14 @@ async function loadScout() {
       const self = {}; for (const [k] of STATS) { const v = Number((d.self || {})[k]); if (v >= 50 && v <= 99) self[k] = Math.round(v); }
       scout = { self, duels: arr(d.duels).filter((v) => v && typeof v === "object").slice(0, TOTAL_DUELS) };
     }
-    else { try { const l = JSON.parse(localStorage.getItem("casaPinoScout-" + me) || "null"); if (l) scout = l; } catch (e) { /* ok */ } }
+    else { try { const l = JSON.parse(localStorage.getItem("casaPinoScout2-" + me) || "null"); if (l) scout = l; } catch (e) { /* ok */ } }
     scoutLoaded = true;
   } catch (e) { scoutErr = e && e.code === "permission-denied" ? "code" : "net"; }
   renderScout();
 }
 let scoutT;
 function saveScoutSoon() {
-  try { localStorage.setItem("casaPinoScout-" + me, JSON.stringify(scout)); } catch (e) { /* ok */ }
+  try { localStorage.setItem("casaPinoScout2-" + me, JSON.stringify(scout)); } catch (e) { /* ok */ }
   clearTimeout(scoutT);
   scoutT = setTimeout(async () => {
     try { await saveScout(`${me}-${getCode()}`, { by: me, self: scout.self, duels: scout.duels.map(({ s, a, b, w }) => ({ s, a, b, w: w || null })) }); }
@@ -1318,14 +1318,14 @@ function renderStand() {
 /* ---------- onthulling ---------- */
 function showReveal() {
   if (!SCORES) return;
-  try { if (localStorage.getItem("casaPinoRevealSeen")) return; } catch (e) { /* ok */ }
+  try { if (localStorage.getItem("casaPinoRevealSeen2")) return; } catch (e) { /* ok */ }
   const r = $("#reveal");
   r.innerHTML = `<div class="rv-in"><p class="kicker">21 november</p><h2>De scouts zijn eruit.</h2><div class="flipdeck">${going.map((p, i) => `<div class="flip" style="--d:${(0.6 + i * 0.45).toFixed(2)}s"><div class="fi"><div class="back"><span>CP</span></div><div class="front">${cardHTML(p, { me: p.id === me })}</div></div></div>`).join("")}</div><div class="btns"><button class="btn gold" id="revealClose">Bekijk de selectie</button></div></div>`;
   r.hidden = false; document.body.style.overflow = "hidden";
 }
 document.addEventListener("click", (e) => {
   if (e.target.id === "revealClose") {
-    try { localStorage.setItem("casaPinoRevealSeen", "1"); } catch (x) { /* ok */ }
+    try { localStorage.setItem("casaPinoRevealSeen2", "1"); } catch (x) { /* ok */ }
     $("#reveal").hidden = true; document.body.style.overflow = "";
     setTab("stand"); window.scrollTo({ top: 0 });
   }

@@ -7,10 +7,15 @@ import { firebaseConfig } from "./firebase-config.js";
 
 const db = getFirestore(initializeApp(firebaseConfig));
 
+// Reset: alles wat vóór dit moment is opgeslagen, telt niet meer mee (antwoorden, scouting en ideeën).
+// Nieuwe reset? Zet hier de huidige tijd neer (UTC).
+export const RESET_AT = Date.parse("2026-11-12T18:35:00Z");
+const fresh = (ts) => !ts || ts.toMillis() >= RESET_AT;   // geen tijd = net zelf opgeslagen
+
 export function listen(onData, onError) {
   return onSnapshot(collection(db, "answers"), (snap) => {
     const out = {};
-    snap.forEach((d) => { out[d.id] = d.data().answers || {}; });
+    snap.forEach((d) => { const x = d.data(); if (fresh(x.updatedAt)) out[d.id] = x.answers || {}; });
     onData(out);
   }, onError);
 }
@@ -23,6 +28,7 @@ export function listenIdeas(onData, onError) {
     const out = [];
     snap.forEach((d) => {
       const x = d.data();
+      if (!fresh(x.createdAt)) return;
       out.push({ id: d.id, ...x, created: x.createdAt ? x.createdAt.toMillis() : Date.now() });
     });
     onData(out);
@@ -45,12 +51,14 @@ export function setHelper(id, person, on) {
 // ---------- Scouting: per persoon één document, id = "<naam>-<code>" ----------
 export async function getScout(docId) {
   const s = await getDoc(doc(db, "scout", docId));     // weigert bij een verkeerde code
-  return s.exists() ? s.data() : null;
+  if (!s.exists()) return null;
+  const x = s.data();
+  return fresh(x.updatedAt) ? x : { by: x.by, self: {}, duels: [] };
 }
 export function saveScout(docId, data) {
   return setDoc(doc(db, "scout", docId), { ...data, updatedAt: serverTimestamp() });
 }
 export async function listScout() {                     // pas toegestaan na de deadline
   const snap = await getDocs(collection(db, "scout"));
-  const out = []; snap.forEach((d) => out.push(d.data())); return out;
+  const out = []; snap.forEach((d) => { const x = d.data(); if (fresh(x.updatedAt)) out.push(x); }); return out;
 }
