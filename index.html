@@ -183,6 +183,7 @@ section.panel[hidden] { display: none; }
 .steps li i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--rule); flex: none; display: grid; place-items: center; font: 700 9px/1 var(--body); font-style: normal; color: var(--card); }
 .steps li.ok { color: var(--ink); }
 .steps li.ok i { background: var(--terra); border-color: var(--terra); }
+.locknote .linkbtn { display: block; margin-top: 8px; padding: 0; border: 0; background: none; color: var(--gold); font: 600 .86rem/1.3 var(--body); font-style: normal; text-decoration: underline; cursor: pointer; }
 .locknote { margin: 30px 0 0; padding: 14px 16px; background: var(--night); color: var(--cream); font: italic 400 1rem/1.45 var(--quote); border-left: 4px solid var(--gold); }
 #form.locked input, #form.locked button, #form.locked label { pointer-events: none; }
 #form.locked .passes, #form.locked .grid, #form.locked .choices, #form.locked .tri, #form.locked .sliders, #form.locked .nopadel, #form.locked .duel { opacity: .75; }
@@ -474,7 +475,7 @@ td.nn { color: #B9A994; }
   <p class="kicker">Padelreis · 4 – 7 maart · Alfàs del Pi</p>
   <div class="poster">
     <div class="ptitle"><h1>Casa Pino</h1><p>× Padel · 2027</p></div>
-    <div class="pimg"><img src="photo-hero.jpg?v=20" width="1200" height="896" alt="De groep in sportkleren; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
+    <div class="pimg"><img src="photo-hero.jpg?v=21" width="1200" height="896" alt="De groep in sportkleren; Yung Marie ligt vooraan op de vloer"><div data-hs></div></div>
     <div class="pbot"><p class="pq">‘Pils, padel en goeie gesprekken.’</p><p class="pn">Jouw stem telt (een beetje).</p><p class="ptap"><b>Selecteer jezelf</b> op de foto of kies hieronder je kaart.</p></div>
   </div>
   <div class="count" id="count"></div>
@@ -519,7 +520,7 @@ td.nn { color: #B9A994; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
-const V = "20";
+const V = "21";
 const [{ listen, save, listenIdeas, addIdea, editIdea, setHelper, getScout, saveScout, listScout }, Q, P, C] = await Promise.all([
   import(`./store.js?v=${V}`), import(`./questions.js?v=${V}`), import(`./people.js?v=${V}`), import(`./cards.js?v=${V}`)
 ]);
@@ -781,7 +782,7 @@ for (const k of ["mine", "ideas", "stand"]) $("#tab-" + k).addEventListener("cli
   const top = $("main").getBoundingClientRect().top + scrollY - 60;
   if (scrollY > top) window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
 });
-setTab("mine");
+setTab(REVEALED ? "stand" : "mine");
 
 /* ---------- mijn keuzes ---------- */
 function gridHTML(a) {
@@ -805,7 +806,7 @@ function renderForm() {
   if (!me) { box.innerHTML = `<div class="prompt">Kies hierboven je kaart. Daarna gaat alles vanzelf: elke keuze wordt meteen opgeslagen.</div>`; side.innerHTML = ""; return; }
   if (!loaded) { box.innerHTML = `<div class="prompt">Laden…</div>`; return; }
   let h = LOCKED
-    ? `<p class="locknote">De democratie is vervallen. Aanpassen kan niet meer: dit zijn je keuzes zoals ze zijn doorgegeven.</p>`
+    ? `<p class="locknote">De democratie is vervallen. Aanpassen kan niet meer: dit zijn je keuzes zoals ze zijn doorgegeven.${SCORES ? ` <button class="linkbtn" data-go="stand">Bekijk de scoutingsrapporten en de loting →</button>` : ""}</p>`
     : `<p class="hello">Hoi <b>${esc(byId[me].name)}</b>. Vijf minuten werk, dan is je kaart goud.</p>`;
   for (const s of SECTIONS) {
     h += `<div class="sec"><span class="nr">${s.nr}</span><h2>${s.title}</h2><span class="ok" data-secok="${s.id}"></span></div>`;
@@ -1243,7 +1244,8 @@ function renderStand() {
   let top = `<div class="stand-top"><h2>${going.length - open.length} van ${going.length} binnen</h2><p class="lines"><span>${open.length ? "Wie moet nog?" : "Iedereen heeft ingevuld. Nu beslist de organisatie."}</span><span>Scouting: ${duelsPlayed()} van ${going.length * TOTAL_DUELS} duels · ${REVEALED ? "de kaarten zijn open" : "onthulling 21 november"}</span></p>`;
   if (open.length) top += `<div class="todo-list">${open.map((p) => `<div class="p">${av(p)}${esc(p.name)}</div>`).join("")}</div>`;
   top += `</div>`;
-  let h = past ? planHTML() + lotingHTML() + top : top + planHTML();
+  let h = past ? planHTML() + (SCORES ? "" : lotingHTML()) + top : top + planHTML();
+  // na de onthulling: eerst de scoutingsrapporten en de loting
 
   // vluchten
   const fh = qOf("heen"), ft = qOf("terug");
@@ -1298,7 +1300,8 @@ function renderStand() {
     h += `<div class="card"><h3>${esc(q.title)}</h3>${extra}${shown.length ? `<div class="camps">${shown.map((c) => `<div class="camp ${c.ids.length === m ? "lead" : ""}"><div class="lb"><span>${esc(c.o.label)}</span><b>${c.ids.length}</b></div>${faces(c.ids)}</div>`).join("")}</div>` : `<p class="none">Nog geen antwoorden.</p>`}</div>`;
   }
 
-  h += `<div class="card-sec"><h3>De selectie</h3><div class="fan">${going.map((p) => `<button tabindex="-1" aria-hidden="true">${cardHTML(p, { me: p.id === me })}</button>`).join("")}</div>${SCORES && me ? `<div class="btns"><button class="btn gold" data-savecard="${me}">Bewaar mijn kaart</button></div>` : ""}</div>`;
+  const selectie = `<div class="card-sec"><h3>De selectie</h3><div class="fan">${going.map((p) => `<button tabindex="-1" aria-hidden="true">${cardHTML(p, { me: p.id === me })}</button>`).join("")}</div>${SCORES && me ? `<div class="btns"><button class="btn gold" data-savecard="${me}">Bewaar mijn kaart</button></div>` : ""}</div>`;
+  if (!SCORES) h += selectie;
   if (!past) h += lotingHTML();
 
   const sl = (v) => arr(v).filter((x) => x !== "geen").map((x) => SLOT_LABEL[x]).join(", ") || (arr(v).includes("geen") ? "geen" : "");
@@ -1310,6 +1313,7 @@ function renderStand() {
     h += `<tr><td class="pp"><span class="pc">${avS(p)}${esc(p.name)}</span></td>${td(fl(a, "heen"))}${td(fl(a, "terug"))}${td(sl(a.training))}${td(sl(a.potje))}${td(a.tegen && optLabel(qOf("tegen"), a.tegen))}${td(a.voetbal && optLabel(qOf("voetbal"), a.voetbal))}${td(a.rijden && optLabel(qOf("rijden"), a.rijden))}${td(any ? rng(costs(a).tot) : "")}</tr>`;
   }
   h += `</tbody></table></div></div>`;
+  if (SCORES) h = `<div class="card-sec"><h3>De scoutingsrapporten</h3>` + selectie.replace('<div class="card-sec"><h3>De selectie</h3>', "") + lotingHTML() + h;
   h += whereHTML();
   if (KAI_VIEW) h += `<div class="card export"><h3>Export voor de organisatie</h3><p class="sub">Alleen zichtbaar via ?kai in de link. Opent in Excel of Numbers.</p><div class="btns"><button class="btn" id="expAnswers">Download keuzes</button><button class="btn ghost" id="expIdeas">Download ideeën</button></div></div>`;
   $("#stand").innerHTML = h;
